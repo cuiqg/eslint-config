@@ -200,7 +200,7 @@ module.exports = {
 
     'no-param-reassign': 'off',
     'array-bracket-spacing': ['error', 'never'],
-    'brace-style': ['error', 'stroustrup', { allowSingleLine: true }],
+    'brace-style': ['error', '1tbs', { allowSingleLine: true }],
     'block-spacing': ['error', 'always'],
     camelcase: 'off',
     'comma-spacing': ['error', { before: false, after: true }],
@@ -403,7 +403,7 @@ module.exports = {
     'vue/array-bracket-spacing': ['error', 'never'],
     'vue/arrow-spacing': ['error', { before: true, after: true }],
     'vue/block-spacing': ['error', 'always'],
-    'vue/brace-style': ['error', 'stroustrup', { allowSingleLine: true }],
+    'vue/brace-style': ['error', '1tbs', { allowSingleLine: true }],
     'vue/comma-dangle': ['error', 'always-multiline'],
     'vue/comma-spacing': ['error', { before: false, after: true }],
     'vue/comma-style': ['error', 'last'],
