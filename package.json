@@ -1,6 +1,6 @@
 {
   "name": "@cuiqg/eslint-config",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Tsuiqg's ESLint Config",
   "main": "index.js",
   "files": [
@@ -8,6 +8,10 @@
   ],
   "author": "Tsuiqg <i@tsuiqg.xyz> (https://tsuiqg.xyz/)",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cuiqg/eslint-config.git"
+  },
   "dependencies": {
     "eslint": ">=7.4.0",
     "eslint-config-prettier": "^8.8.0",
@@ -27,5 +31,8 @@
   },
   "peerDependencies": {
     "eslint": ">=7.4.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
