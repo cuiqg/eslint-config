@@ -153,6 +153,10 @@ module.exports = {
       }
     },
     {
+      files: ['**/*.md'],
+      processor: 'markdown/markdown'
+    },
+    {
       files: ['**/*.md/*.*'],
       rules: {
         'import/no-unresolved': 'off',
@@ -169,13 +173,9 @@ module.exports = {
     {
       files: ['*.vue'],
       parser: 'vue-eslint-parser',
-      parserOptions: {
-        parser: '@typescript-eslint/parser'
-      },
       rules: {
         'no-unused-vars': 'off',
-        'no-undef': 'off',
-        ...(TS ? { '@typescript-eslint/no-unused-vars': 'off' } : null)
+        'no-undef': 'off'
       }
     }
   ],
