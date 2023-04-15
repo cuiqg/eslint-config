@@ -1,6 +1,6 @@
 {
   "name": "@cuiqg/eslint-config",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Tsuiqg's ESLint Config",
   "main": "index.js",
   "files": [
@@ -22,6 +22,7 @@
     "eslint-plugin-markdown": "^3.0.0",
     "eslint-plugin-n": "^15.7.0",
     "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-unicorn": "^46.0.0",
     "eslint-plugin-unused-imports": "^2.0.0",
     "eslint-plugin-vue": "^9.11.0",
     "eslint-plugin-yml": "^1.5.0",
