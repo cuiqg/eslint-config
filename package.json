@@ -1,6 +1,6 @@
 {
   "name": "@cuiqg/eslint-config",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Tsuiqg's ESLint Config",
   "main": "index.js",
   "files": [
