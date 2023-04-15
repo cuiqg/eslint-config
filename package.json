@@ -1,0 +1,31 @@
+{
+  "name": "@cuiqg/eslint-config",
+  "version": "0.0.1",
+  "description": "Tsuiqg's ESLint Config",
+  "main": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "author": "Tsuiqg <i@tsuiqg.xyz> (https://tsuiqg.xyz/)",
+  "license": "MIT",
+  "dependencies": {
+    "eslint": ">=7.4.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-eslint-comments": "^3.2.0",
+    "eslint-plugin-html": "^7.1.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jsonc": "^2.7.0",
+    "eslint-plugin-markdown": "^3.0.0",
+    "eslint-plugin-n": "^15.7.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-unused-imports": "^2.0.0",
+    "eslint-plugin-vue": "^9.11.0",
+    "eslint-plugin-yml": "^1.5.0",
+    "jsonc-eslint-parser": "^2.2.0",
+    "local-pkg": "^0.4.3",
+    "yaml-eslint-parser": "^1.2.0"
+  },
+  "peerDependencies": {
+    "eslint": ">=7.4.0"
+  }
+}
