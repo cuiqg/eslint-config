@@ -175,7 +175,8 @@ module.exports = {
       parser: 'vue-eslint-parser',
       rules: {
         'no-unused-vars': 'off',
-        'no-undef': 'off'
+        'no-undef': 'off',
+        indent: 'off'
       }
     }
   ],
@@ -190,7 +191,7 @@ module.exports = {
 
     // Common
     semi: ['error', 'never'],
-    curly: ['error', 'multi-or-nest', 'consistent'],
+    curly: ['error', 'all'],
     quotes: ['error', 'single'],
     'quote-props': ['error', 'consistent-as-needed'],
 
@@ -350,6 +351,15 @@ module.exports = {
     'vue/multi-word-component-names': 'off',
     'vue/prefer-import-from-vue': 'off',
     'vue/no-v-text-v-html-on-component': 'off',
+    'vue/script-indent': [
+      'error',
+      2,
+      {
+        baseIndent: 1,
+        switchCase: 1,
+        ignores: []
+      }
+    ],
 
     // reactivity transform
     'vue/no-setup-props-destructure': 'off',
