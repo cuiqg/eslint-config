@@ -46,8 +46,12 @@ module.exports = {
     "vue/valid-v-for": "off",
     "vue/require-v-for-key": "off",
     "vue/multi-word-component-names": "off",
+    "vue/require-prop-types": "off",
     "vue/component-tags-order": ["error", {
       "order": [["template", "script"], "style"]
+    }],
+    "vue/no-unused-vars": ["error", {
+      "ignorePattern": "^_"
     }],
     'vue/script-indent': [
       'error',
