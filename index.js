@@ -46,6 +46,7 @@ module.exports = {
     "vue/valid-v-for": "off",
     "vue/require-v-for-key": "off",
     "vue/multi-word-component-names": "off",
+    "vue/no-v-text-v-html-on-component": "off",
     "vue/require-prop-types": "off",
     "vue/component-tags-order": ["error", {
       "order": [["template", "script"], "style"]
