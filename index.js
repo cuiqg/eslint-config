@@ -25,7 +25,7 @@ module.exports = {
       jsx: true
     }
   },
-  plugins: ['html'],
+  plugins: ['html', 'import'],
   overrides: [
     {
       files: ['*.vue'],
@@ -41,6 +41,12 @@ module.exports = {
       'warn',
       { vars: 'all', varsIgnorePattern: '^_', args: 'after-used', argsIgnorePattern: '^_' },
     ],
+    'arrow-spacing': ['error', { before: true, after: true }],
+    'block-spacing': ['error', 'always'],
+    'comma-spacing': ['error', { before: false, after: true }],
+    'comma-style': ['error', 'last'],
+    'object-curly-newline': ['error', { multiline: true, consistent: true }],
+    "object-curly-spacing": ["error", "always"],
     "import/no-unresolved": "off",
     "vue/no-v-html": "off",
     "vue/valid-v-for": "off",
