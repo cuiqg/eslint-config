@@ -16,7 +16,11 @@ module.exports = {
     "plugin:prettier/recommended"
   ],
   ignorePatterns: [
-    "**/*.config.js"
+    "node_modules/",
+    "**/node_modules/",
+    "/**/node_modules/*",
+    "dist/",
+    "build/"
   ],
   "reportUnusedDisableDirectives": true,
   parserOptions: {
@@ -79,7 +83,7 @@ module.exports = {
       },
       "svg": "always",
       "math": "always"
-    }]
-  },
-  "prettier/prettier": "error"
+    }],
+    "prettier/prettier": "error"
+  }
 }
