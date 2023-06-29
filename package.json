@@ -1,12 +1,12 @@
 {
   "name": "@cuiqg/eslint-config",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Tsuiqg's ESLint Config",
   "main": "index.js",
   "files": [
     "index.js"
   ],
-  "author": "Tsuiqg <i@tsuiqg.xyz> (https://tsuiqg.xyz/)",
+  "author": "Tsuiqg <i@tsuiqg.xyz>",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -14,8 +14,6 @@
   },
   "dependencies": {
     "eslint": "^8.38.0",
-    "eslint-plugin-html": "^7.1.0",
-    "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-vue": "^9.11.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1"

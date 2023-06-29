@@ -3,6 +3,7 @@ module.exports = {
     es6: true,
     browser: true,
     node: true,
+    commonjs: true
   },
   globals: {
     document: 'readonly',
@@ -11,7 +12,6 @@ module.exports = {
   },
   extends: [
     "eslint:recommended",
-    'plugin:import/recommended',
     'plugin:vue/vue3-recommended',
     "plugin:prettier/recommended"
   ],
@@ -30,7 +30,7 @@ module.exports = {
       jsx: true
     }
   },
-  plugins: ['html', 'import', 'prettier'],
+  plugins: ['prettier'],
   overrides: [
     {
       files: ['*.vue'],
@@ -53,7 +53,6 @@ module.exports = {
     'comma-style': ['error', 'last'],
     'object-curly-newline': ['error', { multiline: true, consistent: true }],
     "object-curly-spacing": ["error", "always"],
-    "import/no-unresolved": "off",
     "vue/no-v-html": "off",
     "vue/valid-v-for": "off",
     "vue/require-v-for-key": "off",
@@ -84,6 +83,6 @@ module.exports = {
       "svg": "always",
       "math": "always"
     }],
-    "prettier/prettier": "error"
+    "prettier/prettier": ["error", { endOfLine: 'auto' }, { usePrettierrc: true }]
   }
 }
