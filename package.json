@@ -1,25 +1,23 @@
 {
   "name": "@cuiqg/eslint-config",
-  "version": "1.0.9",
+  "version": "1.1.0",
   "description": "Tsuiqg's ESLint Config",
   "main": "index.js",
   "files": [
     "index.js"
   ],
-  "author": "Tsuiqg <i@tsuiqg.xyz>",
+  "author": "Tsuiqg <i@tsuiqg.me>",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cuiqg/eslint-config.git"
   },
   "dependencies": {
-    "eslint": "^8.38.0",
-    "eslint-plugin-vue": "^9.11.0",
-    "eslint-config-prettier": "^8.8.0",
-    "eslint-plugin-prettier": "^4.2.1"
+    "eslint": "^8.43.0",
+    "eslint-plugin-vue": "^9.15.0"
   },
   "peerDependencies": {
-    "eslint": "^8.38.0"
+    "eslint": "^8.43.0"
   },
   "publishConfig": {
     "access": "public"

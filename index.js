@@ -12,8 +12,7 @@ module.exports = {
   },
   extends: [
     "eslint:recommended",
-    'plugin:vue/vue3-recommended',
-    "plugin:prettier/recommended"
+    'plugin:vue/vue3-recommended'
   ],
   ignorePatterns: [
     "node_modules/",
@@ -30,7 +29,7 @@ module.exports = {
       jsx: true
     }
   },
-  plugins: ['prettier'],
+  plugins: [],
   overrides: [
     {
       files: ['*.vue'],
@@ -82,7 +81,6 @@ module.exports = {
       },
       "svg": "always",
       "math": "always"
-    }],
-    "prettier/prettier": ["error", { endOfLine: 'auto' }, { usePrettierrc: true }]
+    }]
   }
 }
