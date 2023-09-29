@@ -68,11 +68,18 @@ module.exports = {
       'error',
       2,
       {
-        baseIndent: 1,
-        switchCase: 1,
+        baseIndent: 0,
+        switchCase: 0,
         ignores: []
       }
     ],
+    "vue/html-indent": ["error", 2, {
+      "attribute": 1,
+      "baseIndent": 1,
+      "closeBracket": 0,
+      "alignAttributesVertically": true,
+      "ignores": []
+    }],
     "vue/html-self-closing": ["error", {
       "html": {
         "void": "always",
