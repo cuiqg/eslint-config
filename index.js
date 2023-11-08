@@ -14,14 +14,6 @@ module.exports = {
     "eslint:recommended",
     'plugin:vue/vue3-recommended'
   ],
-  ignorePatterns: [
-    "node_modules/",
-    "**/node_modules/",
-    "/**/node_modules/*",
-    "dist/",
-    "build/"
-  ],
-  "reportUnusedDisableDirectives": true,
   parserOptions: {
     ecmaVersion: "latest",
     sourceType: 'module',
