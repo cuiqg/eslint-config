@@ -8,7 +8,6 @@ import {
   jsdoc,
   jsonc,
   markdown,
-  prettier,
   sortJsconfig,
   sortKeys,
   sortPackageJson,
@@ -26,7 +25,7 @@ export const presetLangsExtensions = [...markdown, ...yml, ...presetJsonc]
 export const basic = [...presetJavaScript]
 export { basic as presetBasic }
 
-export const all = [...basic, ...presetLangsExtensions, ...sortKeys, ...vue, ...unocss, ...prettier]
+export const all = [...basic, ...presetLangsExtensions, ...sortKeys, ...vue, ...unocss]
 
 /**
  * Construct an array of ESLint flat config items.
@@ -35,12 +34,13 @@ export const all = [...basic, ...presetLangsExtensions, ...sortKeys, ...vue, ...
 export function cuiqg(config = [], options = {}) {
   const {
     vue: enableVue = hasVue,
-    prettier: enablePrettier = true,
     markdown: enableMarkdown = true,
     sortKeys: enableSortKeys = true,
     unocss: enableUnocss = hasUnocss,
   } = options
+
   const configs = [...basic, ...yml, ...presetJsonc]
+
   if (enableSortKeys) {
     configs.push(...sortKeys)
   }
@@ -52,9 +52,6 @@ export function cuiqg(config = [], options = {}) {
   }
   if (enableUnocss) {
     configs.push(...unocss)
-  }
-  if (enablePrettier) {
-    configs.push(...prettier)
   }
   if (Object.keys(config).length > 0) {
     configs.push(...(Array.isArray(config) ? config : [config]))
