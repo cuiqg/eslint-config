@@ -18,8 +18,7 @@
   "scripts": {
     "build": "tsup src/index.js --format esm,cjs --clean",
     "stub": "tsup src/index.js --format esm",
-    "lint": "npm run stub && eslint .",
-    "prepare": "husky install"
+    "lint": "npm run stub && eslint ."
   },
   "dependencies": {
     "eslint-plugin-jsdoc": "^46.8.2",
@@ -34,7 +33,6 @@
   },
   "devDependencies": {
     "eslint": "^8.53.0",
-    "husky": "^8.0.0",
     "lint-staged": "^15.0.2",
     "tsup": "^7.2.0"
   },

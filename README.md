@@ -4,38 +4,22 @@
 
 ## Usage
 
-Usage is based on [Sharing configurations](https://eslint.org/docs/latest/extend/shareable-configs) from the ESLint docs.
+Usage is based on [Flat configuration](https://zh-hans.eslint.org/docs/latest/use/configure/configuration-files-new) from the ESLint docs.
 
-1. Install package
+```js
+import cuiqg from '@cuiqg/eslint-config'
 
-```bash
-npm i -D eslint @cuiqg/eslint-config
+export default [
+  ...cuiqg
+]
 ```
 
-2. Add the following to `package.json`
-
-```json
-{
-  "eslintConfig": {
-    "extends": "@cuiqg"
-  }
-}
-```
-
-3. Change `package.json` add following to `scripts`
-```json
-{
-  "scripts": {
-    "lint" : "eslint .",
-    "lint:fix": "eslint . --fix"
-  }
-}
-```
-## Option
+## Extension
 Install [VS Code ESLint extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and create `.vscode/settings.json`
 ```json
 {
   "prettier.enable": false,
+  "eslint.experimental.useFlatConfig": true,
   "editor.formatOnSave": false,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
