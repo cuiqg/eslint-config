@@ -1,6 +1,6 @@
 {
   "name": "@cuiqg/eslint-config",
-  "version": "1.4.2",
+  "version": "1.4.4",
   "description": "Tsuiqg's ESLint Config",
   "type": "module",
   "license": "UNLICENSED",
@@ -41,6 +41,7 @@
     "eslint-plugin-jsdoc": "^46.8.2",
     "eslint-plugin-jsonc": "^2.10.0",
     "eslint-plugin-markdown": "^3.0.1",
+    "eslint-plugin-perfectionist": "^2.2.0",
     "eslint-plugin-sort-keys": "^2.3.5",
     "eslint-plugin-unicorn": "^49.0.0",
     "eslint-plugin-unused-imports": "^3.0.0",

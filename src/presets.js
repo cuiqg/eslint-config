@@ -8,16 +8,17 @@ import {
   jsdoc,
   jsonc,
   markdown,
+  perfectionist,
   sortJsconfig,
   sortKeys,
   sortPackageJson,
   unicorn,
   unocss,
   vue,
-  yml,
+  yml
 } from './configs'
 
-export const presetJavaScript = [...ignores, ...jsdoc, ...javascript, ...comments, ...imports, ...unicorn]
+export const presetJavaScript = [...ignores, ...jsdoc, ...javascript, ...comments, ...imports, ...unicorn, ...perfectionist]
 
 export const presetJsonc = [...jsonc, ...sortPackageJson, ...sortJsconfig]
 export const presetLangsExtensions = [...markdown, ...yml, ...presetJsonc]

@@ -9,6 +9,7 @@ export const jsdoc = [
       jsdoc: pluginJsdoc,
     },
     rules: {
+      'jsdoc/require-jsdoc': 'off',
       'jsdoc/check-alignment': 'warn',
       'jsdoc/multiline-blocks': 'warn',
       'jsdoc/check-access': 'warn',
@@ -25,7 +26,7 @@ export const jsdoc = [
       'jsdoc/require-property-name': 'warn',
       'jsdoc/require-returns-check': 'warn',
       'jsdoc/require-returns-description': 'warn',
-      'jsdoc/require-yields-check': 'warn',
+      'jsdoc/require-yields-check': 'warn'
     },
   },
 ]
