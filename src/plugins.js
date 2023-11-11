@@ -26,7 +26,6 @@ export const pluginPerfectionist = interopDefault(_pluginPerfectionist)
 export * as pluginJsonc from 'eslint-plugin-jsonc'
 export * as pluginYml from 'eslint-plugin-yml'
 export * as pluginImport from 'eslint-plugin-i'
-export * as pluginUnusedImports from 'eslint-plugin-unused-imports'
 export * as pluginSortKeys from 'eslint-plugin-sort-keys'
 
 export * as parserVue from 'vue-eslint-parser'

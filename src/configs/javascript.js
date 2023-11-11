@@ -1,5 +1,4 @@
 import globals from 'globals'
-import { pluginUnusedImports } from '../plugins'
 import { isInEditor } from '../env'
 
 /** @type {import('eslint-define-config').FlatESLintConfigItem} */
@@ -18,9 +17,6 @@ export const javascript = [
         sourceType: 'module',
       },
       sourceType: 'module',
-    },
-    plugins: {
-      'unused-imports': pluginUnusedImports,
     },
     rules: {
       'array-callback-return': 'error',
@@ -122,8 +118,6 @@ export const javascript = [
         },
       ],
       'unicode-bom': ['error', 'never'],
-      'unused-imports/no-unused-imports': isInEditor ? 'off' : 'error',
-      'unused-imports/no-unused-vars': ['error', { args: 'after-used', ignoreRestSiblings: true }],
       'use-isnan': ['error', { enforceForIndexOf: true, enforceForSwitchCase: true }],
       'valid-typeof': ['error', { requireStringLiterals: true }],
       'vars-on-top': 'error',

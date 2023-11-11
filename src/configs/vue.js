@@ -39,7 +39,7 @@ export const reactivityTransform = [
 
 /** @type {import('eslint-define-config').Rules} */
 const vueCustomRules = {
-  'vue/block-order': ['error', { order: ['script', 'template', 'style'] }],
+  'vue/block-order': ['error', { order: [['template', 'script'], 'style'] }],
   'vue/custom-event-name-casing': ['error', 'camelCase'],
   'vue/eqeqeq': ['error', 'smart'],
   'vue/html-self-closing': [
