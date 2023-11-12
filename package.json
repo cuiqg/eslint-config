@@ -1,9 +1,10 @@
 {
   "name": "@cuiqg/eslint-config",
-  "version": "1.4.5",
+  "version": "1.5.0",
   "description": "Tsuiqg's ESLint Config",
   "type": "module",
   "license": "UNLICENSED",
+  "homepage": "https://github.com/cuiqg/eslint-config",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cuiqg/eslint-config.git"
