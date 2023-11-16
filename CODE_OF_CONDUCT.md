@@ -65,8 +65,10 @@
 
 本行为准则改编自 [Contributor Covenant][homepage] 2.1 版, 参见 [https://www.contributor-covenant.org/version/2/1/code_of_conduct.html][v2.1]。
 社区处理方针灵感来源于 [Mozilla's code of conduct enforcement ladder][Mozilla CoC]。
+
 有关本行为准则的常见问题的答案，参见 [https://www.contributor-covenant.org/faq][FAQ]。
 其他语言翻译参见 [https://www.contributor-covenant.org/translations][translations]。
+
 [homepage]: https://www.contributor-covenant.org
 [v2.1]: https://www.contributor-covenant.org/version/2/1/code_of_conduct.html
 [Mozilla CoC]: https://github.com/mozilla/diversity
