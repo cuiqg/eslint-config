@@ -60,4 +60,4 @@ export default cuiqg()
 ```
 ## 感谢
 
-[![](https://i.im.ge/2023/11/17/AilZRp.Mediamodifier-Design-Template-1.png)](https://github.com/antfu)
+[![](https://i.jpg.dog/d3b1d8c4ad14c607d58388295fd978af.png)](https://github.com/antfu)
