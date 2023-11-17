@@ -2,34 +2,28 @@
 
 [![npm](https://img.shields.io/npm/v/@cuiqg/eslint-config?color=%23ff4777&label=)](https://www.npmjs.com/package/@cuiqg/eslint-config)
 
-> [!NOTE]
-> Usage is based on [Flat configuration](https://zh-hans.eslint.org/docs/latest/use/configure/configuration-files-new) from the ESLint docs.
+> [!IMPORTANT]
+> 
+> 代码和想法几乎全部来源于 [@antfu/eslint-config](https://github.com/antfu/eslint-config) :pray:
 
-## Usage
-
-### Install
+## 使用
 
 ```bash
 npm i -D eslint @cuiqg/eslint-config
 ```
+修改 `package.json` 文件
 
-### Create config File
-
-#### With ECMAScript modules (recommended)
-
-`package.json`
-
-```json
+```diff
 {
-  "type": "module",
++ "type": "module",
   "scripts": {
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
++   "lint": "eslint .",
++   "lint:fix": "eslint . --fix"
   }
 }
 ```
 
-`eslint.config.json`
+创建 `eslint.config.json` 文件
 
 ```js
 import cuiqg from '@cuiqg/eslint-config'
@@ -37,23 +31,16 @@ import cuiqg from '@cuiqg/eslint-config'
 export default cuiqg()
 ```
 
-#### With CommonJS modules
+## 插件配置
 
-```js
-// eslint.config.js
-const cuiqg = require('@cuiqg/eslint-config').default
+安装 [VS Code ESLint extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) 
 
-module.exports = cuiqg()
-```
-
-## Extension
-
-Install [VS Code ESLint extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and create `.vscode/settings.json`
+创建配置文件 `.vscode/settings.json`
 
 ```json
 {
-  "prettier.enable": false,
   "eslint.experimental.useFlatConfig": true,
+  "prettier.enable": false,
   "editor.formatOnSave": false,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit",
@@ -62,8 +49,6 @@ Install [VS Code ESLint extension](https://marketplace.visualstudio.com/items?it
   "eslint.validate": [
     "javascript",
     "javascriptreact",
-    "typescript",
-    "typescriptreact",
     "vue",
     "html",
     "markdown",
