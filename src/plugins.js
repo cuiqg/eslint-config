@@ -1,33 +1,15 @@
-function interopDefault(module) {
-  return module.default || module
-}
+export { default as pluginComments } from 'eslint-plugin-eslint-comments'
+export { default as pluginVue } from 'eslint-plugin-vue'
+export { default as pluginStylistic } from '@stylistic/eslint-plugin'
+export { default as pluginUnicorn } from 'eslint-plugin-unicorn'
+export { default as pluginJsdoc } from 'eslint-plugin-jsdoc'
+export { default as pluginMarkdown } from 'eslint-plugin-markdown'
+export { default as pluginPerfectionist } from 'eslint-plugin-perfectionist'
 
-import * as _pluginComments from 'eslint-plugin-eslint-comments'
-export const pluginComments = interopDefault(_pluginComments)
-
-import * as _pluginMarkdown from 'eslint-plugin-markdown'
-export const pluginMarkdown = interopDefault(_pluginMarkdown)
-
-import * as _pluginVue from 'eslint-plugin-vue'
-export const pluginVue = interopDefault(_pluginVue)
-
-import * as _pluginJsdoc from 'eslint-plugin-jsdoc'
-export const pluginJsdoc = interopDefault(_pluginJsdoc)
-
-import * as _pluginUnocss from '@unocss/eslint-plugin'
-export const pluginUnocss = interopDefault(_pluginUnocss)
-
-import * as _pluginUnicorn from 'eslint-plugin-unicorn'
-export const pluginUnicorn = interopDefault(_pluginUnicorn)
-
-import * as _pluginPerfectionist from 'eslint-plugin-perfectionist'
-export const pluginPerfectionist = interopDefault(_pluginPerfectionist)
-
+export * as pluginYaml from 'eslint-plugin-yml'
 export * as pluginJsonc from 'eslint-plugin-jsonc'
-export * as pluginYml from 'eslint-plugin-yml'
 export * as pluginImport from 'eslint-plugin-i'
-export * as pluginSortKeys from 'eslint-plugin-sort-keys'
 
-export * as parserVue from 'vue-eslint-parser'
-export * as parserYml from 'yaml-eslint-parser'
-export * as parserJsonc from 'jsonc-eslint-parser'
+export { default as parserVue } from 'vue-eslint-parser'
+export { default as parserJsonc } from 'jsonc-eslint-parser'
+export { default as parserYaml } from 'yaml-eslint-parser'

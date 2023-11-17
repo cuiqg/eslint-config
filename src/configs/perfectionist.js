@@ -1,10 +1,13 @@
 import { pluginPerfectionist } from '../plugins'
 
-/** @type {import('eslint-define-config').FlatESLintConfigItem} */
-export const perfectionist = [
-  {
-    plugins: {
-      perfectionist: pluginPerfectionist
-    }
-  }
-]
+/** @returns {import('eslint-define-config').FlatESLintConfigItem} */
+export function perfectionist() {
+  return [
+    {
+      name: 'tsuiqg:perfectionist',
+      plugins: {
+        perfectionist: pluginPerfectionist,
+      },
+    },
+  ]
+}

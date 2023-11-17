@@ -1,4 +1,4 @@
-import { hasUnocss, hasVue } from './env'
+import { isPackageExists } from 'local-pkg'
 
 import {
   comments,
@@ -10,52 +10,111 @@ import {
   markdown,
   perfectionist,
   sortJsconfig,
-  sortKeys,
   sortPackageJson,
+  stylistic,
   unicorn,
-  unocss,
   vue,
-  yml
+  yaml,
 } from './configs'
 
-export const presetJavaScript = [...ignores, ...jsdoc, ...javascript, ...comments, ...imports, ...unicorn, ...perfectionist]
+import { combine } from './utils'
 
-export const presetJsonc = [...jsonc, ...sortPackageJson, ...sortJsconfig]
-export const presetLangsExtensions = [...markdown, ...yml, ...presetJsonc]
+const flatConfigProps = [
+  'files',
+  'ignores',
+  'languageOptions',
+  'linterOptions',
+  'processor',
+  'plugins',
+  'rules',
+  'settings',
+]
 
-export const basic = [...presetJavaScript]
-export { basic as presetBasic }
+const VuePackages = [
+  'vue',
+  'nuxt',
+  'vitepress',
+]
 
-export const all = [...basic, ...presetLangsExtensions, ...sortKeys, ...vue, ...unocss]
-
-/**
- * Construct an array of ESLint flat config items.
- * @type {import('eslint-define-config').FlatESLintConfigItem}
- */
-export function cuiqg(config = [], options = {}) {
+/** @returns { import('eslint-define-config').FlatESLintConfigItem } */
+export function cuiqg(options = {}, ...userConfigs) {
   const {
-    vue: enableVue = hasVue,
-    markdown: enableMarkdown = true,
-    sortKeys: enableSortKeys = true,
-    unocss: enableUnocss = hasUnocss,
+    componentExts = [],
+    overrides = {},
+    vue: enableVue = VuePackages.some(i => isPackageExists(i)),
   } = options
 
-  const configs = [...basic, ...yml, ...presetJsonc]
+  const stylisticOptions = (options.stylistic === false ? false : (typeof options.stylistic === 'object' ? options.stylistic : {}))
 
-  if (enableSortKeys) {
-    configs.push(...sortKeys)
-  }
+  if (stylisticOptions && !('jsx' in stylisticOptions))
+    stylisticOptions.jsx = options.jsx ?? true
+
+  const configs = [
+    ignores(),
+    javascript({
+      overrides: overrides.javascript,
+    }),
+    comments(),
+    jsdoc({
+      stylistic: stylisticOptions,
+    }),
+    imports({
+      stylistic: stylisticOptions,
+    }),
+    unicorn(),
+    perfectionist(),
+  ]
+
   if (enableVue) {
-    configs.push(...vue)
+    componentExts.push('.vue')
+    configs.push(vue({
+      overrides: overrides.vue,
+      stylistic: stylisticOptions,
+    }))
   }
-  if (enableMarkdown) {
-    configs.push(...markdown)
+
+  if (stylisticOptions)
+    configs.push(stylistic(stylisticOptions))
+
+  if (options.jsonc ?? true) {
+    configs.push(
+      jsonc({
+        overrides: overrides.jsonc,
+        stylistic: stylisticOptions,
+      }),
+      sortPackageJson(),
+      sortJsconfig(),
+    )
   }
-  if (enableUnocss) {
-    configs.push(...unocss)
+
+  if (options.yaml ?? true) {
+    configs.push(yaml({
+      overrides: overrides.yaml,
+      stylistic: stylisticOptions,
+    }))
   }
-  if (Object.keys(config).length > 0) {
-    configs.push(...(Array.isArray(config) ? config : [config]))
+
+  if (options.markdown ?? true) {
+    configs.push(markdown({
+      componentExts,
+      overrides: overrides.markdown,
+    }))
   }
-  return configs
+
+  const fusedConfig = flatConfigProps.reduce((acc, key) => {
+    if (key in options)
+      acc[key] = options[key]
+
+    return acc
+  }, {})
+
+  if (Object.keys(fusedConfig).length > 0)
+    configs.push([fusedConfig])
+
+  const merged = combine(
+    ...configs,
+    ...userConfigs,
+  )
+
+  return merged
 }
