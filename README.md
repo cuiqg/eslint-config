@@ -60,4 +60,5 @@ export default cuiqg()
 ```
 ## 感谢
 
-[![](https://i.jpg.dog/d3b1d8c4ad14c607d58388295fd978af.png)](https://github.com/antfu)
+[@antfu](https://github.com/antfu)
+ 
