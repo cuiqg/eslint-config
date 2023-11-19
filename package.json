@@ -26,7 +26,6 @@
   },
   "scripts": {
     "build": "tsup",
-    "release": "bumpp && npm publish",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "prepack": "npm run build",
@@ -55,7 +54,6 @@
     "yaml-eslint-parser": "^1.2.2"
   },
   "devDependencies": {
-    "bumpp": "^9.2.0",
     "eslint": "^8.53.0",
     "lint-staged": "^15.0.2",
     "prettier": "^3.0.3",
