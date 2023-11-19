@@ -69,6 +69,7 @@ export function cuiqg(options = {}, ...userConfigs) {
     }),
     comments(),
     jsdoc({
+      overrides: overrides.jsdoc,
       stylistic: stylisticOptions,
     }),
     imports({
@@ -79,9 +80,7 @@ export function cuiqg(options = {}, ...userConfigs) {
   ]
 
   if (fs.existsSync('.eslintrc-auto-import.json')) {
-    const fileUrl = new URL('./.eslintrc-auto-import.json', import.meta.url)
-    const autoImport = JSON.parse(fs.readFileSync(fileUrl))
-
+    const autoImport = JSON.parse(fs.readFileSync('./.eslintrc-auto-import.json', 'utf8'))
     configs.push([{
       languageOptions: {
         globals: autoImport.globals,
@@ -90,7 +89,7 @@ export function cuiqg(options = {}, ...userConfigs) {
   }
 
   if (enableVue) {
-    componentExts.push('.vue')
+    componentExts.push('vue')
     configs.push(vue({
       overrides: overrides.vue,
       stylistic: stylisticOptions,
@@ -138,7 +137,7 @@ export function cuiqg(options = {}, ...userConfigs) {
     return acc
   }, {})
 
-  if (Object.keys(fusedConfig).length > 0)
+  if (Object.keys(fusedConfig).length)
     configs.push([fusedConfig])
 
   const merged = combine(

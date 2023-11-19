@@ -1,6 +1,6 @@
 {
   "name": "@cuiqg/eslint-config",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Tsuiqg's ESLint config",
   "type": "module",
   "license": "UNLICENSED",

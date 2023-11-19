@@ -2,7 +2,7 @@ import { pluginJsdoc } from '../plugins'
 
 /** @returns {import('eslint-define-config').FlatESLintConfigItem} */
 export function jsdoc(options = {}) {
-  const { stylistic = true } = options
+  const { stylistic = true, overrides = {} } = options
 
   return [
     {
@@ -34,6 +34,8 @@ export function jsdoc(options = {}) {
               'jsdoc/multiline-blocks': 'warn',
             }
           : {},
+
+        ...overrides,
       },
     },
   ]
