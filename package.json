@@ -1,6 +1,6 @@
 {
   "name": "@cuiqg/eslint-config",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "description": "Tsuiqg's ESLint config",
   "type": "module",
   "license": "UNLICENSED",
@@ -29,6 +29,7 @@
     "release": "bumpp && npm publish",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
+    "prepack": "npm run build",
     "prepare": "simple-git-hooks"
   },
   "peerDependencies": {
