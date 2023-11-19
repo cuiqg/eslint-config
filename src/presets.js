@@ -1,3 +1,4 @@
+import fs from 'node:fs'
 import { isPackageExists } from 'local-pkg'
 
 import {
@@ -13,6 +14,7 @@ import {
   sortPackageJson,
   stylistic,
   unicorn,
+  unocss,
   vue,
   yaml,
 } from './configs'
@@ -36,12 +38,23 @@ const VuePackages = [
   'vitepress',
 ]
 
-/** @returns { import('eslint-define-config').FlatESLintConfigItem } */
+const UnocssPackages = [
+  'unocss',
+  '@unocss/webpack',
+  '@unocss/nuxt',
+]
+
+/**
+ * @param {{}} [options]
+ * @param {...*} userConfigs
+ * @returns { import('eslint-define-config').FlatESLintConfigItem }
+ */
 export function cuiqg(options = {}, ...userConfigs) {
   const {
     componentExts = [],
     overrides = {},
     vue: enableVue = VuePackages.some(i => isPackageExists(i)),
+    unocss: enableUnocss = UnocssPackages.some(i => isPackageExists(i)),
   } = options
 
   const stylisticOptions = (options.stylistic === false ? false : (typeof options.stylistic === 'object' ? options.stylistic : {}))
@@ -65,6 +78,17 @@ export function cuiqg(options = {}, ...userConfigs) {
     perfectionist(),
   ]
 
+  if (fs.existsSync('.eslintrc-auto-import.json')) {
+    const fileUrl = new URL('./.eslintrc-auto-import.json', import.meta.url)
+    const autoImport = JSON.parse(fs.readFileSync(fileUrl))
+
+    configs.push([{
+      languageOptions: {
+        globals: autoImport.globals,
+      },
+    }])
+  }
+
   if (enableVue) {
     componentExts.push('.vue')
     configs.push(vue({
@@ -75,6 +99,12 @@ export function cuiqg(options = {}, ...userConfigs) {
 
   if (stylisticOptions)
     configs.push(stylistic(stylisticOptions))
+
+  if (enableUnocss) {
+    configs.push(unocss({
+      overrides: overrides.unocss,
+    }))
+  }
 
   if (options.jsonc ?? true) {
     configs.push(

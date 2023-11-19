@@ -5,6 +5,7 @@ export { default as pluginUnicorn } from 'eslint-plugin-unicorn'
 export { default as pluginJsdoc } from 'eslint-plugin-jsdoc'
 export { default as pluginMarkdown } from 'eslint-plugin-markdown'
 export { default as pluginPerfectionist } from 'eslint-plugin-perfectionist'
+export { default as pluginUnocss } from '@unocss/eslint-plugin'
 
 export * as pluginYaml from 'eslint-plugin-yml'
 export * as pluginJsonc from 'eslint-plugin-jsonc'

@@ -1,7 +1,11 @@
 import { pluginUnicorn } from '../plugins'
 
 /** @returns {import('eslint-define-config').FlatESLintConfigItem} */
-export function unicorn() {
+export function unicorn(options = {}) {
+  const {
+    overrides = {},
+  } = options
+
   return [
     {
       name: 'tsuiqg:unicorn',
@@ -22,6 +26,8 @@ export function unicorn() {
         'unicorn/prefer-string-starts-ends-with': 'error',
         'unicorn/prefer-type-error': 'error',
         'unicorn/throw-new-error': 'error',
+
+        ...overrides,
       },
     },
   ]
