@@ -23,7 +23,7 @@ npm i -D eslint @cuiqg/eslint-config
 }
 ```
 
-创建 `eslint.config.json` 文件
+创建 `eslint.config.js` 文件
 
 ```js
 import cuiqg from '@cuiqg/eslint-config'
