@@ -1,21 +1,16 @@
-import { pluginUnocss } from '../plugins'
+import { interopDefault } from '../utils'
 
-/** @returns {import('eslint-define-config').FlatESLintConfigItem} */
-export function unocss(options = {}) {
-  const {
-    overrides = {},
-  } = options
+/** @returns {import('eslint-define-config').FlatESLintConfigItem[]} */
+export async function unocss() {
+  const [pluginUnoCSS] = await interopDefault(import('@unocss/eslint-plugin'))
 
   return [
     {
-      name: 'tsuiqg:unocss',
       plugins: {
-        '@unocss': pluginUnocss,
+        unocss: pluginUnoCSS,
       },
       rules: {
-        ...pluginUnocss.configs.recommended.rules,
-
-        ...overrides,
+        ...pluginUnoCSS.configs.flat.rules,
       },
     },
   ]

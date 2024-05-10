@@ -1,11 +1,4 @@
-import cuiqg from './dist/index.js'
+import { require } from 'tsx/cjs/api'
+const { cuiqg } = require('./src/index.js', import.meta.url)
 
-export default cuiqg({
-  ignores: ['dist'],
-}, {
-  files: ['src/**/*.js'],
-  rules: {
-    'import/no-default-export': 'off',
-    'jsdoc/require-returns-description': 'off',
-  },
-})
+export default cuiqg()

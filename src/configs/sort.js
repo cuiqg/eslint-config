@@ -1,8 +1,7 @@
-/** @returns {import('eslint-define-config').FlatESLintConfigItem} */
-export function sortPackageJson() {
+/** @returns {import('eslint-define-config').FlatESLintConfigItem[]} */
+export async function sortPackageJson() {
   return [
     {
-      name: 'tsuiqg:sort-package-json',
       files: ['**/package.json'],
       rules: {
         'jsonc/sort-array-values': [
@@ -83,17 +82,23 @@ export function sortPackageJson() {
   ]
 }
 
-/** @returns {import('eslint-define-config').FlatESLintConfigItem} */
-export function sortJsconfig() {
+/** @returns {import('eslint-define-config').FlatESLintConfigItem[]} */
+export async function sortJsconfig() {
   return [
     {
-      name: 'tsuiqg:sort-jsconfig',
       files: ['**/jsconfig.json', '**/jsconfig.*.json'],
       rules: {
         'jsonc/sort-keys': [
           'error',
           {
-            order: ['extends', 'compilerOptions', 'references', 'files', 'include', 'exclude'],
+            order: [
+              'extends',
+              'compilerOptions',
+              'references',
+              'files',
+              'include',
+              'exclude',
+            ],
             pathPattern: '^$',
           },
           {

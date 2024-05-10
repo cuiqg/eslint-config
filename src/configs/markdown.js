@@ -1,32 +1,22 @@
-import { GLOB_MARKDOWN, GLOB_MARKDOWN_CODE } from '../globs'
-import { pluginMarkdown } from '../plugins'
+import { GLOB_MARKDOWN, GLOB_SRC, GLOB_VUE } from '../globs'
+import { interopDefault } from '../utils'
 
-/**
- *
- */
-export function markdown(options = {}) {
-  const {
-    componentExts = [],
-    overrides = {},
-  } = options
+/** @returns {import('eslint-define-config').FlatESLintConfigItem[]} */
+export async function markdown() {
+  const markdown = await interopDefault(import('eslint-plugin-markdown'))
 
   return [
     {
-      name: 'tsuiqg:markdown:setup',
       plugins: {
-        markdown: pluginMarkdown,
+        markdown,
       },
     },
     {
       files: [GLOB_MARKDOWN],
-      name: 'tsuiqg:markdown:processor',
       processor: 'markdown/markdown',
     },
     {
-      files: [
-        GLOB_MARKDOWN_CODE,
-        ...componentExts.map(ext => `${GLOB_MARKDOWN}/**/*.${ext}`),
-      ],
+      files: [`${GLOB_MARKDOWN}/${GLOB_SRC}`, `${GLOB_MARKDOWN}/${GLOB_VUE}`],
       languageOptions: {
         parserOptions: {
           ecmaFeatures: {
@@ -34,23 +24,19 @@ export function markdown(options = {}) {
           },
         },
       },
-      name: 'tsuiqg:markdown:rules',
       rules: {
-        'import/newline-after-import': 'off',
         'no-alert': 'off',
         'no-console': 'off',
-        'no-labels': 'off',
-        'no-lone-blocks': 'off',
-        'no-restricted-syntax': 'off',
+        'no-restricted-imports': 'off',
         'no-undef': 'off',
         'no-unused-expressions': 'off',
-        'no-unused-labels': 'off',
         'no-unused-vars': 'off',
-        'style/comma-dangle': 'off',
-        'style/eol-last': 'off',
-        'unicode-bom': 'off',
 
-        ...overrides,
+        'node/prefer-global/buffer': 'off',
+        'node/prefer-global/process': 'off',
+
+        'unused-imports/no-unused-imports': 'off',
+        'unused-imports/no-unused-vars': 'off',
       },
     },
   ]

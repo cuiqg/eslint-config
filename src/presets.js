@@ -1,7 +1,7 @@
-import fs from 'node:fs'
-import { isPackageExists } from 'local-pkg'
+import { hasUnocss, hasVue } from './env'
 
 import {
+  command,
   comments,
   ignores,
   imports,
@@ -9,10 +9,11 @@ import {
   jsdoc,
   jsonc,
   markdown,
+  node,
   perfectionist,
+  prettier,
   sortJsconfig,
   sortPackageJson,
-  stylistic,
   unicorn,
   unocss,
   vue,
@@ -22,6 +23,7 @@ import {
 import { combine } from './utils'
 
 const flatConfigProps = [
+  'name',
   'files',
   'ignores',
   'languageOptions',
@@ -32,118 +34,71 @@ const flatConfigProps = [
   'settings',
 ]
 
-const VuePackages = [
-  'vue',
-  'nuxt',
-  'vitepress',
-]
-
-const UnocssPackages = [
-  'unocss',
-  '@unocss/webpack',
-  '@unocss/nuxt',
-]
-
 /**
- * @param {{}} [options]
- * @param {...*} userConfigs
- * @returns { import('eslint-define-config').FlatESLintConfigItem }
+ * @param {{}} options
+ * @param {import('eslint-define-config').FlatESLintConfigItem[]} userConfigs
+ * @returns {import('eslint-define-config').FlatESLintConfigItem[]}
  */
 export function cuiqg(options = {}, ...userConfigs) {
   const {
-    componentExts = [],
-    overrides = {},
-    vue: enableVue = VuePackages.some(i => isPackageExists(i)),
-    unocss: enableUnocss = UnocssPackages.some(i => isPackageExists(i)),
+    markdown: enableMarkdown = true,
+    prettier: enablePrettier = true,
+    unocss: enableUnocss = hasUnocss,
+    vue: enableVue = hasVue,
   } = options
-
-  const stylisticOptions = (options.stylistic === false ? false : (typeof options.stylistic === 'object' ? options.stylistic : {}))
-
-  if (stylisticOptions && !('jsx' in stylisticOptions))
-    stylisticOptions.jsx = options.jsx ?? true
 
   const configs = [
     ignores(),
-    javascript({
-      overrides: overrides.javascript,
-    }),
+    javascript(),
     comments(),
-    jsdoc({
-      overrides: overrides.jsdoc,
-      stylistic: stylisticOptions,
-    }),
-    imports({
-      stylistic: stylisticOptions,
-    }),
+    jsdoc(),
+    node(),
+    imports(),
     unicorn(),
+    command(),
     perfectionist(),
   ]
 
-  if (fs.existsSync('.eslintrc-auto-import.json')) {
-    const autoImport = JSON.parse(fs.readFileSync('./.eslintrc-auto-import.json', 'utf8'))
-    configs.push([{
-      languageOptions: {
-        globals: autoImport.globals,
-      },
-    }])
-  }
-
   if (enableVue) {
-    componentExts.push('vue')
-    configs.push(vue({
-      overrides: overrides.vue,
-      stylistic: stylisticOptions,
-    }))
+    configs.push(vue())
   }
 
-  if (stylisticOptions)
-    configs.push(stylistic(stylisticOptions))
+  if (enablePrettier) {
+    configs.push(prettier())
+  }
+
+  if (enableMarkdown) {
+    configs.push(markdown())
+  }
 
   if (enableUnocss) {
-    configs.push(unocss({
-      overrides: overrides.unocss,
-    }))
+    configs.push(unocss())
   }
 
   if (options.jsonc ?? true) {
-    configs.push(
-      jsonc({
-        overrides: overrides.jsonc,
-        stylistic: stylisticOptions,
-      }),
-      sortPackageJson(),
-      sortJsconfig(),
-    )
+    configs.push(jsonc(), sortPackageJson(), sortJsconfig())
   }
 
   if (options.yaml ?? true) {
-    configs.push(yaml({
-      overrides: overrides.yaml,
-      stylistic: stylisticOptions,
-    }))
+    configs.push(yaml())
   }
 
   if (options.markdown ?? true) {
-    configs.push(markdown({
-      componentExts,
-      overrides: overrides.markdown,
-    }))
+    configs.push(markdown())
   }
 
   const fusedConfig = flatConfigProps.reduce((acc, key) => {
-    if (key in options)
+    if (key in options) {
       acc[key] = options[key]
-
+    }
     return acc
   }, {})
 
-  if (Object.keys(fusedConfig).length)
+  if (Object.keys(fusedConfig).length) {
     configs.push([fusedConfig])
+  }
 
-  const merged = combine(
-    ...configs,
-    ...userConfigs,
-  )
+  const merged = combine(...configs, ...userConfigs)
 
   return merged
 }

@@ -1,15 +1,17 @@
 import { pluginComments } from '../plugins'
 
-/** @returns {import('eslint-define-config').FlatESLintConfigItem} */
-export function comments() {
+/** @type {import('eslint-define-config').FlatESLintConfigItem} */
+export async function comments() {
   return [
     {
-      name: 'tsuiqg:eslint-comments',
       plugins: {
         'eslint-comments': pluginComments,
       },
       rules: {
-        ...pluginComments.configs.recommended.rules,
+        'eslint-comments/no-aggregating-enable': 'error',
+        'eslint-comments/no-duplicate-disable': 'error',
+        'eslint-comments/no-unlimited-disable': 'error',
+        'eslint-comments/no-unused-enable': 'error',
       },
     },
   ]

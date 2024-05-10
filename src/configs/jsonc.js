@@ -1,20 +1,15 @@
 import { GLOB_JSON, GLOB_JSON5, GLOB_JSONC } from '../globs'
-import { parserJsonc, pluginJsonc } from '../plugins'
+import { interopDefault } from '../utils'
 
-/** @returns {import('eslint-define-config').FlatESLintConfigItem} */
-export function jsonc(options = {}) {
-  const {
-    overrides = {},
-    stylistic = true,
-  } = options
-
-  const {
-    indent = 2,
-  } = typeof stylistic === 'boolean' ? {} : stylistic
+/** @returns {import('eslint-define-config').FlatESLintConfigItem[]} */
+export async function jsonc() {
+  const [pluginJsonc, parserJsonc] = await Promise.all([
+    interopDefault(import('eslint-plugin-jsonc')),
+    interopDefault(import('jsonc-eslint-parser')),
+  ])
 
   return [
     {
-      name: 'tsuiqg:jsonc:setup',
       plugins: {
         jsonc: pluginJsonc,
       },
@@ -24,14 +19,12 @@ export function jsonc(options = {}) {
       languageOptions: {
         parser: parserJsonc,
       },
-      name: 'tsuiqg:jsonc:rules',
       rules: {
         'jsonc/no-bigint-literals': 'error',
         'jsonc/no-binary-expression': 'error',
         'jsonc/no-binary-numeric-literals': 'error',
         'jsonc/no-dupe-keys': 'error',
         'jsonc/no-escape-sequence-in-identifier': 'error',
-        'jsonc/no-floating-decimal': 'error',
         'jsonc/no-hexadecimal-numeric-literals': 'error',
         'jsonc/no-infinity': 'error',
         'jsonc/no-multi-str': 'error',
@@ -49,26 +42,23 @@ export function jsonc(options = {}) {
         'jsonc/no-undefined-value': 'error',
         'jsonc/no-unicode-codepoint-escapes': 'error',
         'jsonc/no-useless-escape': 'error',
-        'jsonc/space-unary-ops': 'error',
         'jsonc/valid-json-number': 'error',
         'jsonc/vue-custom-block/no-parsing-error': 'error',
 
-        ...stylistic
-          ? {
-              'jsonc/array-bracket-spacing': ['error', 'never'],
-              'jsonc/comma-dangle': ['error', 'never'],
-              'jsonc/comma-style': ['error', 'last'],
-              'jsonc/indent': ['error', indent],
-              'jsonc/key-spacing': ['error', { afterColon: true, beforeColon: false }],
-              'jsonc/object-curly-newline': ['error', { consistent: true, multiline: true }],
-              'jsonc/object-curly-spacing': ['error', 'always'],
-              'jsonc/object-property-newline': ['error', { allowMultiplePropertiesPerLine: true }],
-              'jsonc/quote-props': 'error',
-              'jsonc/quotes': 'error',
-            }
-          : {},
-
-        ...overrides,
+        'jsonc/array-bracket-newline': 'off',
+        'jsonc/array-bracket-spacing': 'off',
+        'jsonc/array-element-newline': 'off',
+        'jsonc/comma-dangle': 'off',
+        'jsonc/comma-style': 'off',
+        'jsonc/indent': 'off',
+        'jsonc/key-spacing': 'off',
+        'jsonc/no-floating-decimal': 'off',
+        'jsonc/object-curly-newline': 'off',
+        'jsonc/object-curly-spacing': 'off',
+        'jsonc/object-property-newline': 'off',
+        'jsonc/quote-props': 'off',
+        'jsonc/quotes': 'off',
+        'jsonc/space-unary-ops': 'off',
       },
     },
   ]
