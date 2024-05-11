@@ -1,21 +1,22 @@
+import { GLOB_ALL_SRC } from '../globs'
 import { interopDefault } from '../utils'
 
 /** @returns {import('eslint-define-config').FlatESLintConfigItem[]} */
 export async function prettier() {
-  const [pluginPrettier, configPrettier] = await Promise.all([
+  const [pluginPrettier, configPrittier] = await Promise.all([
     interopDefault(import('eslint-plugin-prettier')),
     interopDefault(import('eslint-config-prettier')),
   ])
 
   return [
+    configPrittier,
     {
+      files: GLOB_ALL_SRC,
       plugins: {
         prettier: pluginPrettier,
       },
       rules: {
-        ...configPrettier.rules,
-        ...pluginPrettier.configs.recommended.rules,
-        'prettier/prettier': 'warn',
+        'prettier/prettier': 'error',
       },
     },
   ]

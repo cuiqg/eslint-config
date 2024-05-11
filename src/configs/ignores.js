@@ -1,10 +1,10 @@
-import { GLOB_EXCLUDE } from '../globs'
+import { GLOB_IGNORE } from '../globs'
 
-/** @type {import('eslint-define-config').FlatESLintConfigItem} */
+/** @returns {import('eslint-define-config').FlatESLintConfigItem[]} */
 export async function ignores() {
   return [
     {
-      ignores: GLOB_EXCLUDE,
+      ignores: GLOB_IGNORE,
     },
   ]
 }

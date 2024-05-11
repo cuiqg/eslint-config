@@ -1,9 +1,7 @@
-import { cuiqg } from './presets'
-
+export * from './env'
 export * from './configs'
 export * from './globs'
-export * from './plugins'
 export * from './presets'
 export * from './utils'
 
-export default cuiqg
+export { cuiqg as default } from './presets'

@@ -1,4 +1,3 @@
-import { require } from 'tsx/cjs/api'
-const { cuiqg } = require('./src/index.js', import.meta.url)
+import { cuiqg } from './dist/index.js'
 
 export default cuiqg()

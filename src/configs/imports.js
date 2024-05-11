@@ -1,8 +1,10 @@
-import { pluginImport } from '../plugins'
-import { GLOB_MARKDOWN, GLOB_SRC, GLOB_SRC_EXT } from '../globs'
+import { GLOB_SRC_EXT } from '../globs'
+import { interopDefault } from '../utils'
 
-/** @type {import('eslint-define-config').FlatESLintConfigItem} */
+/** @returns {import('eslint-define-config').FlatESLintConfigItem[]} */
 export async function imports() {
+  const pluginImport = await interopDefault(import('eslint-plugin-import-x'))
+
   return [
     {
       plugins: {
@@ -19,20 +21,8 @@ export async function imports() {
       },
     },
     {
-      files: [
-        `**/*config*.${GLOB_SRC_EXT}`,
-        `**/{views,pages,routes,middleware,plugins,api}/${GLOB_SRC}`,
-        `**/{index,vite,esbuild,rollup,rolldown,webpack,rspack}.ts`,
-        '**/*.d.ts',
-        `${GLOB_MARKDOWN}/**`,
-        '**/.prettierrc*',
-      ],
-      plugins: {
-        import: pluginImport,
-      },
-      rules: {
-        'import/no-default-export': 'off',
-      },
+      files: ['**/bin/**/*', `**/bin.${GLOB_SRC_EXT}`],
+      rules: {},
     },
   ]
 }

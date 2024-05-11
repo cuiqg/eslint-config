@@ -1,15 +1,10 @@
 import { hasUnocss, hasVue } from './env'
 
 import {
-  command,
   comments,
   ignores,
   imports,
   javascript,
-  jsdoc,
-  jsonc,
-  markdown,
-  node,
   perfectionist,
   prettier,
   sortJsconfig,
@@ -17,7 +12,6 @@ import {
   unicorn,
   unocss,
   vue,
-  yaml,
 } from './configs'
 
 import { combine } from './utils'
@@ -41,7 +35,6 @@ const flatConfigProps = [
  */
 export function cuiqg(options = {}, ...userConfigs) {
   const {
-    markdown: enableMarkdown = true,
     prettier: enablePrettier = true,
     unocss: enableUnocss = hasUnocss,
     vue: enableVue = hasVue,
@@ -51,12 +44,11 @@ export function cuiqg(options = {}, ...userConfigs) {
     ignores(),
     javascript(),
     comments(),
-    jsdoc(),
-    node(),
     imports(),
     unicorn(),
-    command(),
     perfectionist(),
+    sortJsconfig(),
+    sortPackageJson(),
   ]
 
   if (enableVue) {
@@ -67,26 +59,11 @@ export function cuiqg(options = {}, ...userConfigs) {
     configs.push(prettier())
   }
 
-  if (enableMarkdown) {
-    configs.push(markdown())
-  }
-
   if (enableUnocss) {
     configs.push(unocss())
   }
 
-  if (options.jsonc ?? true) {
-    configs.push(jsonc(), sortPackageJson(), sortJsconfig())
-  }
-
-  if (options.yaml ?? true) {
-    configs.push(yaml())
-  }
-
-  if (options.markdown ?? true) {
-    configs.push(markdown())
-  }
-
+  // eslint-disable-next-line unicorn/no-array-reduce
   const fusedConfig = flatConfigProps.reduce((acc, key) => {
     if (key in options) {
       acc[key] = options[key]
@@ -94,7 +71,7 @@ export function cuiqg(options = {}, ...userConfigs) {
     return acc
   }, {})
 
-  if (Object.keys(fusedConfig).length) {
+  if (Object.keys(fusedConfig).length > 0) {
     configs.push([fusedConfig])
   }
 
