@@ -1,18 +1,11 @@
 import { GLOB_VUE } from '../globs'
-import { interopDefault } from '../utils'
+import { parserVue, pluginVue } from '../plugins'
 
 /** @returns {import('eslint-define-config').FlatESLintConfigItem[]} */
-export async function vue() {
-  const [pluginVue, parserVue] = await Promise.all([
-    interopDefault(import('eslint-plugin-vue')),
-    interopDefault(import('vue-eslint-parser')),
-  ])
-
+export function vue() {
   return [
     {
-      files: [GLOB_VUE],
       languageOptions: {
-        ecmaVersion: 'latest',
         globals: {
           computed: 'readonly',
           defineEmits: 'readonly',
@@ -29,17 +22,25 @@ export async function vue() {
           watch: 'readonly',
           watchEffect: 'readonly',
         },
+      },
+      plugins: {
+        vue: pluginVue,
+      },
+    },
+    {
+      files: [GLOB_VUE],
+      languageOptions: {
         parser: parserVue,
         parserOptions: {
           extraFileExtensions: ['.vue'],
           sourceType: 'module',
         },
       },
-      plugins: {
-        vue: pluginVue,
-      },
       processor: pluginVue.processors['.vue'],
       rules: {
+        ...pluginVue.configs.base.rules,
+        ...pluginVue.configs['vue3-essential'].rules,
+        ...pluginVue.configs['vue3-strongly-recommended'].rules,
         ...pluginVue.configs['vue3-recommended'].rules,
       },
     },

@@ -1,4 +1,4 @@
-import { hasUnocss, hasVue } from './env'
+import { hasTailwindCSS, hasUnocss, hasVue } from './env'
 
 import {
   comments,
@@ -7,8 +7,8 @@ import {
   javascript,
   perfectionist,
   prettier,
-  sortJsconfig,
-  sortPackageJson,
+  sorts,
+  tailwindcss,
   unicorn,
   unocss,
   vue,
@@ -16,27 +16,14 @@ import {
 
 import { combine } from './utils'
 
-const flatConfigProps = [
-  'name',
-  'files',
-  'ignores',
-  'languageOptions',
-  'linterOptions',
-  'processor',
-  'plugins',
-  'rules',
-  'settings',
-]
-
 /**
- * @param {{}} options
- * @param {import('eslint-define-config').FlatESLintConfigItem[]} userConfigs
  * @returns {import('eslint-define-config').FlatESLintConfigItem[]}
  */
 export function cuiqg(options = {}, ...userConfigs) {
   const {
     prettier: enablePrettier = true,
     unocss: enableUnocss = hasUnocss,
+    tailwindcss: enableTailwindCSS = hasTailwindCSS,
     vue: enableVue = hasVue,
   } = options
 
@@ -47,8 +34,7 @@ export function cuiqg(options = {}, ...userConfigs) {
     imports(),
     unicorn(),
     perfectionist(),
-    sortJsconfig(),
-    sortPackageJson(),
+    sorts(),
   ]
 
   if (enableVue) {
@@ -63,16 +49,8 @@ export function cuiqg(options = {}, ...userConfigs) {
     configs.push(unocss())
   }
 
-  // eslint-disable-next-line unicorn/no-array-reduce
-  const fusedConfig = flatConfigProps.reduce((acc, key) => {
-    if (key in options) {
-      acc[key] = options[key]
-    }
-    return acc
-  }, {})
-
-  if (Object.keys(fusedConfig).length > 0) {
-    configs.push([fusedConfig])
+  if (enableTailwindCSS) {
+    configs.push(tailwindcss())
   }
 
   const merged = combine(...configs, ...userConfigs)

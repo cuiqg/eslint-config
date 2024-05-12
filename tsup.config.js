@@ -8,5 +8,4 @@ export default defineConfig({
   dts: false,
   clean: true,
   shims: true,
-  minify: process.env.NODE_ENV === 'production',
 })

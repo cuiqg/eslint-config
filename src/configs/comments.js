@@ -1,11 +1,7 @@
-import { interopDefault } from '../utils'
+import { pluginComments } from '../plugins'
 
 /** @returns {import('eslint-define-config').FlatESLintConfigItem[]} */
-export async function comments() {
-  const pluginComments = await interopDefault(
-    import('eslint-plugin-eslint-comments')
-  )
-
+export function comments() {
   return [
     {
       plugins: {

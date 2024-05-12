@@ -11,7 +11,7 @@ export const GLOB_VUE = '**/*.vue'
 
 export const GLOB_ALL_SRC = [GLOB_SRC, GLOB_VUE]
 
-export const GLOB_IGNORE = [
+export const GLOB_EXCLUDE = [
   '**/node_modules',
   '**/dist',
   '**/package-lock.json',

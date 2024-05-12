@@ -1,11 +1,7 @@
-import { interopDefault } from '../utils'
+import { pluginPerfectionist } from '../plugins'
 
 /** @returns {import('eslint-define-config').FlatESLintConfigItem[]} */
-export async function perfectionist() {
-  const pluginPerfectionist = await interopDefault(
-    import('eslint-plugin-perfectionist')
-  )
-
+export function perfectionist() {
   return [
     {
       plugins: {
