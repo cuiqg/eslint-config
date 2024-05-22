@@ -1,4 +1,3 @@
-import process from 'node:process'
 import { defineConfig } from 'tsup'
 
 /** @type {import('tsup').Options} */
