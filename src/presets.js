@@ -1,4 +1,4 @@
-import { hasTailwindCSS, hasUnocss, hasVue } from './env'
+import { hasUnocss, hasVue } from './env'
 
 import {
   comments,
@@ -8,52 +8,46 @@ import {
   perfectionist,
   prettier,
   sorts,
-  tailwindcss,
   unicorn,
   unocss,
   vue,
+  jsonc
 } from './configs'
 
-import { combine } from './utils'
-
 /**
+ * @param Object options
+ * @param {import('eslint-define-config').FlatESLintConfigItem[]} userConfigs
  * @returns {import('eslint-define-config').FlatESLintConfigItem[]}
  */
-export function cuiqg(options = {}, ...userConfigs) {
+export function cuiqg(options = {}, userConfigs = []) {
   const {
-    prettier: enablePrettier = true,
+    prettier: enablePrettier = false,
     unocss: enableUnocss = hasUnocss,
-    tailwindcss: enableTailwindCSS = hasTailwindCSS,
     vue: enableVue = hasVue,
   } = options
 
   const configs = [
-    ignores(),
-    javascript(),
-    comments(),
-    imports(),
-    unicorn(),
-    perfectionist(),
-    sorts(),
+    ...ignores,
+    ...javascript,
+    ...comments,
+    ...imports,
+    ...unicorn,
+    ...perfectionist,
+    ...sorts,
+    ...jsonc
   ]
 
   if (enableVue) {
-    configs.push(vue())
+    configs.push(...vue)
   }
 
   if (enablePrettier) {
-    configs.push(prettier())
+    configs.push(...prettier)
   }
 
   if (enableUnocss) {
-    configs.push(unocss())
+    configs.push(...unocss)
   }
 
-  if (enableTailwindCSS) {
-    configs.push(tailwindcss())
-  }
-
-  const merged = combine(...configs, ...userConfigs)
-
-  return merged
+  return [...configs, ...userConfigs].flat()
 }

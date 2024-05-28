@@ -1,9 +1,8 @@
 import { GLOB_SRC_EXT } from '../globs'
 import { pluginImport } from '../plugins'
 
-/** @returns {import('eslint-define-config').FlatESLintConfigItem[]} */
-export function imports() {
-  return [
+/** @type {import('eslint').Linter.FlatConfig[]} */
+export const imports = [
     {
       plugins: {
         import: pluginImport,
@@ -38,4 +37,3 @@ export function imports() {
       rules: {},
     },
   ]
-}

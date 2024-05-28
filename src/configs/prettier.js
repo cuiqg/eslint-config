@@ -1,9 +1,8 @@
 import { GLOB_ALL_SRC } from '../globs'
 import { pluginPrettier, configPrettier } from '../plugins'
 
-/** @returns {import('eslint-define-config').FlatESLintConfigItem[]} */
-export function prettier() {
-  return [
+/** @type {import('eslint').Linter.FlatConfig[]} */
+export const prettier = [
     {
       files: GLOB_ALL_SRC,
       plugins: {
@@ -14,5 +13,4 @@ export function prettier() {
       },
     },
     configPrettier,
-  ]
-}
+]

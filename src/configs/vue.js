@@ -1,9 +1,8 @@
 import { GLOB_VUE } from '../globs'
 import { parserVue, pluginVue } from '../plugins'
 
-/** @returns {import('eslint-define-config').FlatESLintConfigItem[]} */
-export function vue() {
-  return [
+/** @type {import('eslint').Linter.FlatConfig[]} */
+export const vue = [
     {
       languageOptions: {
         globals: {
@@ -45,4 +44,3 @@ export function vue() {
       },
     },
   ]
-}

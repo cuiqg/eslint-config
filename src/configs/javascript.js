@@ -151,9 +151,8 @@ export const javascriptRules = {
   yoda: 'error',
 }
 
-/** @returns {import('eslint-define-config').FlatESLintConfigItem[]} */
-export function javascript() {
-  return [
+/** @type {import('eslint').Linter.FlatConfig[]} */
+export const javascript = [
     {
       files: [GLOB_SRC],
       languageOptions: {
@@ -210,4 +209,3 @@ export function javascript() {
       },
     },
   ]
-}

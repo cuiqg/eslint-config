@@ -1,10 +1,8 @@
 import { GLOB_EXCLUDE } from '../globs'
 
-/** @returns {import('eslint-define-config').FlatESLintConfigItem[]} */
-export function ignores() {
-  return [
+/** @type {import('eslint').Linter.FlatConfig[]} */
+export const ignores =  [
     {
       ignores: GLOB_EXCLUDE,
     },
-  ]
-}
+]

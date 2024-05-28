@@ -1,6 +1,4 @@
 import { pluginUnoCSS } from '../plugins'
 
-/** @returns {import('eslint-define-config').FlatESLintConfigItem[]} */
-export function unocss() {
-  return [pluginUnoCSS.configs.flat]
-}
+/** @type {import('eslint').Linter.FlatConfig[]} */
+export const unocss = [pluginUnoCSS.configs.flat]

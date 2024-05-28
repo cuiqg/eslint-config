@@ -1,12 +1,31 @@
-export { default as pluginComments } from 'eslint-plugin-eslint-comments'
-export { default as pluginImport } from 'eslint-plugin-i'
-export { default as pluginPerfectionist } from 'eslint-plugin-perfectionist'
-export { default as pluginUnicorn } from 'eslint-plugin-unicorn'
-export { default as pluginUnoCSS } from '@unocss/eslint-plugin'
-export { default as pluginTailwindCSS } from 'eslint-plugin-tailwindcss'
-export { default as pluginUnusedImports } from 'eslint-plugin-unused-imports'
-export { default as pluginVue } from 'eslint-plugin-vue'
-export { default as pluginPrettier } from 'eslint-plugin-prettier'
-export { default as configPrettier } from 'eslint-config-prettier'
+import { interopDefault } from './utils'
 
-export { default as parserVue } from 'vue-eslint-parser'
+import * as _pluginComments from 'eslint-plugin-eslint-comments'
+export const pluginComments = interopDefault(_pluginComments)
+
+import * as _pluginPerfectionist from 'eslint-plugin-perfectionist'
+export const pluginPerfectionist = interopDefault(_pluginPerfectionist)
+
+import * as _pluginUnicorn from 'eslint-plugin-unicorn'
+export const pluginUnicorn = interopDefault(_pluginUnicorn)
+
+import * as _pluginUnocss from '@unocss/eslint-plugin'
+export const pluginUnocss = interopDefault(_pluginUnocss)
+
+import * as _pluginVue from 'eslint-plugin-vue'
+export const pluginVue = interopDefault(_pluginVue)
+
+import * as _pluginPrettier from 'eslint-plugin-prettier'
+export const pluginPrettier = interopDefault(_pluginPrettier)
+
+import * as _configPrettier from 'eslint-config-prettier'
+export const configPrettier = interopDefault(_configPrettier)
+
+
+export * as pluginImport from 'eslint-plugin-import-x'
+export * as pluginUnusedImports  from 'eslint-plugin-unused-imports'
+export * as pluginJsonc from 'eslint-plugin-jsonc'
+
+
+export * as parserJsonc from 'jsonc-eslint-parser'
+export * as parserVue from 'vue-eslint-parser'

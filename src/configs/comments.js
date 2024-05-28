@@ -1,8 +1,7 @@
 import { pluginComments } from '../plugins'
 
-/** @returns {import('eslint-define-config').FlatESLintConfigItem[]} */
-export function comments() {
-  return [
+/** @type {import('eslint').Linter.FlatConfig[]} */
+export const comments = [
     {
       plugins: {
         'eslint-comments': pluginComments,
@@ -11,5 +10,4 @@ export function comments() {
         ...pluginComments.configs.recommended.rules,
       },
     },
-  ]
-}
+]

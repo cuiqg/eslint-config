@@ -1,8 +1,7 @@
 import { pluginUnicorn } from '../plugins'
 
-/** @returns {import('eslint-define-config').FlatESLintConfigItem[]} */
-export function unicorn() {
-  return [
+/** @type {import('eslint').Linter.FlatConfig[]} */
+export const unicorn = [
     pluginUnicorn.configs['flat/recommended'],
     {
       rules: {
@@ -35,4 +34,3 @@ export function unicorn() {
       },
     },
   ]
-}

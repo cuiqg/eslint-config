@@ -1,13 +1,8 @@
-import { combine } from '../utils'
+/** @type {import('eslint').Linter.FlatConfig[]} */
+export const sorts = [...sortPackageJson, ...sortJsconfig]
 
-/** @returns {import('eslint-define-config').FlatESLintConfigItem[]} */
-export async function sorts() {
-  return combine(sortPackageJson(), sortJsconfig())
-}
-
-/** @returns {import('eslint-define-config').FlatESLintConfigItem[]} */
-export function sortPackageJson() {
-  return [
+/** @type {import('eslint').Linter.FlatConfig[]} */
+export const sortPackageJson = [
     {
       files: ['**/package.json'],
       rules: {
@@ -87,11 +82,9 @@ export function sortPackageJson() {
       },
     },
   ]
-}
 
-/** @returns {import('eslint-define-config').FlatESLintConfigItem[]} */
-export function sortJsconfig() {
-  return [
+/** @type {import('eslint').Linter.FlatConfig[]} */
+export const sortJsconfig = [
     {
       files: ['**/jsconfig.json', '**/jsconfig.*.json'],
       rules: {
@@ -213,4 +206,3 @@ export function sortJsconfig() {
       },
     },
   ]
-}
