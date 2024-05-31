@@ -1,3 +1,6 @@
+import fs from 'node:fs'
+import { FlatConfigComposer } from 'eslint-flat-config-utils'
+import { interopDefault, getOverrides, resolveSubOptions } from './utils'
 import { hasUnocss, hasVue } from './env'
 
 import {
@@ -5,49 +8,92 @@ import {
   ignores,
   imports,
   javascript,
-  perfectionist,
+  jsonc,
+  node,
   prettier,
-  sorts,
+  sortPackageJson,
+  sortJsconfig,
   unicorn,
   unocss,
   vue,
-  jsonc
+  yaml,
 } from './configs'
 
-/**
- * @param Object options
- * @param {import('eslint-define-config').FlatESLintConfigItem[]} userConfigs
- * @returns {import('eslint-define-config').FlatESLintConfigItem[]}
- */
-export function cuiqg(options = {}, userConfigs = []) {
+export function cuiqg(options = {}, ...userConfigs) {
   const {
+    gitignore: enableGitignore = true,
     prettier: enablePrettier = false,
     unocss: enableUnocss = hasUnocss,
     vue: enableVue = hasVue,
   } = options
 
-  const configs = [
-    ...ignores,
-    ...javascript,
-    ...comments,
-    ...imports,
-    ...unicorn,
-    ...perfectionist,
-    ...sorts,
-    ...jsonc
-  ]
+  const configs = []
+
+  if (enableGitignore) {
+    if (typeof enableGitignore !== 'boolean') {
+      configs.push(
+        interopDefault(import('eslint-config-flat-gitignore')).then(r => [
+          r(enableGitignore),
+        ])
+      )
+    } else {
+      if (fs.existsSync('.gitignore'))
+        configs.push(
+          interopDefault(import('eslint-config-flat-gitignore')).then(r => [
+            r(),
+          ])
+        )
+    }
+  }
+
+  configs.push(
+    ignores(),
+    javascript({
+      overrides: getOverrides(options, 'javascript'),
+    }),
+    comments(),
+    node(),
+    imports(),
+    unicorn()
+  )
 
   if (enableVue) {
-    configs.push(...vue)
+    configs.push(
+      vue({
+        ...resolveSubOptions(options, 'vue'),
+        overrides: getOverrides(options, 'vue'),
+      })
+    )
   }
 
   if (enablePrettier) {
-    configs.push(...prettier)
+    configs.push(prettier())
   }
 
   if (enableUnocss) {
-    configs.push(...unocss)
+    configs.push(
+      unocss({
+        ...resolveSubOptions(options, 'unocss'),
+        overrides: getOverrides(options, 'unocss'),
+      })
+    )
   }
 
-  return [...configs, ...userConfigs].flat()
+  if (options.jsonc ?? true) {
+    configs.push(jsonc(), sortPackageJson(), sortJsconfig())
+  }
+
+  if (options.yaml ?? true) {
+    configs.push(
+      yaml({
+        overrides: getOverrides(options, 'yaml'),
+      })
+    )
+  }
+
+  let composer = new FlatConfigComposer()
+
+  composer = composer.append(...configs, ...userConfigs)
+
+  return composer
 }

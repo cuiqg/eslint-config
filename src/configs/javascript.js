@@ -1,160 +1,13 @@
 import globals from 'globals'
 import pluginJS from '@eslint/js'
-
-import { isInEditor } from '../env'
 import { GLOB_SRC, GLOB_SRC_EXT } from '../globs'
-import { pluginUnusedImports } from '../plugins'
 
-export const javascriptRules = {
-  ...pluginJS.configs.recommended.rules,
+export async function javascript(options = {}) {
+  const { overrides = {} } = options
 
-  'accessor-pairs': [
-    'error',
-    { enforceForClassMembers: true, setWithoutGet: true },
-  ],
-  'array-callback-return': 'error',
-  'block-scoped-var': 'error',
-  curly: ['error', 'all'],
-  'default-case-last': 'error',
-  'default-param-last': 'off',
-  eqeqeq: ['error', 'smart'],
-  'grouped-accessor-pairs': 'error',
-  'logical-assignment-operators': 'error',
-  'new-cap': 'off',
-  'no-alert': 'error',
-  'no-array-constructor': 'error',
-  'no-caller': 'error',
-  'no-console': ['error', { allow: ['warn', 'error'] }],
-  'no-else-return': ['error', { allowElseIf: true }],
-  'no-empty': ['error', { allowEmptyCatch: true }],
-  'no-eval': 'error',
-  'no-extend-native': 'error',
-  'no-extra-bind': 'error',
-  'no-extra-label': 'error',
-  'no-fallthrough': [
-    'error',
-    { allowEmptyCase: true, commentPattern: 'break[\\s\\w]*omitted' },
-  ],
-  'no-implied-eval': 'error',
-  'no-iterator': 'error',
-  'no-label-var': 'error',
-  'no-labels': ['error', { allowLoop: false, allowSwitch: false }],
-  'no-lone-blocks': 'error',
-  'no-multi-str': 'error',
-  'no-new': 'error',
-  'no-new-func': 'error',
-  'no-new-symbol': 'error',
-  'no-new-wrappers': 'error',
-  'no-octal-escape': 'error',
-  'no-proto': 'error',
-  'no-redeclare': ['error', { builtinGlobals: false }],
-  'no-restricted-globals': [
-    'error',
-    { message: 'Use `globalThis` instead.', name: 'global' },
-    { message: 'Use `globalThis` instead.', name: 'self' },
-  ],
-  'no-restricted-properties': [
-    'error',
+  return [
     {
-      message:
-        'Use `Object.getPrototypeOf` or `Object.setPrototypeOf` instead.',
-      property: '__proto__',
-    },
-    {
-      message: 'Use `Object.defineProperty` instead.',
-      property: '__defineGetter__',
-    },
-    {
-      message: 'Use `Object.defineProperty` instead.',
-      property: '__defineSetter__',
-    },
-    {
-      message: 'Use `Object.getOwnPropertyDescriptor` instead.',
-      property: '__lookupGetter__',
-    },
-    {
-      message: 'Use `Object.getOwnPropertyDescriptor` instead.',
-      property: '__lookupSetter__',
-    },
-  ],
-  'no-restricted-syntax': [
-    'error',
-    'DebuggerStatement',
-    'LabeledStatement',
-    'WithStatement',
-    'TSEnumDeclaration[const=true]',
-    'TSExportAssignment',
-  ],
-  'no-self-compare': 'error',
-  'no-sequences': 'error',
-  'no-template-curly-in-string': 'error',
-  'no-throw-literal': 'error',
-  'no-undef-init': 'error',
-  'no-unmodified-loop-condition': 'error',
-  'no-unneeded-ternary': ['error', { defaultAssignment: false }],
-  'no-unreachable-loop': 'error',
-  'no-unused-expressions': [
-    'error',
-    { allowShortCircuit: true, allowTaggedTemplates: true, allowTernary: true },
-  ],
-  'no-unused-private-class-members': 'error',
-  'no-unused-vars': [
-    'error',
-    {
-      args: 'none',
-      caughtErrors: 'none',
-      ignoreRestSiblings: true,
-      vars: 'all',
-    },
-  ],
-  'no-use-before-define': [
-    'error',
-    { classes: false, functions: false, variables: true },
-  ],
-  'no-useless-call': 'error',
-  'no-useless-computed-key': ['error', { enforceForClassMembers: true }],
-  'no-useless-concat': 'error',
-  'no-useless-constructor': 'error',
-  'no-useless-rename': 'error',
-  'no-useless-return': 'error',
-  'no-var': 'error',
-  'object-shorthand': ['error', 'properties', { avoidQuotes: true }],
-  'one-var': ['error', { initialized: 'never' }],
-  'operator-assignment': 'error',
-  'prefer-arrow-callback': [
-    'error',
-    { allowNamedFunctions: false, allowUnboundThis: true },
-  ],
-  'prefer-const': [
-    'error',
-    { destructuring: 'all', ignoreReadBeforeAssign: true },
-  ],
-  'prefer-exponentiation-operator': 'error',
-  'prefer-promise-reject-errors': ['error', { allowEmptyReject: true }],
-  'prefer-regex-literals': ['error', { disallowRedundantWrapping: true }],
-  'prefer-rest-params': 'error',
-  'prefer-spread': 'error',
-  'prefer-template': 'error',
-  'sort-imports': [
-    'error',
-    {
-      allowSeparatedGroups: false,
-      ignoreCase: false,
-      ignoreDeclarationSort: true,
-      ignoreMemberSort: false,
-      memberSyntaxSortOrder: ['none', 'all', 'multiple', 'single'],
-    },
-  ],
-  'symbol-description': 'error',
-  'unicode-bom': 'error',
-  'vars-on-top': 'error',
-  yoda: 'error',
-}
-
-/** @type {import('eslint').Linter.FlatConfig[]} */
-export const javascript = [
-    {
-      files: [GLOB_SRC],
+      name: 'cuiqg/javascript/rules',
       languageOptions: {
         ecmaVersion: 2022,
         globals: {
@@ -177,35 +30,152 @@ export const javascript = [
       linterOptions: {
         reportUnusedDisableDirectives: true,
       },
-      plugins: {
-        'unused-imports': pluginUnusedImports,
-      },
       rules: {
-        ...javascriptRules,
-
-        'unused-imports/no-unused-imports': isInEditor ? 'off' : 'error',
-        'unused-imports/no-unused-vars': [
+        ...pluginJS.configs.all.rules,
+        'accessor-pairs': [
+          'error',
+          { enforceForClassMembers: true, setWithoutGet: true },
+        ],
+        camelcase: 'off',
+        'capitalized-comments': 'off',
+        'dot-notation': ['error', { allowKeywords: true }],
+        'func-style': 'off',
+        'id-length': 'off',
+        'init-declarations': 'off',
+        'line-comment-position': 'off',
+        'max-classes-per-file': 'off',
+        'max-lines': 'off',
+        'max-lines-per-function': 'off',
+        'max-statements': 'off',
+        'multiline-comment-style': 'off',
+        'new-cap': [
+          'error',
+          { newIsCap: true, capIsNew: false, properties: true },
+        ],
+        'no-console': 'warn',
+        'no-duplicate-imports': 'off',
+        'no-empty': ['error', { allowEmptyCatch: true }],
+        'no-empty-function': 'off',
+        'no-inline-comments': 'off',
+        'no-labels': ['error', { allowLoop: false, allowSwitch: false }],
+        'no-magic-numbers': 'off',
+        'no-negated-condition': 'off',
+        'no-redeclare': ['error', { builtinGlobals: false }],
+        'no-restricted-globals': [
+          'error',
+          { message: 'Use `globalThis` instead.', name: 'global' },
+          { message: 'Use `globalThis` instead.', name: 'self' },
+        ],
+        'no-restricted-properties': [
           'error',
           {
-            args: 'after-used',
-            argsIgnorePattern: '^_',
-            ignoreRestSiblings: true,
-            vars: 'all',
-            varsIgnorePattern: '^_',
+            message:
+              'Use `Object.getPrototypeOf` or `Object.setPrototypeOf` instead.',
+            property: '__proto__',
+          },
+          {
+            message: 'Use `Object.defineProperty` instead.',
+            property: '__defineGetter__',
+          },
+          {
+            message: 'Use `Object.defineProperty` instead.',
+            property: '__defineSetter__',
+          },
+          {
+            message: 'Use `Object.getOwnPropertyDescriptor` instead.',
+            property: '__lookupGetter__',
+          },
+          {
+            message: 'Use `Object.getOwnPropertyDescriptor` instead.',
+            property: '__lookupSetter__',
           },
         ],
+        'no-restricted-syntax': [
+          'error',
+          'DebuggerStatement',
+          'LabeledStatement',
+          'WithStatement',
+          'TSEnumDeclaration[const=true]',
+          'TSExportAssignment',
+        ],
+        'no-self-assign': ['error', { props: true }],
+        'no-ternary': 'off',
+        'no-undefined': 'off',
+        'no-unneeded-ternary': ['error', { defaultAssignment: false }],
+        'no-unused-expressions': [
+          'error',
+          {
+            allowShortCircuit: true,
+            allowTaggedTemplates: true,
+            allowTernary: true,
+          },
+        ],
+        'no-unused-vars': [
+          'error',
+          {
+            vars: 'all',
+            args: 'all',
+            ignoreRestSiblings: false,
+            varsIgnorePattern: '^_',
+            argsIgnorePattern: '^_',
+          },
+        ],
+        'no-useless-assignment': 'off',
+        'no-use-before-define': [
+          'error',
+          { functions: false, classes: false, variables: true },
+        ],
+        'object-shorthand': [
+          'error',
+          'always',
+          {
+            ignoreConstructors: false,
+            avoidQuotes: true,
+          },
+        ],
+        'one-var': ['error', 'never'],
+        'prefer-arrow-callback': [
+          'error',
+          {
+            allowNamedFunctions: false,
+            allowUnboundThis: true,
+          },
+        ],
+        'prefer-const': [
+          'error',
+          {
+            destructuring: 'all',
+            ignoreReadBeforeAssign: true,
+          },
+        ],
+        'prefer-destructuring': 'off',
+        'prefer-named-capture-group': 'off',
+        'prefer-regex-literals': ['error', { disallowRedundantWrapping: true }],
+        'require-atomic-updates': 'off',
+        'require-await': 'off',
+        'require-unicode-regexp': 'off',
+        'sort-imports': [
+          'error',
+          {
+            allowSeparatedGroups: false,
+            ignoreCase: false,
+            ignoreDeclarationSort: true,
+            ignoreMemberSort: false,
+            memberSyntaxSortOrder: ['none', 'all', 'multiple', 'single'],
+          },
+        ],
+        'sort-keys': 'off',
+        'unicode-bom': ['error', 'never'],
+
+        ...overrides,
       },
     },
     {
       files: [`scripts/${GLOB_SRC}`, `cli.${GLOB_SRC_EXT}`],
+      name: 'cuiqg/javascript/disables/cli',
       rules: {
         'no-console': 'off',
       },
     },
-    {
-      files: [`**/*.{test,spec}.${GLOB_SRC_EXT}`],
-      rules: {
-        'no-unused-expressions': 'off',
-      },
-    },
   ]
+}

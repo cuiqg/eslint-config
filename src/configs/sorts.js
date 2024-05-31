@@ -1,9 +1,12 @@
-/** @type {import('eslint').Linter.FlatConfig[]} */
-export const sorts = [...sortPackageJson, ...sortJsconfig]
-
-/** @type {import('eslint').Linter.FlatConfig[]} */
-export const sortPackageJson = [
+/**
+ * Sort package.json
+ *
+ * Requires `jsonc` config
+ */
+export async function sortPackageJson() {
+  return [
     {
+      name: 'cuiqg/sort/package-json',
       files: ['**/package.json'],
       rules: {
         'jsonc/sort-array-values': [
@@ -82,10 +85,17 @@ export const sortPackageJson = [
       },
     },
   ]
+}
 
-/** @type {import('eslint').Linter.FlatConfig[]} */
-export const sortJsconfig = [
+/**
+ * Sort jsconfig.json
+ *
+ * Requires `jsonc` config
+ */
+export async function sortJsconfig() {
+  return [
     {
+      name: 'cuiqg/sort/jsconfig-json',
       files: ['**/jsconfig.json', '**/jsconfig.*.json'],
       rules: {
         'jsonc/sort-keys': [
@@ -206,3 +216,4 @@ export const sortJsconfig = [
       },
     },
   ]
+}

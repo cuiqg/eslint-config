@@ -1,36 +1,29 @@
-import { pluginUnicorn } from '../plugins'
+import { interopDefault } from '../utils'
 
-/** @type {import('eslint').Linter.FlatConfig[]} */
-export const unicorn = [
-    pluginUnicorn.configs['flat/recommended'],
+export async function unicorn() {
+  const pluginUnicorn = await interopDefault(import('eslint-plugin-unicorn'))
+
+  return [
     {
+      name: 'cuiqg/unicorn/rules',
+      plugins: {
+        unicorn: pluginUnicorn,
+      },
       rules: {
-        'unicorn/consistent-destructuring': 'off',
-        'unicorn/consistent-function-scoping': [
-          'error',
-          { checkArrowFunctions: false },
-        ],
-        'unicorn/filename-case': [
-          'error',
-          {
-            cases: { kebabCase: true, pascalCase: true },
-            ignore: ['.*\\.md$'],
-          },
-        ],
-        'unicorn/new-for-builtins': 'off',
-        'unicorn/no-array-callback-reference': 'off',
-        'unicorn/no-array-push-push': 'off',
-        'unicorn/no-array-reduce': 'off',
-        'unicorn/no-await-expression-member': 'off',
-        'unicorn/no-empty-file': 'off',
-        'unicorn/no-null': 'off',
-        'unicorn/no-process-exit': 'off',
-        'unicorn/prefer-event-target': 'off',
-        'unicorn/prefer-module': 'off',
-        'unicorn/prefer-top-level-await': 'off',
-        'unicorn/prevent-abbreviations': 'off',
-        'unicorn/require-number-to-fixed-digits-argument': 'off',
-        'unicorn/switch-case-braces': ['error', 'avoid'],
+        'unicorn/error-message': 'error',
+        'unicorn/escape-case': 'error',
+        'unicorn/no-instanceof-array': 'error',
+        'unicorn/no-new-array': 'error',
+        'unicorn/no-new-buffer': 'error',
+        'unicorn/number-literal-case': 'error',
+        'unicorn/prefer-dom-node-text-content': 'error',
+        'unicorn/prefer-includes': 'error',
+        'unicorn/prefer-node-protocol': 'error',
+        'unicorn/prefer-number-properties': 'error',
+        'unicorn/prefer-string-starts-ends-with': 'error',
+        'unicorn/prefer-type-error': 'error',
+        'unicorn/throw-new-error': 'error',
       },
     },
   ]
+}

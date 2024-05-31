@@ -1,3 +1,3 @@
-import { cuiqg } from './src'
+import { cuiqg } from './dist/index'
 
 export default cuiqg()

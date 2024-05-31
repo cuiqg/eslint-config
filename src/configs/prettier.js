@@ -1,16 +1,24 @@
-import { GLOB_ALL_SRC } from '../globs'
-import { pluginPrettier, configPrettier } from '../plugins'
+import { interopDefault } from '../utils'
+import { GLOB_PRETTIER } from '../globs'
 
-/** @type {import('eslint').Linter.FlatConfig[]} */
-export const prettier = [
+export async function prettier() {
+  const [pluginPrettier, configPrettier] = await Promise.all([
+    interopDefault(import('eslint-plugin-prettier')),
+    interopDefault(import('eslint-config-prettier')),
+  ])
+
+  return [
     {
-      files: GLOB_ALL_SRC,
+      name: 'cuiqg/prettier/setup',
+      files: GLOB_PRETTIER,
       plugins: {
         prettier: pluginPrettier,
       },
       rules: {
-        'prettier/prettier': 'error',
+        ...configPrettier.rules,
+        ...pluginPrettier.configs.recommended.rules,
+        'prettier/prettier': 'warn',
       },
     },
-    configPrettier,
-]
+  ]
+}

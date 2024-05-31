@@ -1,8 +1,13 @@
-import { pluginComments } from '../plugins'
+import { interopDefault } from '../utils'
 
-/** @type {import('eslint').Linter.FlatConfig[]} */
-export const comments = [
+export async function comments() {
+  const pluginComments = await interopDefault(
+    import('eslint-plugin-eslint-comments')
+  )
+
+  return [
     {
+      name: 'cuiqg/eslint-comments/rules',
       plugins: {
         'eslint-comments': pluginComments,
       },
@@ -10,4 +15,5 @@ export const comments = [
         ...pluginComments.configs.recommended.rules,
       },
     },
-]
+  ]
+}
