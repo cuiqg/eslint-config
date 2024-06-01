@@ -1,3 +1,6 @@
 import { cuiqg } from './dist/index'
 
-export default cuiqg()
+export default cuiqg({
+  vue: true,
+  unocss: true,
+})
