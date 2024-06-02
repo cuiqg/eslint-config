@@ -1,6 +1,5 @@
-import fs from 'node:fs'
 import { FlatConfigComposer } from 'eslint-flat-config-utils'
-import { interopDefault, getOverrides, resolveSubOptions } from './utils'
+import { getOverrides, resolveSubOptions } from './utils'
 import { hasUnocss, hasVue } from './env'
 
 import {
@@ -21,30 +20,12 @@ import {
 
 export function cuiqg(options = {}, ...userConfigs) {
   const {
-    gitignore: enableGitignore = true,
     prettier: enablePrettier = false,
     unocss: enableUnocss = hasUnocss,
     vue: enableVue = hasVue,
   } = options
 
   const configs = []
-
-  if (enableGitignore) {
-    if (typeof enableGitignore !== 'boolean') {
-      configs.push(
-        interopDefault(import('eslint-config-flat-gitignore')).then(r => [
-          r(enableGitignore),
-        ])
-      )
-    } else {
-      if (fs.existsSync('.gitignore'))
-        configs.push(
-          interopDefault(import('eslint-config-flat-gitignore')).then(r => [
-            r(),
-          ])
-        )
-    }
-  }
 
   configs.push(
     ignores(),
