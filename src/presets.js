@@ -47,10 +47,6 @@ export function cuiqg(options = {}, ...userConfigs) {
     )
   }
 
-  if (enablePrettier) {
-    configs.push(prettier())
-  }
-
   if (enableUnocss) {
     configs.push(
       unocss({
@@ -58,6 +54,10 @@ export function cuiqg(options = {}, ...userConfigs) {
         overrides: getOverrides(options, 'unocss'),
       })
     )
+  }
+
+  if (enablePrettier) {
+    configs.push(prettier())
   }
 
   if (options.jsonc ?? true) {

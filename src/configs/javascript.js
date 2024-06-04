@@ -1,5 +1,4 @@
 import globals from 'globals'
-import pluginJS from '@eslint/js'
 import { GLOB_SRC, GLOB_SRC_EXT } from '../globs'
 
 export async function javascript(options = {}) {
@@ -31,7 +30,6 @@ export async function javascript(options = {}) {
         reportUnusedDisableDirectives: true,
       },
       rules: {
-        ...pluginJS.configs.all.rules,
         'accessor-pairs': [
           'error',
           { enforceForClassMembers: true, setWithoutGet: true },

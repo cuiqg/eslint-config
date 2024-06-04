@@ -1,6 +1,6 @@
 {
   "name": "@cuiqg/eslint-config",
-  "version": "2.1.8",
+  "version": "2.1.9",
   "description": "ESLint config preset for @cuiqg",
   "type": "module",
   "license": "UNLICENSED",
@@ -25,7 +25,8 @@
   },
   "scripts": {
     "build": "tsup",
-    "dev": "tsup --watch --onSuccess \"npx @eslint/config-inspector --config eslint.config.js\"",
+    "dev": "npx @eslint/config-inspector --config eslint.config.js",
+    "watch": "tsup --watch",
     "lint": "eslint .",
     "prepack": "npm run build",
     "release": "bumpp && npm publish"
@@ -34,7 +35,8 @@
     "eslint": ">=8.23.0"
   },
   "dependencies": {
-    "@eslint/js": "^9.3.0",
+    "@antfu/install-pkg": "^0.3.3",
+    "@clack/prompts": "^0.7.0",
     "@unocss/eslint-plugin": "^0.57.5",
     "eslint-config-flat-gitignore": "^0.1.5",
     "eslint-config-prettier": "^9.1.0",
