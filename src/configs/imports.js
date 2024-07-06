@@ -1,13 +1,15 @@
 import { interopDefault } from '../utils'
 
-export async function imports() {
+export async function imports(options = {}) {
+  const { overrides = {} } = options
+
   const pluginImport = await interopDefault(import('eslint-plugin-import-x'))
 
   return [
     {
       name: 'cuiqg/imports/rules',
       plugins: {
-        import: pluginImport,
+        import: pluginImport
       },
       rules: {
         'import/first': 'error',
@@ -17,7 +19,9 @@ export async function imports() {
         'import/no-self-import': 'error',
         'import/no-webpack-loader-syntax': 'error',
         'import/order': 'error',
-      },
-    },
+
+        ...overrides
+      }
+    }
   ]
 }

@@ -10,19 +10,19 @@ import {
   jsonc,
   node,
   prettier,
-  sortPackageJson,
   sortJsconfig,
+  sortPackageJson,
   unicorn,
   unocss,
   vue,
-  yaml,
+  yaml
 } from './configs'
 
 export function cuiqg(options = {}, ...userConfigs) {
   const {
     prettier: enablePrettier = false,
     unocss: enableUnocss = hasUnocss,
-    vue: enableVue = hasVue,
+    vue: enableVue = hasVue
   } = options
 
   const configs = []
@@ -30,19 +30,27 @@ export function cuiqg(options = {}, ...userConfigs) {
   configs.push(
     ignores(),
     javascript({
-      overrides: getOverrides(options, 'javascript'),
+      overrides: getOverrides(options, 'javascript')
     }),
-    comments(),
-    node(),
-    imports(),
-    unicorn()
+    comments({
+      overrides: getOverrides(options, 'comments')
+    }),
+    node({
+      overrides: getOverrides(options, 'node')
+    }),
+    imports({
+      overrides: getOverrides(options, 'imports')
+    }),
+    unicorn({
+      overrides: getOverrides(options, 'unicorn')
+    })
   )
 
   if (enableVue) {
     configs.push(
       vue({
         ...resolveSubOptions(options, 'vue'),
-        overrides: getOverrides(options, 'vue'),
+        overrides: getOverrides(options, 'vue')
       })
     )
   }
@@ -51,23 +59,33 @@ export function cuiqg(options = {}, ...userConfigs) {
     configs.push(
       unocss({
         ...resolveSubOptions(options, 'unocss'),
-        overrides: getOverrides(options, 'unocss'),
+        overrides: getOverrides(options, 'unocss')
       })
     )
   }
 
   if (enablePrettier) {
-    configs.push(prettier())
+    configs.push(
+      prettier({
+        overrides: getOverrides(options, 'prettier')
+      })
+    )
   }
 
   if (options.jsonc ?? true) {
-    configs.push(jsonc(), sortPackageJson(), sortJsconfig())
+    configs.push(
+      jsonc({
+        overrides: getOverrides(options, 'jsonc')
+      }),
+      sortPackageJson(),
+      sortJsconfig()
+    )
   }
 
   if (options.yaml ?? true) {
     configs.push(
       yaml({
-        overrides: getOverrides(options, 'yaml'),
+        overrides: getOverrides(options, 'yaml')
       })
     )
   }

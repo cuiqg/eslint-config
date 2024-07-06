@@ -1,6 +1,11 @@
 .idea
+.vercel
 .vscode
 .DS_Store
-node_modules/
+.eslintcache
 
+node_modules
 dist
+.eslint-config-inspector
+
+package-lock.json

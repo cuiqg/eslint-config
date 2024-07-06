@@ -1,4 +1,4 @@
-import { interopDefault, ensurePackages } from '../utils'
+import { ensurePackages, interopDefault } from '../utils'
 import { GLOB_VUE } from '../globs'
 
 export async function vue(options = {}) {
@@ -8,7 +8,7 @@ export async function vue(options = {}) {
 
   const [pluginVue, parserVue] = await Promise.all([
     interopDefault(import('eslint-plugin-vue')),
-    interopDefault(import('vue-eslint-parser')),
+    interopDefault(import('vue-eslint-parser'))
   ])
 
   return [
@@ -29,12 +29,12 @@ export async function vue(options = {}) {
           toRef: 'readonly',
           toRefs: 'readonly',
           watch: 'readonly',
-          watchEffect: 'readonly',
-        },
+          watchEffect: 'readonly'
+        }
       },
       plugins: {
-        vue: pluginVue,
-      },
+        vue: pluginVue
+      }
     },
     {
       name: 'cuiqg/vue/rules',
@@ -43,12 +43,12 @@ export async function vue(options = {}) {
         parser: parserVue,
         parserOptions: {
           ecmaFeatures: {
-            jsx: true,
+            jsx: true
           },
           extraFileExtensions: ['.vue'],
           parser: null,
-          sourceType: 'module',
-        },
+          sourceType: 'module'
+        }
       },
       processor: pluginVue.processors['.vue'],
       rules: {
@@ -58,12 +58,12 @@ export async function vue(options = {}) {
           ? {
               ...pluginVue.configs.essential.rules,
               ...pluginVue.configs['strongly-recommended'].rules,
-              ...pluginVue.configs.recommended.rules,
+              ...pluginVue.configs.recommended.rules
             }
           : {
               ...pluginVue.configs['vue3-essential'].rules,
               ...pluginVue.configs['vue3-strongly-recommended'].rules,
-              ...pluginVue.configs['vue3-recommended'].rules,
+              ...pluginVue.configs['vue3-recommended'].rules
             }),
 
         'vue/block-order': ['warn', { order: ['script', 'template', 'style'] }],
@@ -71,7 +71,7 @@ export async function vue(options = {}) {
         'vue/component-name-in-template-casing': [
           'warn',
           'PascalCase',
-          { registeredComponentsOnly: false, ignores: [] },
+          { registeredComponentsOnly: false, ignores: [] }
         ],
         'vue/component-options-name-casing': ['warn', 'PascalCase'],
         'vue/custom-event-name-casing': ['warn', 'camelCase'],
@@ -113,13 +113,13 @@ export async function vue(options = {}) {
             defineEmits: 'emit',
             defineSlots: 'slots',
             useSlots: 'slots',
-            useAttrs: 'attrs',
-          },
+            useAttrs: 'attrs'
+          }
         ],
         'vue/valid-define-options': 'warn',
 
-        ...overrides,
-      },
-    },
+        ...overrides
+      }
+    }
   ]
 }

@@ -1,6 +1,8 @@
 import { interopDefault } from '../utils'
 
-export async function comments() {
+export async function comments(options = {}) {
+  const { overrides = {} } = options
+
   const pluginComments = await interopDefault(
     import('eslint-plugin-eslint-comments')
   )
@@ -9,11 +11,13 @@ export async function comments() {
     {
       name: 'cuiqg/eslint-comments/rules',
       plugins: {
-        'eslint-comments': pluginComments,
+        'eslint-comments': pluginComments
       },
       rules: {
         ...pluginComments.configs.recommended.rules,
-      },
-    },
+
+        ...overrides
+      }
+    }
   ]
 }

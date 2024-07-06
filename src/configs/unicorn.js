@@ -1,13 +1,15 @@
 import { interopDefault } from '../utils'
 
-export async function unicorn() {
+export async function unicorn(options = {}) {
+  const { overrides = {} } = options
+
   const pluginUnicorn = await interopDefault(import('eslint-plugin-unicorn'))
 
   return [
     {
       name: 'cuiqg/unicorn/rules',
       plugins: {
-        unicorn: pluginUnicorn,
+        unicorn: pluginUnicorn
       },
       rules: {
         'unicorn/error-message': 'error',
@@ -23,7 +25,9 @@ export async function unicorn() {
         'unicorn/prefer-string-starts-ends-with': 'error',
         'unicorn/prefer-type-error': 'error',
         'unicorn/throw-new-error': 'error',
-      },
-    },
+
+        ...overrides
+      }
+    }
   ]
 }

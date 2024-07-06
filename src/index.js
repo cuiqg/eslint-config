@@ -8,5 +8,3 @@ export * from './utils'
 export * from './presets'
 
 export default cuiqg
-
-console.dir(cuiqg)

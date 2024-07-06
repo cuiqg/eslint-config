@@ -1,0 +1,11 @@
+{
+  "name": "eslint-config",
+  "framework": null,
+  "installCommand": "npm install",
+  "buildCommand": "npm run build:inspector",
+  "outputDirectory": ".eslint-config-inspector",
+  "regions": ["hkg1"],
+  "redirects": [
+    { "source": "/(.*)", "destination": "/index.html", "statusCode": 200 }
+  ]
+}
