@@ -4,9 +4,10 @@ import { GLOB_SRC, GLOB_VUE } from '../globs'
 export async function prettier(options = {}) {
   const { files = [GLOB_SRC, GLOB_VUE], overrides = {} } = options
 
-  const [pluginPrettier, configPrettier] = await Promise.all([
+  const [pluginJsonc, pluginPrettier, configPrettier] = await Promise.all([
+    interopDefault(import('eslint-plugin-jsonc')),
     interopDefault(import('eslint-plugin-prettier')),
-    interopDefault(import('eslint-config-prettier')),
+    interopDefault(import('eslint-config-prettier'))
   ])
 
   return [
@@ -14,15 +15,16 @@ export async function prettier(options = {}) {
       name: 'cuiqg/prettier',
       files,
       plugins: {
-        prettier: pluginPrettier,
+        prettier: pluginPrettier
       },
       rules: {
         ...configPrettier.rules,
         ...pluginPrettier.configs.recommended.rules,
+        ...pluginJsonc.configs.prettier.rules,
         'prettier/prettier': 'warn',
 
-        ...overrides,
-      },
-    },
+        ...overrides
+      }
+    }
   ]
 }

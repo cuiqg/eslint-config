@@ -12,17 +12,27 @@ import {
   prettier,
   sortJsconfig,
   sortPackageJson,
+  stylistic,
   unicorn,
   unocss,
   vue,
   yaml
 } from './configs'
 
+export const defaultPluginRenaming = {
+  '@stylistic': 'style',
+  'import-x': 'import',
+  'n': 'node',
+  'yml': 'yaml'
+}
+
 export function cuiqg(options = {}, ...userConfigs) {
   const {
+    autoRenamePlugins = true,
     prettier: enablePrettier = false,
     unocss: enableUnocss = hasUnocss,
-    vue: enableVue = hasVue
+    vue: enableVue = hasVue,
+    stylistic: enableStylistic = true
   } = options
 
   const configs = []
@@ -39,12 +49,21 @@ export function cuiqg(options = {}, ...userConfigs) {
       overrides: getOverrides(options, 'node')
     }),
     imports({
-      overrides: getOverrides(options, 'imports')
+      overrides: getOverrides(options, 'import-x')
     }),
     unicorn({
       overrides: getOverrides(options, 'unicorn')
     })
   )
+
+  if (enableStylistic) {
+    configs.push(
+      stylistic({
+        ...resolveSubOptions(options, 'stylistic'),
+        overrides: getOverrides(options, 'stylistic')
+      })
+    )
+  }
 
   if (enableVue) {
     configs.push(
@@ -93,6 +112,10 @@ export function cuiqg(options = {}, ...userConfigs) {
   let composer = new FlatConfigComposer()
 
   composer = composer.append(...configs, ...userConfigs)
+
+  if (autoRenamePlugins) {
+    composer = composer.renamePlugins(defaultPluginRenaming)
+  }
 
   return composer
 }

@@ -5,9 +5,7 @@ export async function unocss(options = {}) {
 
   await ensurePackages(['@unocss/eslint-plugin'])
 
-  const [pluginUnoCSS] = await Promise.all([
-    interopDefault(import('@unocss/eslint-plugin'))
-  ])
+  const pluginUnoCSS = await interopDefault(import('@unocss/eslint-plugin'))
 
   return [
     {

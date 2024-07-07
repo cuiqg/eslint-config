@@ -25,7 +25,7 @@ export async function ensurePackages(packages) {
 
   const p = await import('@clack/prompts')
   const result = await p.confirm({
-    message: `${nonExistingPackages.length === 1 ? 'Package is' : 'Packages are'} required for this config: ${nonExistingPackages.join(', ')}. Do you want to install them?`,
+    message: `${nonExistingPackages.length === 1 ? 'Package is' : 'Packages are'} required for this config: ${nonExistingPackages.join(', ')}. Do you want to install them?`
   })
 
   if (result) {
@@ -43,6 +43,6 @@ export function getOverrides(options, key) {
   const sub = resolveSubOptions(options, key)
   return {
     ...options.overrides?.[key],
-    ...('overrides' in sub ? sub.overrides : {}),
+    ...('overrides' in sub ? sub.overrides : {})
   }
 }

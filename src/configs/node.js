@@ -7,7 +7,7 @@ export async function node(options = {}) {
 
   return [
     {
-      name: 'cuiqg/node/rules',
+      name: 'cuiqg/node',
       plugins: {
         node: pluginNode
       },

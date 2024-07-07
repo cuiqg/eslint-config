@@ -13,8 +13,8 @@ export async function sortPackageJson() {
           'error',
           {
             order: { type: 'asc' },
-            pathPattern: '^files$',
-          },
+            pathPattern: '^files$'
+          }
         ],
         'jsonc/sort-keys': [
           'error',
@@ -61,29 +61,29 @@ export async function sortPackageJson() {
               'husky',
               'lint-staged',
               'eslintConfig',
-              'prettier',
+              'prettier'
             ],
-            pathPattern: '^$',
+            pathPattern: '^$'
           },
           {
             order: { type: 'asc' },
-            pathPattern: '^(?:dev|peer|optional|bundled)?[Dd]ependencies$',
+            pathPattern: '^(?:dev|peer|optional|bundled)?[Dd]ependencies$'
           },
           {
             order: ['types', 'require', 'import', 'default'],
-            pathPattern: '^exports.*$',
+            pathPattern: '^exports.*$'
           },
           {
             order: { type: 'asc' },
-            pathPattern: '^resolutions$',
+            pathPattern: '^resolutions$'
           },
           {
             order: { type: 'asc' },
-            pathPattern: '^pnpm.overrides$',
-          },
-        ],
-      },
-    },
+            pathPattern: '^pnpm.overrides$'
+          }
+        ]
+      }
+    }
   ]
 }
 
@@ -107,9 +107,9 @@ export async function sortJsconfig() {
               'references',
               'files',
               'include',
-              'exclude',
+              'exclude'
             ],
-            pathPattern: '^$',
+            pathPattern: '^$'
           },
           {
             order: [
@@ -208,12 +208,12 @@ export async function sortJsconfig() {
               'verbatimModuleSyntax',
               /* Completeness */
               'skipDefaultLibCheck',
-              'skipLibCheck',
+              'skipLibCheck'
             ],
-            pathPattern: '^compilerOptions$',
-          },
-        ],
-      },
-    },
+            pathPattern: '^compilerOptions$'
+          }
+        ]
+      }
+    }
   ]
 }

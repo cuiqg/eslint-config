@@ -9,7 +9,7 @@ export async function comments(options = {}) {
 
   return [
     {
-      name: 'cuiqg/eslint-comments/rules',
+      name: 'cuiqg/eslint-comments',
       plugins: {
         'eslint-comments': pluginComments
       },

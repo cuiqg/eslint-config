@@ -13,17 +13,14 @@ export async function yaml(options = {}) {
 
   return [
     {
-      name: 'cuiqg/yaml/setup',
+      name: 'cuiqg/yaml',
+      files,
       plugins: {
         yaml: pluginYaml
-      }
-    },
-    {
-      files,
+      },
       languageOptions: {
         parser: parserYaml
       },
-      name: 'cuiqg/yaml/rules',
       rules: {
         'yaml/block-mapping': 'error',
         'yaml/block-sequence': 'error',

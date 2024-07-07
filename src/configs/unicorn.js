@@ -7,7 +7,7 @@ export async function unicorn(options = {}) {
 
   return [
     {
-      name: 'cuiqg/unicorn/rules',
+      name: 'cuiqg/unicorn',
       plugins: {
         unicorn: pluginUnicorn
       },

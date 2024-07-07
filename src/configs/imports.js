@@ -7,7 +7,7 @@ export async function imports(options = {}) {
 
   return [
     {
-      name: 'cuiqg/imports/rules',
+      name: 'cuiqg/imports',
       plugins: {
         import: pluginImport
       },

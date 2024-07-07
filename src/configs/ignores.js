@@ -4,7 +4,7 @@ export async function ignores() {
   return [
     {
       name: 'cuiqg/ignores',
-      ignores: GLOB_EXCLUDE,
-    },
+      ignores: GLOB_EXCLUDE
+    }
   ]
 }

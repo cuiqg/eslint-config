@@ -32,11 +32,12 @@ export const GLOB_EXCLUDE = [
   '**/.cache',
   '**/.output',
   '**/.vite-inspect',
+  '**/.eslint-config-inspector',
 
   '**/CHANGELOG*.md',
   '**/*.min.*',
   '**/LICENSE*',
   '**/__snapshots__',
   '**/auto-import?(s).d.ts',
-  '**/components.d.ts',
+  '**/components.d.ts'
 ]
