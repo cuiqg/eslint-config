@@ -1,4 +1,4 @@
-# @cuiqg/eslint-config [![npm](https://img.shields.io/npm/v/%40cuiqg%2Feslint-config?registry_uri=https%3A%2F%2Fregistry.npmmirror.com&style=flat-square)](https://npmmirror.com/package/@cuiqg/eslint-config)
+# @cuiqg/eslint-config [![npm](https://img.shields.io/npm/v/%40cuiqg%2Feslint-config?style=flat-square)](https://www.npmjs.com/package/@cuiqg/eslint-config)
 
 ## 使用
 
