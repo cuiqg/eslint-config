@@ -1,6 +1,6 @@
 {
   "name": "@cuiqg/eslint-config",
-  "version": "2.1.10",
+  "version": "2.1.11",
   "description": "ESLint config preset for @cuiqg",
   "type": "module",
   "license": "UNLICENSED",
@@ -13,7 +13,6 @@
     "dist"
   ],
   "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "require": "./dist/index.cjs",
@@ -32,9 +31,6 @@
     "prepack": "npm run build",
     "release": "bumpp && npm publish",
     "prepare": "husky"
-  },
-  "peerDependencies": {
-    "eslint": ">=8.23.0"
   },
   "dependencies": {
     "@antfu/install-pkg": "^0.3.3",
@@ -60,7 +56,6 @@
     "yaml-eslint-parser": "^1.2.3"
   },
   "devDependencies": {
-    "@cuiqg/prettier-config": "^1.1.7",
     "bumpp": "^9.4.1",
     "eslint": "^9.6.0",
     "husky": "^9.0.11",
