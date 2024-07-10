@@ -1,8 +1,12 @@
 import { interopDefault } from '../utils'
 
-export async function imports(options = {}) {
-  const { overrides = {} } = options
-
+/**
+ * Imports
+ *
+ * @see https://github.com/antfu/eslint-plugin-import-x
+ * @returns {import('eslint').Linter.FlatConfig[]}
+ */
+export async function imports() {
   const pluginImport = await interopDefault(import('eslint-plugin-import-x'))
 
   return [
@@ -18,9 +22,8 @@ export async function imports(options = {}) {
         'import/no-named-default': 'error',
         'import/no-self-import': 'error',
         'import/no-webpack-loader-syntax': 'error',
-        'import/order': 'error',
-
-        ...overrides
+        'import/newline-after-import': 'error',
+        'import/order': 'error'
       }
     }
   ]

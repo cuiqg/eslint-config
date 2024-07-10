@@ -1,8 +1,12 @@
 import { interopDefault } from '../utils'
 
-export async function node(options = {}) {
-  const { overrides = {} } = options
-
+/**
+ * Node
+ *
+ * @see https://github.com/eslint-community/eslint-plugin-n
+ * @returns {import('eslint').Linter.FlatConfig[]}
+ */
+export async function node() {
   const pluginNode = await interopDefault(import('eslint-plugin-n'))
 
   return [
@@ -19,9 +23,7 @@ export async function node(options = {}) {
         'node/no-path-concat': 'error',
         'node/prefer-global/buffer': ['error', 'never'],
         'node/prefer-global/process': ['error', 'never'],
-        'node/process-exit-as-throw': 'error',
-
-        ...overrides
+        'node/process-exit-as-throw': 'error'
       }
     }
   ]

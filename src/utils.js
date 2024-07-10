@@ -1,5 +1,26 @@
 import process from 'node:process'
 import { isPackageExists } from 'local-pkg'
+
+export const parserPlain = {
+  meta: {
+    name: 'parser-plain'
+  },
+  parseForESLint: code => ({
+    ast: {
+      body: [],
+      comments: [],
+      loc: { end: code.length, start: 0 },
+      range: [0, code.length],
+      tokens: [],
+      type: 'Program'
+    },
+    scopeManager: null,
+    services: { isPlain: true },
+    visitorKeys: {
+      Program: []
+    }
+  })
+}
 export function toArray(value) {
   return Array.isArray(value) ? value : [value]
 }
@@ -7,14 +28,6 @@ export function toArray(value) {
 export async function interopDefault(m) {
   const resolved = await m
   return resolved.default || m
-}
-
-/**
- * Combine array and non-array configs into a signle array
- */
-export async function combine(...configs) {
-  const resolved = await Promise.all(configs)
-  return resolved.flat()
 }
 
 export async function ensurePackages(packages) {
@@ -32,17 +45,5 @@ export async function ensurePackages(packages) {
     await import('@antfu/install-pkg').then(i =>
       i.installPackage(nonExistingPackages, { dev: true })
     )
-  }
-}
-
-export function resolveSubOptions(options, key) {
-  return typeof options[key] === 'boolean' ? {} : options[key] || {}
-}
-
-export function getOverrides(options, key) {
-  const sub = resolveSubOptions(options, key)
-  return {
-    ...options.overrides?.[key],
-    ...('overrides' in sub ? sub.overrides : {})
   }
 }

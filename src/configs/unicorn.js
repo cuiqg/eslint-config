@@ -1,8 +1,12 @@
 import { interopDefault } from '../utils'
 
-export async function unicorn(options = {}) {
-  const { overrides = {} } = options
-
+/**
+ * Unicorn
+ *
+ * @see https://github.com/sindresorhus/eslint-plugin-unicorn
+ * @returns {import('eslint').Linter.FlatConfig[]}
+ */
+export async function unicorn() {
   const pluginUnicorn = await interopDefault(import('eslint-plugin-unicorn'))
 
   return [
@@ -24,9 +28,7 @@ export async function unicorn(options = {}) {
         'unicorn/prefer-number-properties': 'error',
         'unicorn/prefer-string-starts-ends-with': 'error',
         'unicorn/prefer-type-error': 'error',
-        'unicorn/throw-new-error': 'error',
-
-        ...overrides
+        'unicorn/throw-new-error': 'error'
       }
     }
   ]

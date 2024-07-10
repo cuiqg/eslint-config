@@ -1,10 +1,12 @@
-import { ensurePackages, interopDefault } from '../utils'
+import { interopDefault } from '../utils'
 
-export async function unocss(options = {}) {
-  const { attributify = true, strict = false, overrides = {} } = options
-
-  await ensurePackages(['@unocss/eslint-plugin'])
-
+/**
+ * UnoCSS
+ *
+ * @see https://unocss.dev/integrations/eslint
+ * @returns {import('eslint').Linter.FlatConfig[]}
+ */
+export async function unocss() {
   const pluginUnoCSS = await interopDefault(import('@unocss/eslint-plugin'))
 
   return [
@@ -14,19 +16,8 @@ export async function unocss(options = {}) {
         unocss: pluginUnoCSS
       },
       rules: {
-        'unocss/order': 'warn',
-        ...(attributify
-          ? {
-              'unocss/order-attributify': 'warn'
-            }
-          : {}),
-        ...(strict
-          ? {
-              'unocss/blocklist': 'error'
-            }
-          : {}),
-
-        ...overrides
+        'unocss/order': 'error',
+        'unocss/order-attributify': 'warn'
       }
     }
   ]

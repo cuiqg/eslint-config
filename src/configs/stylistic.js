@@ -1,15 +1,12 @@
 import { ensurePackages, interopDefault } from '../utils'
 
-export async function stylistic(options = {}) {
-  const {
-    indent = 2,
-    jsx = true,
-    quotes = 'single',
-    semi = false,
-    commaDangle = 'never',
-    overrides = {}
-  } = options
-
+/**
+ * Stylistic
+ *
+ * @see https://eslint.style/
+ * @returns {import('eslint').Linter.FlatConfig[]}
+ */
+export async function stylistic() {
   await ensurePackages(['@stylistic/eslint-plugin'])
 
   const pluginStylistic = await interopDefault(
@@ -18,12 +15,12 @@ export async function stylistic(options = {}) {
 
   const config = pluginStylistic.configs.customize({
     flat: true,
-    indent,
-    jsx,
     pluginName: 'style',
-    quotes,
-    semi,
-    commaDangle
+    indent: 2,
+    jsx: true,
+    quotes: 'single',
+    semi: false,
+    commaDangle: 'never'
   })
 
   return [
@@ -33,9 +30,7 @@ export async function stylistic(options = {}) {
         style: pluginStylistic
       },
       rules: {
-        ...config.rules,
-
-        ...overrides
+        ...config.rules
       }
     }
   ]

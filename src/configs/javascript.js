@@ -2,10 +2,15 @@ import globals from 'globals'
 import { GLOB_SRC, GLOB_SRC_EXT } from '../globs'
 import { interopDefault } from '../utils'
 
-export async function javascript(options = {}) {
-  const { overrides = {} } = options
-
+/**
+ * JavaScript
+ *
+ * @see https://npm.im/@eslint/js
+ * @returns {import('eslint').Linter.FlatConfig[]}
+ */
+export async function javascript() {
   const pluginJS = await interopDefault(import('@eslint/js'))
+
   return [
     {
       name: 'cuiqg/javascript',
@@ -14,10 +19,7 @@ export async function javascript(options = {}) {
         globals: {
           ...globals.browser,
           ...globals.es2021,
-          ...globals.node,
-          document: 'readonly',
-          navigator: 'readonly',
-          window: 'readonly'
+          ...globals.node
         },
         parserOptions: {
           ecmaFeatures: {
@@ -32,8 +34,7 @@ export async function javascript(options = {}) {
         reportUnusedDisableDirectives: true
       },
       rules: {
-        ...pluginJS.configs.recommended.rules,
-        ...overrides
+        ...pluginJS.configs.recommended.rules
       }
     },
     {

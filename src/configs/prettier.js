@@ -1,9 +1,13 @@
 import { interopDefault } from '../utils'
-import { GLOB_SRC, GLOB_VUE } from '../globs'
 
-export async function prettier(options = {}) {
-  const { files = [GLOB_SRC, GLOB_VUE], overrides = {} } = options
+/**
+ * Prettier
+ *
+ * @see https://github.com/prettier/eslint-plugin-prettier
+ * @returns {import('eslint').Linter.FlatConfig[]}
+ */
 
+export async function prettier() {
   const [pluginJsonc, pluginPrettier, configPrettier] = await Promise.all([
     interopDefault(import('eslint-plugin-jsonc')),
     interopDefault(import('eslint-plugin-prettier')),
@@ -13,7 +17,6 @@ export async function prettier(options = {}) {
   return [
     {
       name: 'cuiqg/prettier',
-      files,
       plugins: {
         prettier: pluginPrettier
       },
@@ -21,9 +24,7 @@ export async function prettier(options = {}) {
         ...configPrettier.rules,
         ...pluginPrettier.configs.recommended.rules,
         ...pluginJsonc.configs.prettier.rules,
-        'prettier/prettier': 'warn',
-
-        ...overrides
+        'prettier/prettier': 'warn'
       }
     }
   ]

@@ -1,15 +1,17 @@
 import { FlatConfigComposer } from 'eslint-flat-config-utils'
-import { getOverrides, resolveSubOptions } from './utils'
 import { hasUnocss, hasVue } from './env'
 
 import {
+  autoImport,
   comments,
   ignores,
   imports,
   javascript,
   jsonc,
+  jsdoc,
   node,
   prettier,
+  perfectionist,
   sortJsconfig,
   sortPackageJson,
   stylistic,
@@ -28,94 +30,63 @@ export const defaultPluginRenaming = {
 
 export function cuiqg(options = {}, ...userConfigs) {
   const {
-    autoRenamePlugins = true,
     prettier: enablePrettier = false,
     unocss: enableUnocss = hasUnocss,
     vue: enableVue = hasVue,
-    stylistic: enableStylistic = true
+    stylistic: enableStylistic = true,
+    jsdoc: enableJsdoc = false
   } = options
 
   const configs = []
 
   configs.push(
+    autoImport(),
     ignores(),
-    javascript({
-      overrides: getOverrides(options, 'javascript')
-    }),
-    comments({
-      overrides: getOverrides(options, 'comments')
-    }),
-    node({
-      overrides: getOverrides(options, 'node')
-    }),
-    imports({
-      overrides: getOverrides(options, 'import-x')
-    }),
-    unicorn({
-      overrides: getOverrides(options, 'unicorn')
-    })
+    javascript(),
+    comments(),
+    node(),
+    imports(),
+    unicorn(),
+    perfectionist(),
+    jsonc(),
+    sortPackageJson(),
+    sortJsconfig(),
+    yaml()
   )
 
   if (enableStylistic) {
     configs.push(
-      stylistic({
-        ...resolveSubOptions(options, 'stylistic'),
-        overrides: getOverrides(options, 'stylistic')
-      })
+      stylistic()
     )
   }
 
   if (enableVue) {
     configs.push(
-      vue({
-        ...resolveSubOptions(options, 'vue'),
-        overrides: getOverrides(options, 'vue')
-      })
+      vue()
     )
   }
 
   if (enableUnocss) {
     configs.push(
-      unocss({
-        ...resolveSubOptions(options, 'unocss'),
-        overrides: getOverrides(options, 'unocss')
-      })
+      unocss()
     )
   }
 
   if (enablePrettier) {
     configs.push(
-      prettier({
-        overrides: getOverrides(options, 'prettier')
-      })
+      prettier()
     )
   }
 
-  if (options.jsonc ?? true) {
+  if (enableJsdoc) {
     configs.push(
-      jsonc({
-        overrides: getOverrides(options, 'jsonc')
-      }),
-      sortPackageJson(),
-      sortJsconfig()
-    )
-  }
-
-  if (options.yaml ?? true) {
-    configs.push(
-      yaml({
-        overrides: getOverrides(options, 'yaml')
-      })
+      jsdoc()
     )
   }
 
   let composer = new FlatConfigComposer()
 
-  composer = composer.append(...configs, ...userConfigs)
-
-  if (autoRenamePlugins) {
-    composer = composer.renamePlugins(defaultPluginRenaming)
-  }
+  composer = composer.append(...configs, ...userConfigs).renamePlugins(defaultPluginRenaming)
 
   return composer
 }

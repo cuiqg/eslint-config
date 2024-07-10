@@ -1,8 +1,15 @@
 import { ensurePackages, interopDefault } from '../utils'
 import { GLOB_YAML } from '../globs'
 
-export async function yaml(options = {}) {
-  const { files = [GLOB_YAML], overrides = {} } = options
+/**
+ * Yaml
+ *
+ * @see https://ota-meshi.github.io/eslint-plugin-yml/
+ * @returns {import('eslint').Linter.FlatConfig[]}
+ */
+
+export async function yaml() {
+  const files = [GLOB_YAML]
 
   await ensurePackages(['eslint-plugin-yml', 'yaml-eslint-parser'])
 
@@ -22,15 +29,15 @@ export async function yaml(options = {}) {
         parser: parserYaml
       },
       rules: {
+        ...(pluginYaml.configs.standard.rules),
+        ...(pluginYaml.configs.prettier.rules),
         'yaml/block-mapping': 'error',
         'yaml/block-sequence': 'error',
         'yaml/no-empty-key': 'error',
         'yaml/no-empty-sequence-entry': 'error',
         'yaml/no-irregular-whitespace': 'error',
         'yaml/plain-scalar': 'error',
-        'yaml/vue-custom-block/no-parsing-error': 'error',
-
-        ...overrides
+        'yaml/vue-custom-block/no-parsing-error': 'error'
       }
     }
   ]
