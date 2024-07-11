@@ -11,6 +11,7 @@ import {
   jsdoc,
   node,
   prettier,
+  regexp,
   perfectionist,
   sortJsconfig,
   sortPackageJson,
@@ -32,6 +33,7 @@ export function cuiqg(options = {}, ...userConfigs) {
   const {
     prettier: enablePrettier = false,
     unocss: enableUnocss = hasUnocss,
+    regexp: enableRegexp = true,
     vue: enableVue = hasVue,
     stylistic: enableStylistic = true,
     jsdoc: enableJsdoc = false
@@ -57,6 +59,12 @@ export function cuiqg(options = {}, ...userConfigs) {
   if (enableStylistic) {
     configs.push(
       stylistic()
+    )
+  }
+
+  if (enableRegexp) {
+    configs.push(
+      regexp()
     )
   }
 
