@@ -25,8 +25,8 @@
   },
   "scripts": {
     "build": "tsup",
-    "build:inspector": "npm run build && npx @eslint/config-inspector build",
-    "dev": "tsup --watch --onSuccess \"npx @eslint/config-inspector --config eslint.config.js --open false\"",
+    "build:inspector": "npm run build && npx @eslint/config-inspector build --config eslint-inspector.config.js",
+    "dev": "tsup --watch --onSuccess \"npx @eslint/config-inspector --config eslint-inspector.config.js --open false\"",
     "lint": "eslint .",
     "prepack": "npm run build",
     "release": "bumpp && npm publish",
