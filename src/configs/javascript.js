@@ -34,7 +34,13 @@ export async function javascript() {
         reportUnusedDisableDirectives: true
       },
       rules: {
-        ...pluginJS.configs.recommended.rules
+        ...pluginJS.configs.recommended.rules,
+        'no-unused-vars': ['error', {
+          args: 'none',
+          caughtErrors: 'none',
+          ignoreRestSiblings: true,
+          vars: 'all'
+        }]
       }
     },
     {
