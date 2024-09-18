@@ -4,7 +4,7 @@ import { GLOB_JSON, GLOB_JSON5, GLOB_JSONC } from '../globs'
 /**
  * JSONC
  *
- * @see https://ota-meshi.github.io/eslint-plugin-jsonc/
+ * @link https://ota-meshi.github.io/eslint-plugin-jsonc/
  * @returns {import('eslint').Linter.FlatConfig[]}
  */
 export async function jsonc() {

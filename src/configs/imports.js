@@ -3,7 +3,7 @@ import { interopDefault } from '../utils'
 /**
  * Imports
  *
- * @see https://github.com/antfu/eslint-plugin-import-x
+ * @see https://npm.im/eslint-plugin-import-x
  * @returns {import('eslint').Linter.FlatConfig[]}
  */
 export async function imports() {

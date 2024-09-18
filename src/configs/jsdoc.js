@@ -2,7 +2,7 @@ import { interopDefault } from '../utils'
 
 /**
  * JsDoc
- * @see https://github.com/gajus/eslint-plugin-jsdoc
+ * @see https://npm.im/eslint-plugin-jsdoc
  * @returns {import('eslint').Linter.FlatConfig[]}
  */
 export async function jsdoc() {
