@@ -1,6 +1,7 @@
 import globals from 'globals'
 import { GLOB_SRC, GLOB_SRC_EXT } from '../globs'
 import { interopDefault } from '../utils'
+import { isInEditor } from '../env'
 
 /**
  * JavaScript
@@ -9,7 +10,7 @@ import { interopDefault } from '../utils'
  * @returns {import('eslint').Linter.FlatConfig[]}
  */
 export async function javascript() {
-  const pluginJS = await interopDefault(import('@eslint/js'))
+  const [pluginJS, pluginUnusedImports] = await Promise.all([interopDefault(import('@eslint/js')), interopDefault(import('eslint-plugin-unused-imports'))])
 
   return [
     {
@@ -33,14 +34,22 @@ export async function javascript() {
       linterOptions: {
         reportUnusedDisableDirectives: true
       },
+      plugins: {
+        'unused-imports': pluginUnusedImports
+      },
       rules: {
         ...pluginJS.configs.recommended.rules,
-        'no-unused-vars': ['error', {
-          args: 'none',
-          caughtErrors: 'none',
-          ignoreRestSiblings: true,
-          vars: 'all'
-        }]
+        'unused-imports/no-unused-imports': isInEditor ? 'off' : 'error',
+        'unused-imports/no-unused-vars': [
+          'error',
+          {
+            args: 'after-used',
+            argsIgnorePattern: '^_',
+            ignoreRestSiblings: true,
+            vars: 'all',
+            varsIgnorePattern: '^_'
+          }
+        ]
       }
     },
     {

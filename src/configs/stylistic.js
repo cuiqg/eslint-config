@@ -1,4 +1,4 @@
-import { ensurePackages, interopDefault } from '../utils'
+import { interopDefault } from '../utils'
 
 /**
  * Stylistic
@@ -7,8 +7,6 @@ import { ensurePackages, interopDefault } from '../utils'
  * @returns {import('eslint').Linter.FlatConfig[]}
  */
 export async function stylistic() {
-  await ensurePackages(['@stylistic/eslint-plugin'])
-
   const pluginStylistic = await interopDefault(
     import('@stylistic/eslint-plugin')
   )
