@@ -8,4 +8,3 @@ node_modules
 dist
 .eslint-config-inspector
 
-package-lock.json
