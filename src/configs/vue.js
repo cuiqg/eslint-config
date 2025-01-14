@@ -28,6 +28,7 @@ export async function vue() {
           defineEmits: 'readonly',
           defineExpose: 'readonly',
           defineProps: 'readonly',
+          definePage: 'readonly',
           onMounted: 'readonly',
           onUnmounted: 'readonly',
           reactive: 'readonly',
@@ -59,7 +60,7 @@ export async function vue() {
         'vue/block-order': [
           'error',
           {
-            order: ['script', 'template', 'style']
+            order: ['script', 'template', 'style', 'route']
           }
         ],
         'vue/component-name-in-template-casing': ['error', 'PascalCase'],
