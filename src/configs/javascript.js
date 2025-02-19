@@ -35,7 +35,8 @@ export async function javascript() {
       },
       name: 'cuiqg/javascript',
       rules: {
-        ...pluginJs.configs.recommended.rules
+        ...pluginJs.configs.recommended.rules,
+        'no-unused-vars': 'off'
       }
     },
     {
