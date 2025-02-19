@@ -1,18 +1,15 @@
 import { FlatConfigComposer } from 'eslint-flat-config-utils'
-import { hasUnocss, hasVue } from './env'
-
 import {
   autoImport,
   comments,
   ignores,
   imports,
   javascript,
-  jsonc,
   jsdoc,
+  jsonc,
   node,
-  prettier,
-  regexp,
   perfectionist,
+  prettier,
   sortJsconfig,
   sortPackageJson,
   stylistic,
@@ -21,6 +18,8 @@ import {
   vue,
   yaml
 } from './configs'
+
+import { hasUnocss, hasVue } from './env'
 
 export const defaultPluginRenaming = {
   '@stylistic': 'style',
@@ -33,7 +32,6 @@ export function cuiqg(options = {}, ...userConfigs) {
   const {
     prettier: enablePrettier = false,
     unocss: enableUnocss = hasUnocss,
-    regexp: enableRegexp = true,
     vue: enableVue = hasVue,
     stylistic: enableStylistic = true,
     jsdoc: enableJsdoc = false
@@ -59,12 +57,6 @@ export function cuiqg(options = {}, ...userConfigs) {
   if (enableStylistic) {
     configs.push(
       stylistic()
-    )
-  }
-
-  if (enableRegexp) {
-    configs.push(
-      regexp()
     )
   }
 
