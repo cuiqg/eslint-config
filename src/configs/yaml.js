@@ -1,5 +1,5 @@
-import { ensurePackages, interopDefault } from '../utils'
 import { GLOB_YAML } from '../globs'
+import { interopDefault } from '../utils'
 
 /**
  * Yaml
@@ -10,8 +10,6 @@ import { GLOB_YAML } from '../globs'
 
 export async function yaml() {
   const files = [GLOB_YAML]
-
-  await ensurePackages(['eslint-plugin-yml', 'yaml-eslint-parser'])
 
   const [pluginYaml, parserYaml] = await Promise.all([
     interopDefault(import('eslint-plugin-yml')),

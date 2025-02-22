@@ -138,7 +138,8 @@ export async function vue() {
         'vue/no-export-in-script-setup': 'off', // exportRender / exportExpose / exportProps
         'vue/valid-attribute-name': 'off', // short-vmodel
         'vue/valid-define-props': 'off', // hoistStatic
-        'vue/valid-v-bind': 'off'
+        'vue/valid-v-bind': 'off',
+        'vue/no-unused-vars': 'off'
       }
     }
   ]
