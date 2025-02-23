@@ -34,9 +34,9 @@ export default cuiqg()
 
 ```json
 {
-  "eslint.useFlatConfig": true,
   "prettier.enable": false,
   "editor.formatOnSave": false,
+  "eslint.useFlatConfig": true,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit",
     "source.organizeImports": "never"

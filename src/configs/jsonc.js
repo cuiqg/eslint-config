@@ -1,5 +1,5 @@
-import { interopDefault } from '../utils'
 import { GLOB_JSON, GLOB_JSON5, GLOB_JSONC } from '../globs'
+import { interopDefault } from '../utils'
 
 /**
  * JSONC

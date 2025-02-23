@@ -1,6 +1,6 @@
-import { resolve, dirname } from 'node:path'
-import process from 'node:process'
 import fs from 'node:fs'
+import { dirname, resolve } from 'node:path'
+import process from 'node:process'
 import { loadConfig } from 'unconfig'
 
 /**

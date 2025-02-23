@@ -64,7 +64,7 @@ export async function vue() {
         ...pluginVue.configs['vue3-recommended'].rules,
 
         'vue/block-order': ['error', {
-          order: ['script', 'template', 'style']
+          order: ['script', 'template', 'style', 'route']
         }],
         'vue/component-name-in-template-casing': ['error', 'PascalCase'],
         'vue/component-options-name-casing': ['error', 'PascalCase'],
@@ -78,7 +78,14 @@ export async function vue() {
         'vue/eqeqeq': ['error', 'smart'],
         'vue/html-indent': ['error', 2],
         'vue/html-quotes': ['error', 'double'],
-        'vue/max-attributes-per-line': 'off',
+        'vue/max-attributes-per-line': ['error', {
+          singleline: {
+            max: 1
+          },
+          multiline: {
+            max: 1
+          }
+        }],
         'vue/multi-word-component-names': 'off',
         'vue/no-dupe-keys': 'off',
         'vue/no-empty-pattern': 'error',

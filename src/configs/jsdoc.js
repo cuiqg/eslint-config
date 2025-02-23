@@ -15,7 +15,7 @@ export async function jsdoc() {
         jsdoc: pluginJsdoc
       },
       rules: {
-        ...(pluginJsdoc.configs['flat/recommended'].rules)
+        ...(pluginJsdoc.configs.recommended.rules)
       }
     }
   ]
