@@ -1,7 +1,5 @@
 import globals from 'globals'
-
 import { isInEditor } from '../env'
-import { GLOB_SRC, GLOB_SRC_EXT } from '../globs'
 
 /**
  * JavaScript
@@ -184,13 +182,6 @@ export async function javascript() {
         'valid-typeof': ['error', { requireStringLiterals: true }],
         'vars-on-top': 'error',
         'yoda': ['error', 'never']
-      }
-    },
-    {
-      files: [`**/scripts/${GLOB_SRC}`, `**/cli/${GLOB_SRC}`, `**/cli.${GLOB_SRC_EXT}`],
-      name: 'cuiqg/javascript/disables',
-      rules: {
-        'no-console': 'off'
       }
     }
   ]

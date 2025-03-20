@@ -25,10 +25,10 @@
   },
   "scripts": {
     "build": "tsup",
-    "build:inspector": "npm run build && npx @eslint/config-inspector build --config eslint-inspector.config.js",
-    "dev": "tsup --watch --onSuccess \"npx @eslint/config-inspector --config eslint-inspector.config.js --open false\"",
+    "build:inspector": "npx @eslint/config-inspector build --config eslint-inspector.config.js",
+    "dev": "tsup --watch",
     "lint": "eslint .",
-    "up": "npx taze major -I",
+    "lint:inspector": "npx @eslint/config-inspector --config eslint-inspector.config.js --open false",
     "prepack": "npm run build",
     "release": "bumpp && npm publish",
     "prepare": "simple-git-hooks"
@@ -44,7 +44,6 @@
     "eslint-plugin-jsdoc": "^50.4.3",
     "eslint-plugin-jsonc": "^2.16.0",
     "eslint-plugin-n": "^17.11.1",
-    "eslint-plugin-perfectionist": "^3.9.1",
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-unicorn": "^56.0.0",
     "eslint-plugin-vue": "^9.29.1",
