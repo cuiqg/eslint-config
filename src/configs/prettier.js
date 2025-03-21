@@ -8,10 +8,9 @@ import { interopDefault } from '../utils'
  */
 
 export async function prettier() {
-  const [pluginJsonc, pluginPrettier, configPrettier] = await Promise.all([
+  const [pluginJsonc, pluginPrettier] = await Promise.all([
     interopDefault(import('eslint-plugin-jsonc')),
-    interopDefault(import('eslint-plugin-prettier')),
-    interopDefault(import('eslint-config-prettier'))
+    interopDefault(import('eslint-plugin-prettier'))
   ])
 
   return [
@@ -21,7 +20,6 @@ export async function prettier() {
         prettier: pluginPrettier
       },
       rules: {
-        ...configPrettier.rules,
         ...pluginPrettier.configs.recommended.rules,
         ...pluginJsonc.configs.prettier.rules,
         'prettier/prettier': 'warn'

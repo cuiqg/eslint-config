@@ -6,5 +6,7 @@ export default cuiqg({
   regexp: true,
   vue: true,
   stylistic: true,
-  jsdoc: true
+  jsdoc: true,
+  gitignore: true,
+  tailwindcss: true
 })

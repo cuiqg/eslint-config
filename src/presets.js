@@ -18,11 +18,12 @@ import {
   unocss,
   vue,
   yaml,
+  tailwindcss,
   disables,
   toml
 } from './configs'
 
-import { hasUnocss, hasVue } from './env'
+import { hasUnocss, hasVue, hasTailwindcss } from './env'
 
 export const defaultPluginRenaming = {
   '@stylistic': 'style',
@@ -36,6 +37,7 @@ export function cuiqg(options = {}, ...userConfigs) {
     prettier: enablePrettier = false,
     gitignore: enableGitignore = true,
     unocss: enableUnocss = hasUnocss,
+    tailwindcss: enableTailwindcss = hasTailwindcss,
     vue: enableVue = hasVue,
     stylistic: enableStylistic = true,
     jsdoc: enableJsdoc = false
@@ -81,6 +83,12 @@ export function cuiqg(options = {}, ...userConfigs) {
   if (enableUnocss) {
     configs.push(
       unocss()
+    )
+  }
+
+  if (enableTailwindcss) {
+    configs.push(
+      tailwindcss()
     )
   }
 
