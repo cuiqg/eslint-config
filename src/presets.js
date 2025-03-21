@@ -18,7 +18,8 @@ import {
   unocss,
   vue,
   yaml,
-  disables
+  disables,
+  toml
 } from './configs'
 
 import { hasUnocss, hasVue } from './env'
@@ -55,6 +56,7 @@ export function cuiqg(options = {}, ...userConfigs) {
     sortPackageJson(),
     sortJsconfig(),
     yaml(),
+    toml(),
     disables()
   )
 

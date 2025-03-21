@@ -6,16 +6,16 @@ export const isInEditor = !!(
     || process.env.VSCODE_CWD
     || process.env.JETBRAINS_IDE
     || process.env.VIM)
-    && !process.env.CI
+  && !process.env.CI
 )
 
 export const hasVue
   = isPackageExists('vue')
-  || isPackageExists('nuxt')
-  || isPackageExists('vitepress')
-  || isPackageExists('@slidev/cli')
+    || isPackageExists('nuxt')
+    || isPackageExists('vitepress')
+    || isPackageExists('@slidev/cli')
 
 export const hasUnocss
   = isPackageExists('unocss')
-  || isPackageExists('@unocss/webpack')
-  || isPackageExists('@unocss/nuxt')
+    || isPackageExists('@unocss/webpack')
+    || isPackageExists('@unocss/nuxt')

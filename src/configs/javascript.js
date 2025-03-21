@@ -10,6 +10,7 @@ import { isInEditor } from '../env'
 export async function javascript() {
   return [
     {
+      name: 'cuiqg/javascript',
       languageOptions: {
         ecmaVersion: 2022,
         globals: {
@@ -32,7 +33,6 @@ export async function javascript() {
       linterOptions: {
         reportUnusedDisableDirectives: true
       },
-      name: 'cuiqg/javascript',
       rules: {
         'accessor-pairs': ['error', { enforceForClassMembers: true, setWithoutGet: true }],
         'array-callback-return': 'error',

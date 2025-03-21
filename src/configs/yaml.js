@@ -27,15 +27,8 @@ export async function yaml() {
         parser: parserYaml
       },
       rules: {
-        ...(pluginYaml.configs.standard.rules),
-        ...(pluginYaml.configs.prettier.rules),
-        'yaml/block-mapping': 'error',
-        'yaml/block-sequence': 'error',
-        'yaml/no-empty-key': 'error',
-        'yaml/no-empty-sequence-entry': 'error',
-        'yaml/no-irregular-whitespace': 'error',
-        'yaml/plain-scalar': 'error',
-        'yaml/vue-custom-block/no-parsing-error': 'error'
+        ...(pluginYaml.configs.recommended.rules),
+        ...(pluginYaml.configs.prettier.rules)
       }
     }
   ]
