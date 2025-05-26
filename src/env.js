@@ -20,6 +20,4 @@ export const hasUnocss
     || isPackageExists('@unocss/webpack')
     || isPackageExists('@unocss/nuxt')
 
-export const hasTailwindcss
-  = isPackageExists('tailwindcss')
-    || isPackageExists('@tailwindcss/postcss')
+export const hasTailwindcss = isPackageExists('tailwindcss')
