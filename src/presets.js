@@ -19,8 +19,7 @@ import {
   vue,
   yaml,
   disables,
-  toml,
-  pnpm
+  toml
 } from './configs'
 
 import { hasUnocss, hasVue } from './env'
@@ -37,7 +36,6 @@ export function cuiqg(options = {}, ...userConfigs) {
     prettier: enablePrettier = false,
     gitignore: enableGitignore = true,
     unocss: enableUnocss = hasUnocss,
-    pnpm: enablePnpm = false,
     vue: enableVue = hasVue,
     stylistic: enableStylistic = true,
     jsdoc: enableJsdoc = false
@@ -71,12 +69,6 @@ export function cuiqg(options = {}, ...userConfigs) {
   if (enableStylistic) {
     configs.push(
       stylistic()
-    )
-  }
-
-  if (enablePnpm) {
-    configs.push(
-      pnpm()
     )
   }
 
