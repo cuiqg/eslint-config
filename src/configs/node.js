@@ -6,7 +6,7 @@ import { interopDefault } from '../utils'
  * @see https://github.com/eslint-community/eslint-plugin-n
  * @returns {import('eslint').Linter.FlatConfig[]}
  */
-export async function node() {
+export const node = async () => {
   const pluginNode = await interopDefault(import('eslint-plugin-n'))
 
   return [

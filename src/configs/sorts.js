@@ -3,7 +3,7 @@
  *
  * Requires `jsonc` config
  */
-export async function sortPackageJson() {
+export const sortPackageJson = async () => {
   return [
     {
       name: 'cuiqg/sort/package-json',
@@ -92,7 +92,7 @@ export async function sortPackageJson() {
  *
  * Requires `jsonc` config
  */
-export async function sortJsconfig() {
+export const sortJsconfig = () => {
   return [
     {
       name: 'cuiqg/sort/jsconfig-json',

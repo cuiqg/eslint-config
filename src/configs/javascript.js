@@ -7,25 +7,20 @@ import { isInEditor } from '../env'
  * @see https://npm.im/@eslint/js
  * @returns {import('eslint').Linter.FlatConfig[]}
  */
-export async function javascript() {
+export const javascript = async () => {
   return [
     {
       name: 'cuiqg/javascript',
       languageOptions: {
-        ecmaVersion: 2022,
         globals: {
           ...globals.browser,
           ...globals.es2021,
-          ...globals.node,
-          document: 'readonly',
-          navigator: 'readonly',
-          window: 'readonly'
+          ...globals.node
         },
         parserOptions: {
           ecmaFeatures: {
             jsx: true
           },
-          ecmaVersion: 2022,
           sourceType: 'module'
         },
         sourceType: 'module'
@@ -164,7 +159,7 @@ export async function javascript() {
           }
         ],
         'prefer-const': [
-          isInEditor ? 'warn' : 'error',
+          isInEditor() ? 'warn' : 'error',
           {
             destructuring: 'all',
             ignoreReadBeforeAssign: true

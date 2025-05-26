@@ -6,7 +6,7 @@ import { GLOB_SRC, GLOB_SRC_EXT } from '../globs'
  * @see https://npm.im/@eslint/js
  * @returns {import('eslint').Linter.FlatConfig[]}
  */
-export async function disables() {
+export const disables = () => {
   return [
     {
       files: [`**/scripts/${GLOB_SRC}`, `**/cli/${GLOB_SRC}`, `**/cli.${GLOB_SRC_EXT}`],

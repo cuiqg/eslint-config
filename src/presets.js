@@ -1,7 +1,8 @@
-import { composer } from 'eslint-flat-config-utils'
+import { FlatConfigComposer } from 'eslint-flat-config-utils'
 import {
-  autoImport,
   comments,
+  disables,
+  gitignore,
   ignores,
   imports,
   javascript,
@@ -9,17 +10,17 @@ import {
   jsonc,
   node,
   macros,
+  pnpm,
   prettier,
-  gitignore,
   sortJsconfig,
   sortPackageJson,
   stylistic,
+  toml,
   unicorn,
   unocss,
+  unplugin,
   vue,
-  yaml,
-  disables,
-  toml
+  yaml
 } from './configs'
 
 import { hasUnocss, hasVue } from './env'
@@ -38,13 +39,12 @@ export function cuiqg(options = {}, ...userConfigs) {
     unocss: enableUnocss = hasUnocss,
     vue: enableVue = hasVue,
     stylistic: enableStylistic = true,
-    jsdoc: enableJsdoc = false
+    jsdoc: enableJsdoc = false,
+    pnpm: enablePnpm = false
   } = options
 
-  const configs = []
-
-  configs.push(
-    autoImport(),
+  const configs = [
+    unplugin(),
     ignores(),
     javascript(),
     comments(),
@@ -58,7 +58,7 @@ export function cuiqg(options = {}, ...userConfigs) {
     yaml(),
     toml(),
     disables()
-  )
+  ]
 
   if (enableGitignore) {
     configs.push(
@@ -96,5 +96,14 @@ export function cuiqg(options = {}, ...userConfigs) {
     )
   }
 
-  return composer(...configs).append(...userConfigs).renamePlugins(defaultPluginRenaming)
+  if (enablePnpm) {
+    configs.push(
+      pnpm()
+    )
+  }
+
+  let composer = new FlatConfigComposer(...configs, ...userConfigs)
+  composer = composer.renamePlugins(defaultPluginRenaming)
+
+  return composer
 }

@@ -7,7 +7,7 @@ import { loadConfig } from 'unconfig'
  * UnPlugin
  * @returns {import('eslint').Linter.FlatConfig[]}
  */
-export async function autoImport() {
+export const unplugin = async () => {
   const resolved = resolve(process.cwd(), `./.eslintrc-auto-import.json`)
 
   if (fs.existsSync(resolved) && fs.statSync(resolved).isFile) {

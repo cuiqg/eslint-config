@@ -7,7 +7,7 @@ import { interopDefault } from '../utils'
  * @link https://ota-meshi.github.io/eslint-plugin-jsonc/
  * @returns {import('eslint').Linter.FlatConfig[]}
  */
-export async function jsonc() {
+export const jsonc = async () => {
   const files = [GLOB_JSON, GLOB_JSON5, GLOB_JSONC]
 
   const [pluginJsonc, parserJsonc] = await Promise.all([

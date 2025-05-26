@@ -6,7 +6,8 @@ import { interopDefault } from '../utils'
  * @see https://eslint.style/
  * @returns {import('eslint').Linter.FlatConfig[]}
  */
-export async function stylistic() {
+export const stylistic = async () => {
+
   const pluginStylistic = await interopDefault(
     import('@stylistic/eslint-plugin')
   )

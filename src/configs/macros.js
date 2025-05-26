@@ -3,7 +3,7 @@
  * @see https://vue-macros.dev/zh-CN/guide/eslint-integration.html
  * @returns {import('eslint').Linter.FlatConfig[]}
  */
-export async function macros() {
+export const macros = () => {
   return [
     {
       name: 'cuiqg/macros',

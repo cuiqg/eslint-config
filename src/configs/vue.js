@@ -7,7 +7,7 @@ import { interopDefault } from '../utils'
  * @see https://eslint.vuejs.org/
  * @returns {import('eslint').Linter.FlatConfig[]}
  */
-export async function vue() {
+export const vue = async () => {
   const files = [GLOB_VUE]
 
   const [pluginVue, parserVue] = await Promise.all([
@@ -59,9 +59,9 @@ export async function vue() {
       processor: pluginVue.processors['.vue'],
       rules: {
         ...pluginVue.configs.base.rules,
-        ...pluginVue.configs['vue3-essential'].rules,
-        ...pluginVue.configs['vue3-strongly-recommended'].rules,
-        ...pluginVue.configs['vue3-recommended'].rules,
+        ...pluginVue.configs['flat/essential'].rules,
+        ...pluginVue.configs['flat/strongly-recommended'].rules,
+        ...pluginVue.configs['flat/recommended'].rules,
 
         'vue/block-order': ['error', {
           order: ['script', 'template', 'style', 'route']

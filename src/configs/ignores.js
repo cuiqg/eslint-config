@@ -5,7 +5,7 @@ import { GLOB_EXCLUDE } from '../globs'
  *
  * @returns {import('eslint').Linter.FlatConfig[]}
  */
-export async function ignores() {
+export const ignores = () => {
   return [
     {
       name: 'cuiqg/ignores',

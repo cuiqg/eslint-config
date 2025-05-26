@@ -8,7 +8,7 @@ import { interopDefault } from '../utils'
  * @returns {import('eslint').Linter.FlatConfig[]}
  */
 
-export async function toml() {
+export const toml = async () => {
   const files = [GLOB_TOML]
 
   const [pluginToml, parserToml] = await Promise.all([

@@ -7,7 +7,7 @@ import { interopDefault } from '../utils'
  * @returns {import('eslint').Linter.FlatConfig[]}
  */
 
-export async function prettier() {
+export const prettier = async () => {
   const [pluginJsonc, pluginPrettier] = await Promise.all([
     interopDefault(import('eslint-plugin-jsonc')),
     interopDefault(import('eslint-plugin-prettier'))

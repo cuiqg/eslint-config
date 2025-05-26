@@ -8,7 +8,7 @@ import { interopDefault } from '../utils'
  * @returns {import('eslint').Linter.FlatConfig[]}
  */
 
-export async function yaml() {
+export const yaml = async () => {
   const files = [GLOB_YAML]
 
   const [pluginYaml, parserYaml] = await Promise.all([

@@ -6,7 +6,7 @@ import { interopDefault } from '../utils'
  * @see https://github.com/sindresorhus/eslint-plugin-unicorn
  * @returns {import('eslint').Linter.FlatConfig[]}
  */
-export async function unicorn() {
+export const unicorn = async () => {
   const pluginUnicorn = await interopDefault(import('eslint-plugin-unicorn'))
 
   return [
@@ -20,7 +20,6 @@ export async function unicorn() {
         'unicorn/error-message': 'error',
         'unicorn/escape-case': 'error',
         'unicorn/new-for-builtins': 'error',
-        'unicorn/no-instanceof-array': 'error',
         'unicorn/no-new-array': 'error',
         'unicorn/no-new-buffer': 'error',
         'unicorn/number-literal-case': 'error',

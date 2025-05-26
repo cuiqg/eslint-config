@@ -6,7 +6,7 @@ import { interopDefault } from '../utils'
  * @see https://github.com/antfu/eslint-config-flat-gitignore
  * @returns {import('eslint').Linter.FlatConfig[]}
  */
-export async function gitignore() {
+export const gitignore = async () => {
   const pluginGitignore = await interopDefault(import('eslint-config-flat-gitignore'))
 
   return [

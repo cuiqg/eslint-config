@@ -6,7 +6,7 @@ import { interopDefault } from '../utils'
  * @see https://mysticatea.github.io/eslint-plugin-eslint-comments/
  * @returns {import('eslint').Linter.FlatConfig[]}
  */
-export async function comments() {
+export const comments = async () => {
   const pluginComments = await interopDefault(
     import('eslint-plugin-eslint-comments')
   )

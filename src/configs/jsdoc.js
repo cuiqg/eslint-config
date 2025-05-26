@@ -6,7 +6,7 @@ import { GLOB_JS } from '../globs'
  * @see https://npm.im/eslint-plugin-jsdoc
  * @returns {import('eslint').Linter.FlatConfig[]}
  */
-export async function jsdoc() {
+export const jsdoc = async () => {
   const pluginJsdoc = await interopDefault(import('eslint-plugin-jsdoc'))
   const files = [GLOB_JS]
 

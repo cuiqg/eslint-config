@@ -6,19 +6,13 @@ import { interopDefault } from '../utils'
  * @see https://unocss.dev/integrations/eslint
  * @returns {import('eslint').Linter.FlatConfig[]}
  */
-export async function unocss() {
+export const unocss = async () => {
   const pluginUnoCSS = await interopDefault(import('@unocss/eslint-plugin'))
 
   return [
     {
+      ...(pluginUnoCSS.configs.flat),
       name: 'cuiqg/unocss',
-      plugins: {
-        unocss: pluginUnoCSS
-      },
-      rules: {
-        'unocss/order': 'error',
-        'unocss/order-attributify': 'warn'
-      }
     }
   ]
 }
