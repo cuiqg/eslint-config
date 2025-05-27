@@ -9,6 +9,7 @@ import { loadConfig } from 'unconfig'
  */
 export const unplugin = async () => {
   const resolved = resolve(process.cwd(), `./.eslintrc-auto-import.json`)
+  const globals = {}
 
   if (fs.existsSync(resolved) && fs.statSync(resolved).isFile) {
     const cwd = dirname(resolved)
@@ -25,20 +26,19 @@ export const unplugin = async () => {
       ],
       cwd
     })
-    return [
-      {
-        name: 'cuiqg/unplugin/auto-import',
-        languageOptions: {
-          globals: {
-            ...config
-          }
-        }
-      }
-    ]
-  }
-  else {
-    return [
 
-    ]
+    globals = {
+      ...config
+    }
   }
+
+  return [
+    {
+      name: 'cuiqg/unplugin/auto-import',
+      languageOptions: {
+        globals
+      }
+    }
+  ]
+
 }

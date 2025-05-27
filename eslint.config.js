@@ -1,4 +1,4 @@
-import { cuiqg } from './src/index.js'
+import { cuiqg } from './dist/index.js'
 
 export default cuiqg({
   prettier: true,
