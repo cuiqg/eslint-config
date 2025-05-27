@@ -9,7 +9,7 @@ import { loadConfig } from 'unconfig'
  */
 export const unplugin = async () => {
   const resolved = resolve(process.cwd(), `./.eslintrc-auto-import.json`)
-  const globals = {}
+  let globals = {}
 
   if (fs.existsSync(resolved) && fs.statSync(resolved).isFile) {
     const cwd = dirname(resolved)
