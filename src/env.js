@@ -1,8 +1,6 @@
 import process from 'node:process'
 import { isPackageExists } from 'local-pkg'
 
-
-
 export const hasTypescript = () => isPackageExists('typescript')
 
 export const hasVue
@@ -26,7 +24,6 @@ export function isInEditor() {
     || process.env.VIM
     || process.env.NVIM
   )
-
 }
 
 export function isInGitHooksOrLintStaged() {
