@@ -16,6 +16,7 @@ import {
   sortPackageJson,
   stylistic,
   toml,
+  typescript,
   unicorn,
   unocss,
   unplugin,
@@ -23,7 +24,7 @@ import {
   yaml
 } from './configs'
 
-import { hasUnocss, hasVue } from './env'
+import { hasUnocss, hasVue, hasTypescript } from './env'
 
 export const defaultPluginRenaming = {
   '@stylistic': 'style',
@@ -39,6 +40,7 @@ export function cuiqg(options = {}, ...userConfigs) {
     unocss: enableUnocss = hasUnocss,
     vue: enableVue = hasVue,
     stylistic: enableStylistic = true,
+    typescript: enableTypescript = hasTypescript,
     jsdoc: enableJsdoc = false,
     pnpm: enablePnpm = false
   } = options
@@ -99,6 +101,12 @@ export function cuiqg(options = {}, ...userConfigs) {
   if (enablePnpm) {
     configs.push(
       pnpm()
+    )
+  }
+
+  if(enableTypescript) {
+    configs.push(
+      typescript()
     )
   }
 
