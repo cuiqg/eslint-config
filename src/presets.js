@@ -16,7 +16,6 @@ import {
   sortPackageJson,
   stylistic,
   toml,
-  typescript,
   unicorn,
   unocss,
   unplugin,
@@ -30,7 +29,8 @@ export const defaultPluginRenaming = {
   '@stylistic': 'style',
   'import-x': 'import',
   'n': 'node',
-  'yml': 'yaml'
+  'yml': 'yaml',
+  '@typescript-eslint': 'ts',
 }
 
 export function cuiqg(options = {}, ...userConfigs) {
@@ -40,7 +40,6 @@ export function cuiqg(options = {}, ...userConfigs) {
     unocss: enableUnocss = hasUnocss,
     vue: enableVue = hasVue,
     stylistic: enableStylistic = true,
-    typescript: enableTypescript = hasTypescript,
     jsdoc: enableJsdoc = false,
     pnpm: enablePnpm = false
   } = options
@@ -101,12 +100,6 @@ export function cuiqg(options = {}, ...userConfigs) {
   if (enablePnpm) {
     configs.push(
       pnpm()
-    )
-  }
-
-  if(enableTypescript) {
-    configs.push(
-      typescript()
     )
   }
 

@@ -1,4 +1,4 @@
-import { cuiqg } from './dist/index.js'
+import { cuiqg } from './src/index.js'
 
 export default cuiqg({
   prettier: true,
@@ -7,6 +7,5 @@ export default cuiqg({
   vue: true,
   stylistic: true,
   jsdoc: true,
-  pnpm: true,
-  typescript: true
+  pnpm: true
 })
