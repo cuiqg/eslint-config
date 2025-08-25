@@ -1,0 +1,16 @@
+.DS_Store
+.idea
+.vscode
+!.vscode/settings.json
+!.vscode/extensions.json
+
+# dependencies
+node_modules
+package-lock.json
+pnpm-lock.yaml
+.pnpm-store
+
+# Vercel
+.vercel
+
+dist
