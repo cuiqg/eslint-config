@@ -3,5 +3,8 @@
   "framework": null,
   "buildCommand": "pnpm build:inspect",
   "outputDirectory": ".eslint-config-inspector",
-  "installCommand": "pnpm install"
+  "installCommand": "pnpm install",
+  "git": {
+    "deploymentEnabled": false
+  }
 }
