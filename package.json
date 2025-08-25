@@ -1,5 +1,5 @@
 {
-  "name": "eslint-config",
+  "name": "@cuiqg/eslint-config",
   "version": "2.3.0",
   "description": "Eslint config for @cuiqg",
   "keywords": [
