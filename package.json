@@ -6,10 +6,7 @@
     "eslint-config"
   ],
   "homepage": "https://eslint.tsuiqg.me",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/cuiqg/eslint-config.git"
-  },
+  "repository": "github:cuiqg/eslint-config",
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
