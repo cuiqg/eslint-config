@@ -17,7 +17,7 @@
   "scripts": {
     "build": "tsdown",
     "dev": "tsdown --watch",
-    "build:inspect": "pnpm build && eslint-config-inspector build --config eslint-inspector.config.ts",
+    "build:inspect": "eslint-config-inspector build --config eslint-inspector.config.ts",
     "lint": "eslint .",
     "lint:inspect": "eslint-config-inspector --open false --config eslint-inspector.config.ts",
     "prepack": "pnpm build",
