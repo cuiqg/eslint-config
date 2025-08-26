@@ -1,21 +1,23 @@
+import type { Awaitable, FlatConfigItem, OptionsConfig } from './types'
 import { FlatConfigComposer } from 'eslint-flat-config-utils'
-import type { FlatConfigItem, Awaitable, OptionsConfig } from './types'
-import { isInEditor } from './env'
-
 import {
-  packageJson,
-  typescript,
+  deMorgan,
+  ignores,
   javascript,
+  jsdoc,
   nextjs,
   node,
-  vue,
-  unocss,
-  ignores,
-  deMorgan,
+  packageJson,
+  perfectionist,
   prettier,
+  typescript,
+  unocss,
+  vue,
 } from './configs'
 
-import { hasVue, hasUnoCss, hasTypeScript, hasNextjs } from './env'
+import { isInEditor } from './env'
+
+import { hasNextjs, hasTypeScript, hasUnoCss, hasVue } from './env'
 
 export const defaultPluginRenaming = {
   '@next/next': 'next',
@@ -37,13 +39,9 @@ export function cuiqg(
     nextjs: enableNextjs = hasNextjs(),
   } = options
 
-  const configs: Awaitable<FlatConfigItem[]>[] = [
-    packageJson(),
-    ignores(),
-    node(),
-    deMorgan(),
-    javascript(),
-  ]
+  const configs: Awaitable<FlatConfigItem[]>[] = []
+
+  configs.push(packageJson(), ignores(), node(), deMorgan(), javascript(), jsdoc(), perfectionist())
 
   if (enableTypeScript) {
     configs.push(typescript())

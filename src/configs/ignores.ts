@@ -1,6 +1,6 @@
 import type { FlatConfigItem } from '../types'
-import { interopDefault } from '../utils'
 import { GLOB_EXCLUDE } from '../globs'
+import { interopDefault } from '../utils'
 export async function ignores(): Promise<FlatConfigItem[]> {
   const configGitignore = await interopDefault(import('eslint-config-flat-gitignore'))
 

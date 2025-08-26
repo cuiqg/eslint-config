@@ -1,7 +1,7 @@
 import type { FlatConfigItem } from '../types'
-import { interopDefault } from '../utils'
-import { isInEditor } from '../env'
 import globals from 'globals'
+import { isInEditor } from '../env'
+import { interopDefault } from '../utils'
 export async function javascript(): Promise<FlatConfigItem[]> {
   const [pluginUnuseImports, pluginJs] = await Promise.all([
     interopDefault(import('eslint-plugin-unused-imports')),
@@ -10,7 +10,7 @@ export async function javascript(): Promise<FlatConfigItem[]> {
 
   return [
     {
-      name: 'cuiqg/javascript/setup',
+      name: 'cuiqg/javascript',
       languageOptions: {
         ecmaVersion: 'latest',
         globals: {
@@ -30,13 +30,10 @@ export async function javascript(): Promise<FlatConfigItem[]> {
       linterOptions: {
         reportUnusedDisableDirectives: true,
       },
-    },
-    {
       plugins: {
         'unused-imports': pluginUnuseImports,
         js: pluginJs,
       },
-      name: 'cuiqg/javascript/rules',
       rules: {
         ...pluginJs.configs.recommended.rules,
         'accessor-pairs': ['error', { enforceForClassMembers: true, setWithoutGet: true }],

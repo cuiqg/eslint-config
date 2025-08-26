@@ -1,6 +1,7 @@
 import type { FlatConfigItem } from '../types'
-import { interopDefault, renameRules } from '../utils'
+import process from 'node:process'
 import { GLOB_TS, GLOB_TSX } from '../globs'
+import { interopDefault, renameRules } from '../utils'
 
 export async function typescript(): Promise<FlatConfigItem[]> {
   const files = [GLOB_TS, GLOB_TSX]
@@ -13,7 +14,7 @@ export async function typescript(): Promise<FlatConfigItem[]> {
   return [
     {
       files,
-      name: 'cuiqg/typescript/setup',
+      name: 'cuiqg/typescript',
       plugins: {
         ts: pluginTs,
       },
@@ -29,9 +30,6 @@ export async function typescript(): Promise<FlatConfigItem[]> {
           tsconfigRootDir: process.cwd(),
         },
       },
-    },
-    {
-      name: 'cuiqg/typescript/rules',
       rules: {
         ...renameRules(pluginTs.configs['eslint-recommended'].overrides![0].rules!, {
           '@typescript-eslint': 'ts',

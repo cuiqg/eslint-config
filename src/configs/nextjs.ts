@@ -15,13 +15,11 @@ export async function nextjs(): Promise<FlatConfigItem[]> {
 
   return [
     {
-      name: 'cuiqg/nextjs/setup',
+      name: 'cuiqg/nextjs',
+      files,
       plugins: {
         next: pluginNextJS,
       },
-    },
-    {
-      files,
       languageOptions: {
         parserOptions: {
           ecmaFeatures: {
@@ -30,7 +28,6 @@ export async function nextjs(): Promise<FlatConfigItem[]> {
         },
         sourceType: 'module',
       },
-      name: 'cuiqg/nextjs/rules',
       rules: {
         ...normalizeRules(pluginNextJS.configs.recommended.rules),
         ...normalizeRules(pluginNextJS.configs['core-web-vitals'].rules),
@@ -43,4 +40,3 @@ export async function nextjs(): Promise<FlatConfigItem[]> {
     },
   ]
 }
-

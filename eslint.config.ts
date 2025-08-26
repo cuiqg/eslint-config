@@ -1,3 +1,3 @@
 import { cuiqg } from './src'
 
-export default cuiqg({})
+export default cuiqg()

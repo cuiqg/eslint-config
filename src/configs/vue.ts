@@ -30,15 +30,6 @@ export async function vue(): Promise<FlatConfigItem[]> {
           watch: 'readonly',
           watchEffect: 'readonly',
         },
-      },
-      name: 'cuiqg/vue/setup',
-      plugins: {
-        vue: pluginVue,
-      },
-    },
-    {
-      files,
-      languageOptions: {
         parser: parserVue,
         parserOptions: {
           ecmaFeatures: {
@@ -51,9 +42,12 @@ export async function vue(): Promise<FlatConfigItem[]> {
           sourceType: 'module',
         },
       },
-      name: 'cuiqg/vue/rules',
+      name: 'cuiqg/vue',
+      plugins: {
+        vue: pluginVue,
+      },
+      files,
       processor: pluginVue.processors['.vue'],
-
       rules: {
         ...(pluginVue.configs.base.rules as any),
         ...{
