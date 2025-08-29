@@ -1,6 +1,6 @@
 {
   "name": "@cuiqg/eslint-config",
-  "version": "2.5.2",
+  "version": "2.5.3",
   "description": "Eslint config for @cuiqg",
   "keywords": [
     "eslint-config"
@@ -41,6 +41,7 @@
     "@next/eslint-plugin-next": "^15.4.6",
     "@stylistic/eslint-plugin": "^5.2.3",
     "@unocss/eslint-plugin": "^66.4.2",
+    "@vue-macros/eslint-config": "3.0.0-beta.21",
     "eslint-config-flat-gitignore": "^2.1.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-flat-config-utils": "^2.1.1",

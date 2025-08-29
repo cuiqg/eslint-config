@@ -14,6 +14,7 @@ import {
   stylistic,
   unocss,
   vue,
+  macros
 } from './configs'
 
 import { isInEditor } from './env'
@@ -49,6 +50,8 @@ export function cuiqg(
     jsdoc(),
     jsonc(),
     stylistic(),
+    node(),
+    packageJson(),
     perfectionist()
   )
 
@@ -58,6 +61,7 @@ export function cuiqg(
 
   if (enableVue) {
     configs.push(vue())
+    configs.push(macros())
   }
 
   if (enableUnocss) {

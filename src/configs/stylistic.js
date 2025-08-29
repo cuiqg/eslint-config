@@ -7,7 +7,8 @@ export async function stylistic() {
     pluginName: 'style',
     indent: 2,
     quotes: 'single',
-    semi: false
+    semi: false,
+    commaDangle: 'never'
   })
   return [
     {
