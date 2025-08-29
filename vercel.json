@@ -3,5 +3,5 @@
   "framework": null,
   "buildCommand": "pnpm run build:inspect",
   "outputDirectory": ".eslint-config-inspector",
-  "installCommand": "pnpm install"
+  "installCommand": "pnpm install --frozen-lockfile"
 }
