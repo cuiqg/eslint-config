@@ -7,7 +7,7 @@ export async function jsdoc() {
     {
       name: 'cuiqg/jsdoc',
       plugins: {
-        jsdoc: pluginJsdoc,
+        jsdoc: pluginJsdoc
       },
       rules: {
         'jsdoc/check-access': 'warn',
@@ -26,8 +26,8 @@ export async function jsdoc() {
         'jsdoc/require-returns-description': 'warn',
         'jsdoc/require-yields-check': 'warn',
         'jsdoc/check-alignment': 'warn',
-        'jsdoc/multiline-blocks': 'warn',
-      },
-    },
+        'jsdoc/multiline-blocks': 'warn'
+      }
+    }
   ]
 }

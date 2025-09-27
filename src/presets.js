@@ -1,75 +1,55 @@
 import { FlatConfigComposer } from 'eslint-flat-config-utils'
+
 import {
-  deMorgan,
   ignores,
-  imports,
   javascript,
   jsdoc,
-  jsonc,
-  nextjs,
-  node,
+  macros,
   packageJson,
-  perfectionist,
   prettier,
   stylistic,
   unocss,
-  vue,
-  macros
+  vue
 } from './configs'
 
-import { isInEditor } from './env'
-
-import { hasNextjs, hasTypeScript, hasUnoCss, hasVue } from './env'
+import { hasUnoCss, hasVue } from './env'
 
 export const defaultPluginRenaming = {
-  '@next/next': 'next',
-  n: 'node',
-  vitest: 'test',
-  'import-lite': 'import',
-  '@stylistic': 'style',
+  '@stylistic': 'style'
 }
 
+/**
+ *
+ * @param {object} options - 设置选项
+ * @param {...any} userConfigs - 用户配置
+ * @returns {Promise<any[]>} 合并后的配置
+ */
 export function cuiqg(
   options = {},
   ...userConfigs
 ) {
   const {
     prettier: enablePrettier = false,
-    imports: enableImports = true,
-    vue: enableVue = hasVue(),
     unocss: enableUnocss = hasUnoCss(),
-    nextjs: enableNextjs = hasNextjs(),
+    vue: enableVue = hasVue()
   } = options
 
   const configs = []
 
   configs.push(
-    deMorgan(),
     ignores(),
     javascript(),
     jsdoc(),
-    jsonc(),
     stylistic(),
-    node(),
-    packageJson(),
-    perfectionist()
+    packageJson()
   )
 
-  if (enableImports) {
-    configs.push(imports())
-  }
-
   if (enableVue) {
-    configs.push(vue())
-    configs.push(macros())
+    configs.push(vue(), macros())
   }
 
   if (enableUnocss) {
     configs.push(unocss())
-  }
-
-  if (enableNextjs) {
-    configs.push(nextjs())
   }
 
   if (enablePrettier) {
@@ -81,16 +61,6 @@ export function cuiqg(
   composer = composer
     .append(...configs, ...userConfigs)
     .renamePlugins(defaultPluginRenaming)
-
-  if (isInEditor()) {
-    composer = composer.disableRulesFix(
-      ['unused-imports/no-unused-imports', 'prefer-const'],
-      {
-        builtinRules: () =>
-          import(['eslint', 'use-at-your-own-risk'].join('/')).then(r => r.builtinRules),
-      },
-    )
-  }
 
   return composer
 }

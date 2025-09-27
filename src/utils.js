@@ -1,10 +1,11 @@
 export async function interopDefault(
-  module,
+  module
 ) {
   try {
     let resolved = await module
     return resolved?.default || resolved
-  } catch (error) {
+  }
+  catch (error) {
     throw new Error(`Cannot import module: ${String(error)}`)
   }
 }
@@ -18,6 +19,6 @@ export function renameRules(rules, map) {
         }
       }
       return [key, value]
-    }),
+    })
   )
 }

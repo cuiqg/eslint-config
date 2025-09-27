@@ -6,11 +6,11 @@ export async function ignores() {
   return [
     {
       ignores: [...GLOB_EXCLUDE],
-      name: 'cuiqg/ignores',
+      name: 'cuiqg/ignores'
     },
     configGitignore({
       name: 'cuiqg/gitignore',
-      strict: false,
-    }),
+      strict: false
+    })
   ]
 }

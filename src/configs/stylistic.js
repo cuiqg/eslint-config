@@ -4,23 +4,21 @@ export async function stylistic() {
   const pluginStylistic = await interopDefault(import('@stylistic/eslint-plugin'))
 
   const config = pluginStylistic.configs.customize({
-    pluginName: 'style',
+    commaDangle: 'never',
     indent: 2,
+    pluginName: 'style',
     quotes: 'single',
-    semi: false,
-    commaDangle: 'never'
+    semi: false
   })
   return [
     {
       name: 'cuiqg/stylistic',
       plugins: {
-        style: pluginStylistic,
+        style: pluginStylistic
       },
       rules: {
-        ...config.rules,
-        'style/generator-star-spacing': ['error', { after: true, before: false }],
-        'style/yield-star-spacing': ['error', { after: true, before: false }],
+        ...config.rules
       }
-    },
+    }
   ]
 }

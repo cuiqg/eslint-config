@@ -1,3 +1,3 @@
-import { cuiqg } from './src'
+import { cuiqg } from './dist/index.js'
 
 export default cuiqg()

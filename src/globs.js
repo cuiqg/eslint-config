@@ -26,18 +26,6 @@ export const GLOB_XML = '**/*.xml'
 export const GLOB_SVG = '**/*.svg'
 export const GLOB_HTML = '**/*.htm?(l)'
 
-export const GLOB_ALL_SRC = [
-  GLOB_SRC,
-  GLOB_STYLE,
-  GLOB_HTML,
-  GLOB_VUE,
-  GLOB_YAML,
-  GLOB_XML,
-  GLOB_JSONC,
-  GLOB_JSON5,
-  GLOB_JSON,
-]
-
 export const GLOB_EXCLUDE = [
   '**/node_modules',
   '**/dist',
@@ -72,5 +60,6 @@ export const GLOB_EXCLUDE = [
   '**/__snapshots__',
   '**/auto-import?(s).d.ts',
   '**/components.d.ts',
-  '**/.eslint-config-inspector',
+  '**/typed-router.d.ts',
+  '**/.eslint-config-inspector'
 ]

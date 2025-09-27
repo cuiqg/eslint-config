@@ -6,7 +6,7 @@ export async function macros() {
   return [
     {
       ...configMacros,
-      name: 'cuiqg/macros',
-    },
+      name: 'cuiqg/macros'
+    }
   ]
 }
