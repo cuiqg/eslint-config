@@ -8,6 +8,7 @@ export const isInGitHookOrLintStaged = () => {
     || process.env.npm_lifecycle_script?.startsWith('lint-staged')
   )
 }
+
 export const isInEditor = () => {
   if (process.env.CI) return false
   if (isInGitHookOrLintStaged()) return false
