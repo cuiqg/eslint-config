@@ -11,7 +11,8 @@ import {
   stylistic,
   unocss,
   vue,
-  unicorn
+  unicorn,
+  promise
 } from './configs'
 
 import { hasUnoCss, hasVue } from './env'
@@ -45,7 +46,8 @@ export function cuiqg(
     jsdoc(),
     stylistic(),
     packageJson(),
-    unicorn()
+    unicorn(),
+    promise()
   )
 
   if (enableVue) {

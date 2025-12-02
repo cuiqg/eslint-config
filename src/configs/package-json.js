@@ -1,29 +1,16 @@
 import { interopDefault } from '../utils'
 
 export async function packageJson() {
-  const [pluginPackageJson, parserJsonc] = await Promise.all([
-    interopDefault(import('eslint-plugin-package-json')),
-    interopDefault(import('jsonc-eslint-parser'))
-  ])
+  const pluginPackageJson = await interopDefault(import('eslint-plugin-package-json'))
 
   return [
     {
-      files: ['**/package.json'],
-      languageOptions: {
-        parser: parserJsonc
-      },
-      name: 'cuiqg/package-json',
-      plugins: {
-        'package-json': pluginPackageJson
-      },
+      ...pluginPackageJson.configs.recommended,
       rules: {
-        ...pluginPackageJson.configs.recommended.rules
+        ...pluginPackageJson.configs.recommended.rules,
+        ...pluginPackageJson.configs.stylistic.rules
       },
-      settings: {
-        packageJson: {
-          enforceForPrivate: false
-        }
-      }
+      name: 'cuiqg/package-json'
     }
   ]
 }

@@ -17,15 +17,14 @@
   "main": "./dist/index.mjs",
   "module": "./dist/index.mjs",
   "exports": {
-    ".": "./dist/index.mjs",
-    "./package.json": "./package.json"
+    ".": "./dist/index.mjs"
   },
   "scripts": {
     "build": "tsdown",
     "dev": "tsdown --watch",
-    "build:inspect": "eslint-config-inspector build --config eslint-inspector.config.js",
+    "build:inspect": "pnpx @eslint/config-inspector build --config eslint-inspector.config.js",
     "lint": "eslint .",
-    "lint:inspect": "eslint-config-inspector --open false --config eslint-inspector.config.js",
+    "lint:inspect": "pnpx @eslint/config-inspector --open false --config eslint-inspector.config.js",
     "prepack": "pnpm build",
     "release": "bumpp && pnpm publish"
   },
@@ -53,6 +52,7 @@
     "eslint-plugin-package-json": "^0.85.0",
     "eslint-plugin-perfectionist": "^4.15.1",
     "eslint-plugin-prettier": "^5.5.4",
+    "eslint-plugin-promise": "^7.2.1",
     "eslint-plugin-unicorn": "^62.0.0",
     "eslint-plugin-vue": "^10.6.2",
     "globals": "^16.5.0",
