@@ -1,6 +1,7 @@
 import { FlatConfigComposer } from 'eslint-flat-config-utils'
 
 import {
+  compat,
   ignores,
   javascript,
   jsdoc,
@@ -9,7 +10,8 @@ import {
   prettier,
   stylistic,
   unocss,
-  vue
+  vue,
+  unicorn
 } from './configs'
 
 import { hasUnoCss, hasVue } from './env'
@@ -37,11 +39,13 @@ export function cuiqg(
   const configs = []
 
   configs.push(
+    compat(),
     ignores(),
     javascript(),
     jsdoc(),
     stylistic(),
-    packageJson()
+    packageJson(),
+    unicorn()
   )
 
   if (enableVue) {
