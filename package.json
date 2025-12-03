@@ -1,6 +1,6 @@
 {
   "name": "@cuiqg/eslint-config",
-  "version": "2.7.0",
+  "version": "2.7.1",
   "description": "Eslint config for @cuiqg",
   "keywords": [
     "eslint-config"
@@ -26,7 +26,7 @@
     "lint": "eslint .",
     "lint:inspect": "pnpx @eslint/config-inspector --open false --config eslint-inspector.config.js",
     "prepublishOnly": "pnpm run build",
-    "release": "bumpp && pnpm publish"
+    "release": "bumpp"
   },
   "devDependencies": {
     "@cuiqg/prettier-config": "latest",
