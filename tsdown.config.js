@@ -5,6 +5,7 @@ export default defineConfig({
   clean: true,
   shims: true,
   format: ['esm'],
+  exports: true,
   hooks: {
     'build:done': async (args) => {
       if (args.options?.watch) {
