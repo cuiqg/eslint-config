@@ -1,6 +1,6 @@
 {
   "name": "@cuiqg/eslint-config",
-  "version": "2.5.11",
+  "version": "2.6.0",
   "description": "Eslint config for @cuiqg",
   "keywords": [
     "eslint-config"
@@ -25,7 +25,7 @@
     "build:inspect": "pnpx @eslint/config-inspector build --config eslint-inspector.config.js",
     "lint": "eslint .",
     "lint:inspect": "pnpx @eslint/config-inspector --open false --config eslint-inspector.config.js",
-    "prepack": "pnpm build",
+    "prepublishOnly": "pnpm build",
     "release": "bumpp && pnpm publish"
   },
   "devDependencies": {
