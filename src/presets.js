@@ -1,22 +1,19 @@
 import { FlatConfigComposer } from 'eslint-flat-config-utils'
 
 import {
-  compat,
   ignores,
-  imports,
   javascript,
   jsdoc,
   macros,
   packageJson,
   prettier,
   stylistic,
+  tailwindcss,
   unocss,
-  vue,
-  unicorn,
-  promise
+  vue
 } from './configs'
 
-import { hasUnoCss, hasVue } from './env'
+import { hasUnocss, hasTailwindcss, hasVue } from './env'
 
 export const defaultPluginRenaming = {
   '@stylistic': 'style',
@@ -35,22 +32,19 @@ export function cuiqg(
 ) {
   const {
     prettier: enablePrettier = false,
-    unocss: enableUnocss = hasUnoCss(),
+    unocss: enableUnocss = hasUnocss(),
+    tailwindcss: enableTailwindcss = hasTailwindcss(),
     vue: enableVue = hasVue()
   } = options
 
   const configs = []
 
   configs.push(
-    compat(),
     ignores(),
     javascript(),
-    imports(),
     jsdoc(),
     stylistic(),
     packageJson(),
-    unicorn(),
-    promise()
   )
 
   if (enableVue) {
@@ -59,6 +53,10 @@ export function cuiqg(
 
   if (enableUnocss) {
     configs.push(unocss())
+  }
+
+  if (enableTailwindcss) {
+    configs.push(tailwindcss())
   }
 
   if (enablePrettier) {

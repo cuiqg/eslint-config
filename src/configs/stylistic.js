@@ -10,6 +10,7 @@ export async function stylistic() {
     quotes: 'single',
     semi: false
   })
+
   return [
     {
       name: 'cuiqg/stylistic',
