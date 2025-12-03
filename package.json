@@ -1,6 +1,6 @@
 {
   "name": "@cuiqg/eslint-config",
-  "version": "2.7.2",
+  "version": "2.7.3",
   "description": "Eslint config for @cuiqg",
   "keywords": [
     "eslint-config"
@@ -17,8 +17,12 @@
   "main": "./dist/index.mjs",
   "module": "./dist/index.mjs",
   "exports": {
-    ".": "./dist/index.mjs"
+    ".": "./dist/index.mjs",
+    "./package.json": "./package.json"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsdown",
     "dev": "tsdown --watch",
