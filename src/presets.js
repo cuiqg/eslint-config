@@ -3,6 +3,7 @@ import { FlatConfigComposer } from 'eslint-flat-config-utils'
 import {
   compat,
   ignores,
+  imports,
   javascript,
   jsdoc,
   macros,
@@ -18,7 +19,8 @@ import {
 import { hasUnoCss, hasVue } from './env'
 
 export const defaultPluginRenaming = {
-  '@stylistic': 'style'
+  '@stylistic': 'style',
+  '@typescript-eslint': 'ts'
 }
 
 /**
@@ -43,6 +45,7 @@ export function cuiqg(
     compat(),
     ignores(),
     javascript(),
+    imports(),
     jsdoc(),
     stylistic(),
     packageJson(),
