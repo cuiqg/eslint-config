@@ -24,8 +24,13 @@ export const defaultPluginRenaming = {
 /**
  *
  * @param {object} options - 设置选项
- * @param {...any} userConfigs - 用户配置
- * @returns {Promise<any[]>} 合并后的配置
+ * @param {boolean} [options.prettier=false] - 是否启用 prettier 格式化
+ * @param {boolean} [options.unocss] - 是否启用 unocss 格式化
+ * @param {boolean} [options.tailwindcss] - 是否启用 tailwindcss 格式化
+ * @param {boolean} [options.vue] - 是否启用 vue 格式化
+ * @param {boolean|object} [options.formatter=true] - 是否启用格式化
+ * @param {...Object} userConfigs - 用户配置
+ * @returns {Promise<Object[]>} 合并后的配置
  */
 export function cuiqg(
   options = {},
