@@ -10,7 +10,8 @@ import {
   stylistic,
   tailwindcss,
   unocss,
-  vue
+  vue,
+  formatters
 } from './configs'
 
 import { hasUnocss, hasTailwindcss, hasVue } from './env'
@@ -34,7 +35,8 @@ export function cuiqg(
     prettier: enablePrettier = false,
     unocss: enableUnocss = hasUnocss(),
     tailwindcss: enableTailwindcss = hasTailwindcss(),
-    vue: enableVue = hasVue()
+    vue: enableVue = hasVue(),
+    formatter: enableFormatter = true
   } = options
 
   const configs = []
@@ -61,6 +63,14 @@ export function cuiqg(
 
   if (enablePrettier) {
     configs.push(prettier())
+  }
+
+  if(enableFormatter) {
+    configs.push(formatters(
+      typeof enableFormatter === 'object'
+      ? enableFormatter
+      : {}
+    ))
   }
 
   let composer = new FlatConfigComposer()
