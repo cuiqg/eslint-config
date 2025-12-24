@@ -17,9 +17,10 @@ export async function tailwindcss() {
         },
       },
       rules: {
-        ...pluginTailwindcss.configs['flat/recommended'][1].rules,
+        ...pluginTailwindcss.configs.recommended.rules
+      },
+      settings: {
       }
-
     }
   ]
 }

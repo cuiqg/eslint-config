@@ -1,6 +1,8 @@
 import globals from 'globals'
 import { interopDefault } from '../utils'
+
 export async function javascript() {
+
   const [pluginJs] = await Promise.all([
     interopDefault(import('@eslint/js'))
   ])
@@ -31,7 +33,16 @@ export async function javascript() {
         js: pluginJs
       },
       rules: {
-        ...pluginJs.configs.recommended.rules
+        ...pluginJs.configs.recommended.rules,
+        'no-unused-vars': [
+          'error',
+          {
+            argsIgnorePattern: '^_',
+            caughtErrorsIgnorePattern: '^_',
+            ignoreRestSiblings: true,
+            varsIgnorePattern: '^_',
+          }
+        ]
       }
     }
   ]

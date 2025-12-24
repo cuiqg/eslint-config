@@ -11,14 +11,13 @@ import {
   tailwindcss,
   unocss,
   vue,
-  formatters
+  imports
 } from './configs'
 
 import { hasUnocss, hasTailwindcss, hasVue } from './env'
 
 export const defaultPluginRenaming = {
-  '@stylistic': 'style',
-  '@typescript-eslint': 'ts'
+
 }
 
 /**
@@ -41,7 +40,7 @@ export function cuiqg(
     unocss: enableUnocss = hasUnocss(),
     tailwindcss: enableTailwindcss = hasTailwindcss(),
     vue: enableVue = hasVue(),
-    formatter: enableFormatter = true
+    imports: enableImports = true
   } = options
 
   const configs = []
@@ -53,6 +52,10 @@ export function cuiqg(
     stylistic(),
     packageJson(),
   )
+
+  if(enableImports) {
+    configs.push(imports())
+  }
 
   if (enableVue) {
     configs.push(vue(), macros())
@@ -68,14 +71,6 @@ export function cuiqg(
 
   if (enablePrettier) {
     configs.push(prettier())
-  }
-
-  if(enableFormatter) {
-    configs.push(formatters(
-      typeof enableFormatter === 'object'
-      ? enableFormatter
-      : {}
-    ))
   }
 
   let composer = new FlatConfigComposer()

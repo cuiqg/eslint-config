@@ -17,6 +17,7 @@ export async function vue() {
           computed: 'readonly',
           defineEmits: 'readonly',
           defineExpose: 'readonly',
+          definePage: 'readonly',
           defineModel: 'readonly',
           defineOptions: 'readonly',
           defineProps: 'readonly',
