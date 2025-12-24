@@ -14,7 +14,7 @@ import {
   vue
 } from './configs'
 
-import { hasUnocss, hasTailwindcss, hasVue, hasPrettier } from './env'
+import { hasUnocss, hasTailwindcss, hasVue } from './env'
 
 export const defaultPluginRenaming = {
 
@@ -23,7 +23,7 @@ export const defaultPluginRenaming = {
 /**
  *
  * @param {object} options - 设置选项
- * @param {boolean} [options.prettier] - 是否启用 Prettier 格式化
+ * @param {boolean} [options.prettier=false] - 是否启用 Prettier 格式化
  * @param {boolean} [options.unocss] - 是否启用 Unocss 格式化
  * @param {boolean} [options.tailwindcss] - 是否启用 Tailwindcss 格式化
  * @param {boolean} [options.vue] - 是否启用 VUE 格式化
@@ -38,7 +38,7 @@ export function cuiqg(
 ) {
   const {
     jsdoc: enableJsdoc = true,
-    prettier: enablePrettier = hasPrettier(),
+    prettier: enablePrettier = false,
     unocss: enableUnocss = hasUnocss(),
     tailwindcss: enableTailwindcss = hasTailwindcss(),
     vue: enableVue = hasVue()
