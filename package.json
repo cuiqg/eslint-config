@@ -1,6 +1,6 @@
 {
   "name": "@cuiqg/eslint-config",
-  "version": "2.8.4",
+  "version": "2.8.5",
   "description": "Eslint config for @cuiqg",
   "keywords": [
     "eslint-config"
