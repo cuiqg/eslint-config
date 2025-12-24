@@ -16,7 +16,8 @@ export async function stylistic() {
 
     ...stylisticConfigDefaults,
     ...{
-      commaDangle: 'never'
+      commaDangle: 'never',
+      pluginName: '@stylistic'
     }
   })
 

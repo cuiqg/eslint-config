@@ -7,18 +7,14 @@ import {
   comments,
   macros,
   packageJson,
-  prettier,
   stylistic,
   tailwindcss,
+  typescript,
   unocss,
   vue
 } from './configs'
 
-import { hasUnocss, hasTailwindcss, hasVue } from './env'
-
-export const defaultPluginRenaming = {
-
-}
+import { hasUnocss, hasTailwindcss, hasVue, hasTypeScript, isInEditor } from './env'
 
 /**
  *
@@ -38,9 +34,9 @@ export function cuiqg(
 ) {
   const {
     jsdoc: enableJsdoc = true,
-    prettier: enablePrettier = false,
     unocss: enableUnocss = hasUnocss(),
     tailwindcss: enableTailwindcss = hasTailwindcss(),
+    typescript: enableTypescript = hasTypeScript(),
     vue: enableVue = hasVue()
   } = options
 
@@ -53,6 +49,10 @@ export function cuiqg(
     stylistic(),
     packageJson(),
   )
+
+  if (enableTypescript) {
+    configs.push(typescript())
+  }
 
   if (enableJsdoc) {
     configs.push(jsdoc())
@@ -73,15 +73,18 @@ export function cuiqg(
     configs.push(tailwindcss())
   }
 
-  if (enablePrettier) {
-    configs.push(prettier())
-  }
-
   let composer = new FlatConfigComposer()
 
   composer = composer
     .append(...configs, ...userConfigs)
-    .renamePlugins(defaultPluginRenaming)
+
+  if (isInEditor) {
+    composer = composer.disableRulesFix([
+      'unused-imports/no-unused-imports'
+    ], {
+      builtinRules: () => import(['eslint', 'use-at-your-own-risk'].join('/')).then(r => r.builtinRules),
+    })
+  }
 
   return composer
 }
