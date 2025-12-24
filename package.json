@@ -26,10 +26,10 @@
   "scripts": {
     "build": "tsdown",
     "dev": "tsdown --watch",
-    "build:inspect": "pnpx @eslint/config-inspector build --config eslint-inspector.config.js",
+    "build:inspect": "npx @eslint/config-inspector build --config eslint-inspector.config.js",
     "lint": "eslint .",
-    "lint:inspect": "pnpx @eslint/config-inspector --open false --config eslint-inspector.config.js",
-    "prepublishOnly": "pnpm run build",
+    "lint:inspect": "npx @eslint/config-inspector --open false --config eslint-inspector.config.js",
+    "prepublishOnly": "npm run build",
     "release": "bumpp"
   },
   "devDependencies": {
@@ -61,6 +61,5 @@
     "jsonc-eslint-parser": "^2.4.1",
     "local-pkg": "^1.1.2",
     "vue-eslint-parser": "^10.2.0"
-  },
-  "packageManager": "pnpm@10.24.0"
+  }
 }
