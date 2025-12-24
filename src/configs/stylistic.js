@@ -5,7 +5,7 @@ export const stylisticConfigDefaults = {
   indent: 2,
   jsx: true,
   quotes: 'single',
-  semi: false
+  semi: false,
 }
 
 export async function stylistic() {
@@ -13,7 +13,11 @@ export async function stylistic() {
   const pluginStylistic = await interopDefault(import('@stylistic/eslint-plugin'))
 
   const config = pluginStylistic.configs.customize({
+
     ...stylisticConfigDefaults,
+    ...{
+      commaDangle: 'never'
+    }
   })
 
   return [

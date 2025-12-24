@@ -11,7 +11,12 @@ export async function imports() {
         'import-x': pluginImportX
       },
       rules: {
-        ...(pluginImportX.configs['flat/recommended'].rules),
+        'import-x/consistent-type-specifier-style': ['error', 'prefer-top-level'],
+        'import-x/first': 'error',
+        'import-x/no-duplicates': 'error',
+        'import-x/no-mutable-exports': 'error',
+        'import-x/no-named-default': 'error',
+        "import-x/newline-after-import": ["error", { "count": 1 }]
       },
       settings: {
         'import-x/core-modules': [

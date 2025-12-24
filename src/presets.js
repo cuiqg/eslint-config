@@ -14,7 +14,7 @@ import {
   imports
 } from './configs'
 
-import { hasUnocss, hasTailwindcss, hasVue } from './env'
+import { hasUnocss, hasTailwindcss, hasVue, hasPrettier } from './env'
 
 export const defaultPluginRenaming = {
 
@@ -23,12 +23,14 @@ export const defaultPluginRenaming = {
 /**
  *
  * @param {object} options - 设置选项
- * @param {boolean} [options.prettier=false] - 是否启用 prettier 格式化
- * @param {boolean} [options.unocss] - 是否启用 unocss 格式化
- * @param {boolean} [options.tailwindcss] - 是否启用 tailwindcss 格式化
- * @param {boolean} [options.vue] - 是否启用 vue 格式化
- * @param {boolean|object} [options.formatter=true] - 是否启用格式化
+ * @param {boolean} [options.prettier] - 是否启用 Prettier 格式化
+ * @param {boolean} [options.unocss] - 是否启用 Unocss 格式化
+ * @param {boolean} [options.tailwindcss] - 是否启用 Tailwindcss 格式化
+ * @param {boolean} [options.vue] - 是否启用 VUE 格式化
+ * @param {boolean} [options.imports=true] - 是否启用 Import-X
+ * @param {boolean} [options.jsdoc=true] - 是否启用 JSDoc 格式化
  * @param {...Object} userConfigs - 用户配置
+ *
  * @returns {Promise<Object[]>} 合并后的配置
  */
 export function cuiqg(
@@ -36,7 +38,8 @@ export function cuiqg(
   ...userConfigs
 ) {
   const {
-    prettier: enablePrettier = false,
+    jsdoc: enableJsdoc = true,
+    prettier: enablePrettier = hasPrettier(),
     unocss: enableUnocss = hasUnocss(),
     tailwindcss: enableTailwindcss = hasTailwindcss(),
     vue: enableVue = hasVue(),
@@ -48,12 +51,15 @@ export function cuiqg(
   configs.push(
     ignores(),
     javascript(),
-    jsdoc(),
     stylistic(),
     packageJson(),
   )
 
-  if(enableImports) {
+  if (enableJsdoc) {
+    configs.push(jsdoc())
+  }
+
+  if (enableImports) {
     configs.push(imports())
   }
 

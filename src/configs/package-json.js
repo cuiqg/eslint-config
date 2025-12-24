@@ -2,7 +2,6 @@ import { interopDefault } from '../utils'
 
 export async function packageJson() {
 
-
   const pluginPackageJson = await interopDefault(import('eslint-plugin-package-json'))
 
   return [

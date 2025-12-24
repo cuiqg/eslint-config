@@ -26,3 +26,4 @@ export const hasVue = () =>
 export const hasTypeScript = () => isPackageExists('typescript')
 export const hasUnocss = () => isPackageExists('unocss')
 export const hasTailwindcss = () => isPackageExists('tailwindcss')
+export const hasPrettier = () => isPackageExists('prettier')
