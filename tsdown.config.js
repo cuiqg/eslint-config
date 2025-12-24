@@ -8,11 +8,10 @@ export default defineConfig({
   clean: true,
   shims: true,
   format: ['esm'],
-  exports: true,
   hooks: {
     'build:done': async (args) => {
       if (args.options?.watch && !inspectorProcess) {
-       inspectorProcess = spawn('pnpx', ['@eslint/config-inspector', '--open', 'false', '--config', 'eslint-inspector.config.js'], {
+        inspectorProcess = spawn('pnpx', ['@eslint/config-inspector', '--open', 'false', '--config', 'eslint-inspector.config.js'], {
           stdio: 'inherit',
           shell: true
         })

@@ -5,7 +5,7 @@
   "keywords": [
     "eslint-config"
   ],
-  "homepage": "https://eslint.tsuiqg.me",
+  "homepage": "https://eslint-config.tsuiqg.me",
   "repository": "github:cuiqg/eslint-config",
   "publishConfig": {
     "access": "public",
@@ -17,8 +17,7 @@
   "main": "./dist/index.mjs",
   "module": "./dist/index.mjs",
   "exports": {
-    ".": "./dist/index.mjs",
-    "./package.json": "./package.json"
+    ".": "./dist/index.mjs"
   },
   "files": [
     "dist"
