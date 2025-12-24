@@ -13,17 +13,26 @@ npm i -D eslint @cuiqg/eslint-config
 + "type": "module",
   "scripts": {
 +   "lint": "eslint .",
-+   "lint:fix": "eslint . --fix"
++   "lint:fix": "eslint . --fix",
++   "lint:inspect": "eslint . --inspect-config"
   }
 }
 ```
 
-创建 `eslint.config.js` 文件
+创建 `eslint.config.mjs` 文件
 
 ```js
+import fs from 'node:fs'
 import cuiqg from '@cuiqg/eslint-config'
+import { FlatCompat } from '@eslint/eslintrc'
 
-export default cuiqg()
+const compat = new FlatCompat()
+
+export default cuiqg({}, 
+  fs.existsSync('.eslintrc-auto-import.json')
+    ? compat.extend('./.eslintrc-auto-import.json')
+    : []
+)
 ```
 
 ## 插件配置
@@ -36,7 +45,9 @@ export default cuiqg()
 {
   "prettier.enable": false,
   "editor.formatOnSave": false,
+
   "eslint.useFlatConfig": true,
+
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit",
     "source.organizeImports": "never"
