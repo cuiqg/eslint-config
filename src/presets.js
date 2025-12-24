@@ -4,14 +4,14 @@ import {
   ignores,
   javascript,
   jsdoc,
+  comments,
   macros,
   packageJson,
   prettier,
   stylistic,
   tailwindcss,
   unocss,
-  vue,
-  imports
+  vue
 } from './configs'
 
 import { hasUnocss, hasTailwindcss, hasVue, hasPrettier } from './env'
@@ -27,7 +27,6 @@ export const defaultPluginRenaming = {
  * @param {boolean} [options.unocss] - 是否启用 Unocss 格式化
  * @param {boolean} [options.tailwindcss] - 是否启用 Tailwindcss 格式化
  * @param {boolean} [options.vue] - 是否启用 VUE 格式化
- * @param {boolean} [options.imports=true] - 是否启用 Import-X
  * @param {boolean} [options.jsdoc=true] - 是否启用 JSDoc 格式化
  * @param {...Object} userConfigs - 用户配置
  *
@@ -42,14 +41,14 @@ export function cuiqg(
     prettier: enablePrettier = hasPrettier(),
     unocss: enableUnocss = hasUnocss(),
     tailwindcss: enableTailwindcss = hasTailwindcss(),
-    vue: enableVue = hasVue(),
-    imports: enableImports = true
+    vue: enableVue = hasVue()
   } = options
 
   const configs = []
 
   configs.push(
     ignores(),
+    comments(),
     javascript(),
     stylistic(),
     packageJson(),
@@ -59,12 +58,11 @@ export function cuiqg(
     configs.push(jsdoc())
   }
 
-  if (enableImports) {
-    configs.push(imports())
-  }
-
   if (enableVue) {
-    configs.push(vue(), macros())
+    configs.push(
+      vue(),
+      macros()
+    )
   }
 
   if (enableUnocss) {
