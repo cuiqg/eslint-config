@@ -2,6 +2,7 @@ import { cuiqg } from './src'
 
 export default cuiqg({
   unocss: true,
-  tailwindcss: true,
-  vue: true
+  tailwindcss: false,
+  vue: true,
+  typescript: false
 })

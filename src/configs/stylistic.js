@@ -8,17 +8,30 @@ export const stylisticConfigDefaults = {
   semi: false,
 }
 
-export async function stylistic() {
+export async function stylistic(options = {}) {
+
+  const {
+    commaDangle = 'never',
+    experimental,
+    indent,
+    jsx,
+    quotes,
+    semi,
+  } = {
+    ...stylisticConfigDefaults,
+    ...options
+  }
 
   const pluginStylistic = await interopDefault(import('@stylistic/eslint-plugin'))
 
   const config = pluginStylistic.configs.customize({
-
-    ...stylisticConfigDefaults,
-    ...{
-      commaDangle: 'never',
-      pluginName: '@stylistic'
-    }
+    commaDangle,
+    experimental,
+    indent,
+    jsx,
+    pluginName: '@stylistic',
+    quotes,
+    semi,
   })
 
   return [
@@ -28,7 +41,9 @@ export async function stylistic() {
         '@stylistic': pluginStylistic
       },
       rules: {
-        ...config.rules
+        ...config.rules,
+        '@stylistic/generator-star-spacing': ['error', { after: true, before: false }],
+        '@stylistic/yield-star-spacing': ['error', { after: true, before: false }],
       }
     }
   ]

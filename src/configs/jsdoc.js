@@ -28,6 +28,11 @@ export async function jsdoc() {
         'jsdoc/require-yields-check': 'warn',
         'jsdoc/check-alignment': 'warn',
         'jsdoc/multiline-blocks': 'warn'
+      },
+      settings: {
+        jsdoc: {
+          mode: 'jsdoc'
+        }
       }
     }
   ]

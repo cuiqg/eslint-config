@@ -19,9 +19,9 @@ import { hasUnocss, hasTailwindcss, hasVue, hasTypeScript, isInEditor } from './
 /**
  *
  * @param {object} options - 设置选项
- * @param {boolean} [options.prettier=false] - 是否启用 Prettier 格式化
+ * @param {boolean} [options.typescript] - 是否启用 TypeScript 格式化
  * @param {boolean} [options.unocss] - 是否启用 Unocss 格式化
- * @param {boolean} [options.tailwindcss] - 是否启用 Tailwindcss 格式化
+ * @param {boolean} [options.tailwindcss] - 是否启用 TailwindCSS 格式化
  * @param {boolean} [options.vue] - 是否启用 VUE 格式化
  * @param {boolean} [options.jsdoc=true] - 是否启用 JSDoc 格式化
  * @param {...Object} userConfigs - 用户配置
@@ -45,7 +45,9 @@ export function cuiqg(
   configs.push(
     ignores(),
     comments(),
-    javascript(),
+    javascript({
+      isInEditor
+    }),
     stylistic(),
     packageJson(),
   )
@@ -60,7 +62,9 @@ export function cuiqg(
 
   if (enableVue) {
     configs.push(
-      vue(),
+      vue({
+        typescript: enableTypescript
+      }),
       macros()
     )
   }

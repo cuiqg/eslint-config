@@ -1,35 +1,30 @@
 import globals from 'globals'
 import { interopDefault } from '../utils'
-import { GLOB_SRC } from '../globs'
-import { isInEditor } from '../env'
 
-export async function javascript() {
-  const files = [GLOB_SRC]
+export async function javascript(options = {}) {
+
+  const {
+    isInEditor = false
+  } = options
 
   const pluginUnusedImports = await interopDefault(import('eslint-plugin-unused-imports'))
 
   return [
     {
-      files,
       name: 'cuiqg/javascript',
       plugins: {
         'unused-imports': pluginUnusedImports
       },
       languageOptions: {
-        ecmaVersion: 'latest',
         globals: {
           ...globals.browser,
           ...globals.es2025,
           ...globals.node
         },
         parserOptions: {
-          ecmaFeatures: {
-            jsx: true
-          },
           ecmaVersion: 'latest',
           sourceType: 'module'
-        },
-        sourceType: 'module'
+        }
       },
       linterOptions: {
         reportUnusedDisableDirectives: true

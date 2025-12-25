@@ -1,8 +1,8 @@
 import { interopDefault } from '../utils'
-import { GLOB_TS, GLOB_TSX } from '../globs'
+import { GLOB_TS, GLOB_TSX, GLOB_VUE } from '../globs'
 
 export async function typescript() {
-  const files = [GLOB_TS, GLOB_TSX]
+  const files = [GLOB_TS, GLOB_TSX, GLOB_VUE]
 
   const [pluginTs, parserTs] = await Promise.all([
     interopDefault(import('@typescript-eslint/eslint-plugin')),
