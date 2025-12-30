@@ -22,17 +22,9 @@ npm i -D eslint @cuiqg/eslint-config
 创建 `eslint.config.mjs` 文件
 
 ```js
-import fs from 'node:fs'
 import cuiqg from '@cuiqg/eslint-config'
-import { FlatCompat } from '@eslint/eslintrc'
 
-const compat = new FlatCompat()
-
-export default cuiqg({}, 
-  fs.existsSync('.eslintrc-auto-import.json')
-    ? compat.extend('./.eslintrc-auto-import.json')
-    : []
-)
+export default cuiqg()
 ```
 
 ## 插件配置

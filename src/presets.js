@@ -1,6 +1,7 @@
 import { FlatConfigComposer } from 'eslint-flat-config-utils'
 
 import {
+  autoImports,
   ignores,
   javascript,
   jsdoc,
@@ -43,6 +44,7 @@ export function cuiqg(
   const configs = []
 
   configs.push(
+    autoImports(),
     ignores(),
     comments(),
     javascript({

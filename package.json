@@ -1,6 +1,6 @@
 {
   "name": "@cuiqg/eslint-config",
-  "version": "2.8.11",
+  "version": "2.8.12",
   "description": "Eslint config for @cuiqg",
   "keywords": [
     "eslint-config"
@@ -28,8 +28,8 @@
     "build:inspect": "npx @eslint/config-inspector build --config eslint-inspector.config.js",
     "lint": "eslint .",
     "lint:inspect": "npx @eslint/config-inspector --open false --config eslint-inspector.config.js",
-    "prepublishOnly": "npm run build",
-    "release": "bumpp"
+    "prerelease": "npm run build",
+    "release": "bumpp && npm publish"
   },
   "devDependencies": {
     "@eslint/config-inspector": "^1.4.2",
@@ -48,7 +48,6 @@
     "@typescript-eslint/parser": "^8.50.1",
     "@unocss/eslint-plugin": "^66.5.10",
     "@vue-macros/eslint-config": "3.0.0-beta.21",
-    "eslint-config-flat-gitignore": "^2.1.0",
     "eslint-flat-config-utils": "^2.1.4",
     "eslint-plugin-depend": "^1.4.0",
     "eslint-plugin-import-x": "^4.16.1",
