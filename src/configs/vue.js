@@ -75,6 +75,14 @@ export async function vue(options = {}) {
             allow: ['scoped', 'plain'],
           },
         ],
+        "vue/max-attributes-per-line": ["error",{
+          "singleline": {
+            "max": 1
+          },
+          "multiline": {
+            "max": 1
+          }
+        }],
         'vue/html-button-has-type': 'error',
         'vue/html-end-tags': 'error',
         'vue/jsx-uses-vars': 'error',
@@ -137,7 +145,7 @@ export async function vue(options = {}) {
         'vue/no-undef-properties': 'error',
         'vue/no-unused-components': 'error',
         'vue/no-unused-emit-declarations': 'error',
-        'vue/no-unused-vars': 'error',
+        'vue/no-unused-vars': ['error', { ignorePattern: '^_' }],
         'vue/no-use-computed-property-like-method': 'error',
         'vue/no-use-v-else-with-v-for': 'error',
         'vue/no-use-v-if-with-v-for': 'error',
