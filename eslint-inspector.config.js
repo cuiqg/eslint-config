@@ -1,8 +1,8 @@
-import { cuiqg } from './src'
+import { cuiqg } from './dist/index.mjs'
 
 export default cuiqg({
   unocss: true,
-  tailwindcss: false,
+  tailwindcss: true,
   vue: true,
   typescript: false
 })
