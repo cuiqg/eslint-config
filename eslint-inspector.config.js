@@ -4,5 +4,5 @@ export default cuiqg({
   unocss: true,
   tailwindcss: true,
   vue: true,
-  typescript: false
+  typescript: true
 })

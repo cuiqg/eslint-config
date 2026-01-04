@@ -1,7 +1,9 @@
 import { interopDefault } from '../utils'
 
 export async function tailwindcss() {
-  const pluginTailwindcss = await interopDefault(import('eslint-plugin-tailwindcss'))
+  const [pluginTailwindcss] = await Promise.all([
+    interopDefault(import('eslint-plugin-tailwindcss'))
+  ])
 
   return [
     {
@@ -12,9 +14,9 @@ export async function tailwindcss() {
       languageOptions: {
         parserOptions: {
           ecmaFeatures: {
-            jsx: true,
-          },
-        },
+            jsx: true
+          }
+        }
       },
       rules: {
         ...pluginTailwindcss.configs.recommended.rules

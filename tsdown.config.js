@@ -4,10 +4,7 @@ import { spawn } from 'node:child_process'
 let inspectorProcess = null
 
 export default defineConfig({
-  entry: 'src/index.js',
-  clean: true,
-  shims: true,
-  format: ['esm'],
+  entry: "src/index.js",
   exports: true,
   hooks: {
     'build:done': async (args) => {

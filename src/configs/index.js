@@ -1,3 +1,4 @@
+export * from './baseline'
 export * from './ignores'
 export * from './javascript'
 export * from './jsdoc'

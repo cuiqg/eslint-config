@@ -2,6 +2,7 @@ import { FlatConfigComposer } from 'eslint-flat-config-utils'
 
 import {
   autoImports,
+  baseline,
   ignores,
   javascript,
   jsdoc,
@@ -15,20 +16,8 @@ import {
   vue
 } from './configs'
 
-import { hasUnocss, hasTailwindcss, hasVue, hasTypeScript, isInEditor } from './env'
+import { isInEditor, hasUnocss, hasVue } from './env'
 
-/**
- *
- * @param {object} options - 设置选项
- * @param {boolean} [options.typescript] - 是否启用 TypeScript 格式化
- * @param {boolean} [options.unocss] - 是否启用 Unocss 格式化
- * @param {boolean} [options.tailwindcss] - 是否启用 TailwindCSS 格式化
- * @param {boolean} [options.vue] - 是否启用 VUE 格式化
- * @param {boolean} [options.jsdoc=true] - 是否启用 JSDoc 格式化
- * @param {...Object} userConfigs - 用户配置
- *
- * @returns {Promise<Object[]>} 合并后的配置
- */
 export function cuiqg(
   options = {},
   ...userConfigs
@@ -36,8 +25,8 @@ export function cuiqg(
   const {
     jsdoc: enableJsdoc = true,
     unocss: enableUnocss = hasUnocss(),
-    tailwindcss: enableTailwindcss = hasTailwindcss(),
-    typescript: enableTypescript = hasTypeScript(),
+    tailwindcss: enableTailwindcss = false,
+    typescript: enableTypescript = false,
     vue: enableVue = hasVue()
   } = options
 
@@ -45,13 +34,14 @@ export function cuiqg(
 
   configs.push(
     autoImports(),
+    baseline(),
     ignores(),
     comments(),
     javascript({
       isInEditor
     }),
     stylistic(),
-    packageJson(),
+    packageJson()
   )
 
   if (enableTypescript) {
@@ -79,18 +69,10 @@ export function cuiqg(
     configs.push(tailwindcss())
   }
 
-  let composer = new FlatConfigComposer()
-
-  composer = composer
-    .append(...configs, ...userConfigs)
-
-  if (isInEditor) {
-    composer = composer.disableRulesFix([
-      'unused-imports/no-unused-imports'
-    ], {
-      builtinRules: () => import(['eslint', 'use-at-your-own-risk'].join('/')).then(r => r.builtinRules),
-    })
-  }
+  const composer = new FlatConfigComposer(
+    ...configs,
+    ...userConfigs
+  )
 
   return composer
 }

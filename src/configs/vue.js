@@ -2,9 +2,8 @@ import { GLOB_VUE } from '../globs'
 import { interopDefault } from '../utils'
 
 export async function vue(options = {}) {
-
   const {
-    typescript = false,
+    typescript = false
   } = options
 
   let parserOptions = null
@@ -52,8 +51,8 @@ export async function vue(options = {}) {
         'vue/block-order': [
           'error',
           {
-            order: ['script', 'template', 'style'],
-          },
+            order: ['script', 'template', 'style']
+          }
         ],
         'vue/comment-directive': 'error',
         'vue/component-api-style': 'error',
@@ -66,21 +65,21 @@ export async function vue(options = {}) {
         'vue/define-props-destructuring': [
           'error',
           {
-            destructure: 'always',
-          },
+            destructure: 'always'
+          }
         ],
         'vue/enforce-style-attribute': [
           'error',
           {
-            allow: ['scoped', 'plain'],
-          },
+            allow: ['scoped', 'plain']
+          }
         ],
-        "vue/max-attributes-per-line": ["error",{
-          "singleline": {
-            "max": 1
+        'vue/max-attributes-per-line': ['error', {
+          singleline: {
+            max: 1
           },
-          "multiline": {
-            "max": 1
+          multiline: {
+            max: 1
           }
         }],
         'vue/html-button-has-type': 'error',
@@ -173,8 +172,8 @@ export async function vue(options = {}) {
             defineProps: 'props',
             defineSlots: 'slots',
             useAttrs: 'attrs',
-            useSlots: 'slots',
-          },
+            useSlots: 'slots'
+          }
         ],
         'vue/require-name-property': 'error',
         'vue/require-prop-type-constructor': 'error',
@@ -213,7 +212,7 @@ export async function vue(options = {}) {
         'vue/valid-v-pre': 'error',
         'vue/valid-v-show': 'error',
         'vue/valid-v-slot': 'error',
-        'vue/valid-v-text': 'error',
+        'vue/valid-v-text': 'error'
       }
     }
   ]

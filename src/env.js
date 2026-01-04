@@ -22,6 +22,4 @@ export const isInEditor = () => {
 }
 
 export const hasVue = () => isPackageExists('vue')
-export const hasTypeScript = () => isPackageExists('typescript')
 export const hasUnocss = () => isPackageExists('unocss')
-export const hasTailwindcss = () => isPackageExists('tailwindcss')

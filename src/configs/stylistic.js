@@ -5,18 +5,17 @@ export const stylisticConfigDefaults = {
   indent: 2,
   jsx: true,
   quotes: 'single',
-  semi: false,
+  semi: false
 }
 
 export async function stylistic(options = {}) {
-
   const {
     commaDangle = 'never',
     experimental,
     indent,
     jsx,
     quotes,
-    semi,
+    semi
   } = {
     ...stylisticConfigDefaults,
     ...options
@@ -31,7 +30,7 @@ export async function stylistic(options = {}) {
     jsx,
     pluginName: '@stylistic',
     quotes,
-    semi,
+    semi
   })
 
   return [
@@ -43,7 +42,7 @@ export async function stylistic(options = {}) {
       rules: {
         ...config.rules,
         '@stylistic/generator-star-spacing': ['error', { after: true, before: false }],
-        '@stylistic/yield-star-spacing': ['error', { after: true, before: false }],
+        '@stylistic/yield-star-spacing': ['error', { after: true, before: false }]
       }
     }
   ]

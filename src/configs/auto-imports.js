@@ -2,7 +2,6 @@ import path from 'node:path'
 import fs from 'node:fs'
 
 export async function autoImports(options = {}) {
-
   const {
     cwd = process.cwd(),
     filename = '.eslintrc-auto-import.json',
@@ -19,7 +18,8 @@ export async function autoImports(options = {}) {
           ...(JSON.parse(fs.readFileSync(path.join(cwd, filename), 'utf8')))
         }
       })
-    } catch (error) {
+    }
+    catch (error) {
       if (strict) {
         throw error
       }

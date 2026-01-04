@@ -32,15 +32,17 @@
     "build:inspect": "npx @eslint/config-inspector build --config eslint-inspector.config.js",
     "lint": "eslint .",
     "lint:inspect": "npx @eslint/config-inspector --open false --config eslint-inspector.config.js",
-    "prerelease": "npm run build",
+    "prepublishOnly": "npm run build",
     "release": "bumpp"
   },
   "devDependencies": {
     "@eslint/config-inspector": "^1.4.2",
+    "@types/node": "^25.0.3",
     "bumpp": "^10.3.2",
     "eslint": "^9.39.2",
     "tsdown": "^0.18.2",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "unrun": "^0.2.22"
   },
   "peerDependencies": {
     "eslint": ">=9.28.0"
@@ -52,7 +54,9 @@
     "@typescript-eslint/parser": "^8.50.1",
     "@unocss/eslint-plugin": "^66.5.10",
     "@vue-macros/eslint-config": "3.0.0-beta.21",
+    "eslint-config-flat-gitignore": "^2.1.0",
     "eslint-flat-config-utils": "^2.1.4",
+    "eslint-plugin-baseline-js": "^0.4.2",
     "eslint-plugin-depend": "^1.4.0",
     "eslint-plugin-import-x": "^4.16.1",
     "eslint-plugin-jsdoc": "^61.5.0",
@@ -64,5 +68,6 @@
     "jsonc-eslint-parser": "^2.4.2",
     "local-pkg": "^1.1.2",
     "vue-eslint-parser": "^10.2.0"
-  }
+  },
+  "packageManager": "pnpm@10.27.0+sha512.72d699da16b1179c14ba9e64dc71c9a40988cbdc65c264cb0e489db7de917f20dcf4d64d8723625f2969ba52d4b7e2a1170682d9ac2a5dcaeaab732b7e16f04a"
 }
