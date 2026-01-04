@@ -1,4 +1,4 @@
-import { cuiqg } from './dist/index.mjs'
+import { cuiqg } from './src/index.js'
 
 export default cuiqg({
   unocss: true,

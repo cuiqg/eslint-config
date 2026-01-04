@@ -18,6 +18,17 @@ import {
 
 import { isInEditor, hasUnocss, hasVue } from './env'
 
+/**
+ *
+ * @param {object} [options]
+ * @param {boolean} [options.jsdoc]
+ * @param {boolean} [options.unocss]
+ * @param {boolean} [options.tailwindcss]
+ * @param {boolean} [options.typescript]
+ * @param {boolean} [options.vue]
+ * @param  {...object} userConfigs
+ * @returns {FlatConfigComposer}  FlatConfigComposer
+ */
 export function cuiqg(
   options = {},
   ...userConfigs
