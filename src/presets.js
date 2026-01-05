@@ -6,14 +6,14 @@ import {
   ignores,
   javascript,
   jsdoc,
-  comments,
   macros,
   packageJson,
   stylistic,
   tailwindcss,
   typescript,
   unocss,
-  vue
+  vue,
+  nextjs
 } from './configs'
 
 import { isInEditor, hasUnocss, hasVue } from './env'
@@ -26,6 +26,7 @@ import { isInEditor, hasUnocss, hasVue } from './env'
  * @param {boolean} [options.tailwindcss]
  * @param {boolean} [options.typescript]
  * @param {boolean} [options.vue]
+ * @param {boolean} [options.nextjs]
  * @param  {...object} userConfigs
  * @returns {FlatConfigComposer}  FlatConfigComposer
  */
@@ -38,7 +39,8 @@ export function cuiqg(
     unocss: enableUnocss = hasUnocss(),
     tailwindcss: enableTailwindcss = false,
     typescript: enableTypescript = false,
-    vue: enableVue = hasVue()
+    vue: enableVue = hasVue(),
+    nextjs: enableNextjs = false
   } = options
 
   const configs = []
@@ -47,7 +49,6 @@ export function cuiqg(
     autoImports(),
     baseline(),
     ignores(),
-    comments(),
     javascript({
       isInEditor
     }),
@@ -70,6 +71,10 @@ export function cuiqg(
       }),
       macros()
     )
+  }
+
+  if (enableNextjs) {
+    configs.push(nextjs())
   }
 
   if (enableUnocss) {

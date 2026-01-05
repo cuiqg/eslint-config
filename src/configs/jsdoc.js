@@ -1,8 +1,9 @@
 import { interopDefault } from '../utils'
 
 export async function jsdoc() {
-
-  const pluginJsdoc = await interopDefault(import('eslint-plugin-jsdoc'))
+  const [pluginJsdoc] = await Promise.all([
+    interopDefault(import('eslint-plugin-jsdoc'))
+  ])
 
   return [
     {

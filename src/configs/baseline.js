@@ -5,16 +5,13 @@ export async function baseline() {
     interopDefault(import('eslint-plugin-baseline-js'))
   ])
 
-  return [
-    {
-      name: 'cuiqg/baseline',
-      plugins: {
-        'baseline-js': pluginBaseline
-      },
-      rules: {
-
-        ...pluginBaseline.configs.recommended({ available: 'widely', level: 'warn' }).rules
-      }
+  return [{
+    name: 'cuiqg/baseline',
+    plugins: {
+      'baseline-js': pluginBaseline
+    },
+    rules: {
+      ...pluginBaseline.configs.recommended({ available: 'widely', level: 'warn' }).rules
     }
-  ]
+  }]
 }
