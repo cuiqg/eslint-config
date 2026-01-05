@@ -7,9 +7,7 @@ export const GLOB_TSX = `**/*.?([cm])tsx`
 export const GLOB_JS = `**/*.?([cm])js`
 export const GLOB_JSX = `**/*.?([cm])jsx`
 
-export const GLOB_STYLE = '**/*.{c,sc}ss'
 export const GLOB_CSS = '**/*.css'
-export const GLOB_SCSS = '**/*.scss'
 
 export const GLOB_VUE = '**/*.vue'
 

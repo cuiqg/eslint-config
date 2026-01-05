@@ -13,7 +13,8 @@ import {
   typescript,
   unocss,
   vue,
-  nextjs
+  nextjs,
+  css
 } from './configs'
 
 import { isInEditor, hasUnocss, hasVue } from './env'
@@ -27,7 +28,8 @@ import { isInEditor, hasUnocss, hasVue } from './env'
  * @param {boolean} [options.typescript]
  * @param {boolean} [options.vue]
  * @param {boolean} [options.nextjs]
- * @param  {...object} userConfigs
+ * @param {boolean} [options.css]
+ * @param {...object} userConfigs
  * @returns {FlatConfigComposer}  FlatConfigComposer
  */
 export function cuiqg(
@@ -40,7 +42,8 @@ export function cuiqg(
     tailwindcss: enableTailwindcss = false,
     typescript: enableTypescript = false,
     vue: enableVue = hasVue(),
-    nextjs: enableNextjs = false
+    nextjs: enableNextjs = false,
+    css: enableCSS = false
   } = options
 
   const configs = []
@@ -62,6 +65,9 @@ export function cuiqg(
 
   if (enableJsdoc) {
     configs.push(jsdoc())
+  }
+  if (enableCSS) {
+    configs.push(css())
   }
 
   if (enableVue) {

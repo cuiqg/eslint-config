@@ -1,12 +1,12 @@
 import { interopDefault } from '../utils'
-import { GLOB_TS, GLOB_TSX, GLOB_VUE } from '../globs'
+import { GLOB_TS, GLOB_TSX } from '../globs'
 
 export async function typescript() {
-  const files = [GLOB_TS, GLOB_TSX, GLOB_VUE]
+  const files = [GLOB_TS, GLOB_TSX]
 
   const [pluginTs, parserTs] = await Promise.all([
     interopDefault(import('@typescript-eslint/eslint-plugin')),
-    interopDefault(import('@typescript-eslint/parser')),
+    interopDefault(import('@typescript-eslint/parser'))
   ])
 
   return [
@@ -22,8 +22,8 @@ export async function typescript() {
           ecmaVersion: 'latest',
           projectService: true,
           sourceType: 'module',
-          tsconfigRootDir: process.cwd(),
-        },
+          tsconfigRootDir: process.cwd()
+        }
       },
       plugins: {
         '@typescript-eslint': pluginTs
@@ -32,8 +32,8 @@ export async function typescript() {
         'jsdoc/check-tag-names': [
           'error',
           {
-            typed: true,
-          },
+            typed: true
+          }
         ],
         'jsdoc/no-types': 'error',
         'jsdoc/no-undefined-types': 'off',
@@ -44,8 +44,8 @@ export async function typescript() {
           'error',
           {
             default: 'array',
-            readonly: 'array',
-          },
+            readonly: 'array'
+          }
         ],
         '@typescript-eslint/await-thenable': 'error',
         '@typescript-eslint/class-literal-property-style': 'error',
@@ -63,38 +63,38 @@ export async function typescript() {
             allowedNames: [],
             allowExpressions: true,
             allowHigherOrderFunctions: true,
-            allowIIFEs: true,
-          },
+            allowIIFEs: true
+          }
         ],
         '@typescript-eslint/explicit-member-accessibility': 'error',
         '@typescript-eslint/explicit-module-boundary-types': [
           'error',
           {
-            allowedNames: [],
-          },
+            allowedNames: []
+          }
         ],
         '@typescript-eslint/max-params': [
           'error',
           {
-            max: 3,
-          },
+            max: 3
+          }
         ],
         '@typescript-eslint/method-signature-style': ['error', 'method'],
         '@typescript-eslint/naming-convention': [
           'error',
           {
             format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
-            selector: 'import',
+            selector: 'import'
           },
           {
             format: ['UPPER_CASE'],
             modifiers: ['const'],
-            selector: 'variable',
+            selector: 'variable'
           },
           {
             format: ['PascalCase', 'UPPER_CASE'],
-            selector: 'typeLike',
-          },
+            selector: 'typeLike'
+          }
         ],
         '@typescript-eslint/no-array-constructor': 'error',
         '@typescript-eslint/no-array-delete': 'error',
@@ -111,13 +111,13 @@ export async function typescript() {
               {
                 from: 'package',
                 name: ['task'],
-                package: 'nanostores',
-              },
+                package: 'nanostores'
+              }
             ],
             checkThenables: true,
             ignoreIIFE: true,
-            ignoreVoid: true,
-          },
+            ignoreVoid: true
+          }
         ],
         '@typescript-eslint/no-for-in-array': 'error',
         '@typescript-eslint/no-implied-eval': 'error',
@@ -129,8 +129,8 @@ export async function typescript() {
         '@typescript-eslint/no-misused-promises': [
           'error',
           {
-            checksVoidReturn: false,
-          },
+            checksVoidReturn: false
+          }
         ],
         '@typescript-eslint/no-mixed-enums': 'error',
         '@typescript-eslint/no-namespace': 'error',
@@ -162,8 +162,8 @@ export async function typescript() {
           {
             allowShortCircuit: true,
             allowTaggedTemplates: true,
-            allowTernary: true,
-          },
+            allowTernary: true
+          }
         ],
         '@typescript-eslint/no-unused-private-class-members': 'error',
         '@typescript-eslint/no-unused-vars': [
@@ -172,16 +172,16 @@ export async function typescript() {
             argsIgnorePattern: '^_',
             caughtErrorsIgnorePattern: '^_',
             ignoreRestSiblings: true,
-            varsIgnorePattern: '^_',
-          },
+            varsIgnorePattern: '^_'
+          }
         ],
         '@typescript-eslint/no-use-before-define': [
           'error',
           {
             classes: false,
             functions: false,
-            variables: false,
-          },
+            variables: false
+          }
         ],
         '@typescript-eslint/no-useless-constructor': 'error',
         '@typescript-eslint/no-useless-default-assignment': 'error',
@@ -226,13 +226,13 @@ export async function typescript() {
         'no-use-before-define': 'off',
         'no-useless-constructor': 'off',
         'prefer-destructuring': 'off',
-        'require-await': 'off',
+        'require-await': 'off'
       },
       settings: {
         jsdoc: {
-          mode: 'typescript',
-        },
-      },
+          mode: 'typescript'
+        }
+      }
     }
   ]
 }

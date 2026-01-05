@@ -6,13 +6,7 @@ export async function unocss() {
   ])
 
   return [{
-    name: 'cuiqg/unocss',
-    plugins: {
-      '@unocss': pluginUnoCSS
-    },
-    rules: {
-      '@unocss/order': 'warn',
-      '@unocss/order-attributify': 'warn'
-    }
+    ...(pluginUnoCSS.configs.flat),
+    name: 'cuiqg/unocss'
   }]
 }
