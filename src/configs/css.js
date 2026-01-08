@@ -12,6 +12,7 @@ export async function css() {
     {
       name: 'cuiqg/css',
       files,
+      language: 'css/css',
       plugins: {
         css: pluginCSS
       },
